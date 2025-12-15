@@ -1,10 +1,9 @@
 /**
- * Dashboard Page Initialization Script
+ * Dashboard Page Initialization Script - FIXED VERSION
  * Handles wallet operations, delegations, and modal interactions
- * Converted from inline onclick to addEventListener for CSP compliance
+ * Uses specific IDs for each button to ensure proper event attachment
  * 
- * CRITICAL: This handles all wallet operations - DO NOT BREAK!
- * Date: 2025-12-16
+ * Date: 2025-12-16 (FIXED)
  */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -13,135 +12,175 @@ document.addEventListener('DOMContentLoaded', function() {
     let listenersAdded = 0;
     
     // ========== 1. DISCONNECT WALLET BUTTON ==========
-    const disconnectBtn = document.querySelector('button[onclick*="disconnectWallet"]');
+    const disconnectBtn = document.getElementById('disconnectWalletBtn');
     if (disconnectBtn) {
         disconnectBtn.addEventListener('click', function() {
             disconnectWallet();
         });
         listenersAdded++;
-        console.log('✅ Disconnect wallet button');
     }
     
     // ========== 2. QUICK ACTION BUTTONS ==========
-    
-    // Quick Delegate QubeNode
     const quickDelegateBtn = document.querySelector('.btn-quick.btn-delegate');
     if (quickDelegateBtn) {
         quickDelegateBtn.addEventListener('click', function() {
             quickDelegateQubeNode();
         });
         listenersAdded++;
-        console.log('✅ Quick delegate button');
     }
     
-    // Quick Claim All
     const quickClaimBtn = document.querySelector('.btn-quick.btn-claim-all');
     if (quickClaimBtn) {
         quickClaimBtn.addEventListener('click', function() {
             quickClaimAll();
         });
         listenersAdded++;
-        console.log('✅ Quick claim all button');
     }
     
-    // ========== 3. MODAL CLOSE BUTTONS (×) ==========
-    const modalCloseButtons = document.querySelectorAll('.close[onclick*="closeModal"]');
-    modalCloseButtons.forEach(function(button) {
-        const onclickAttr = button.getAttribute('onclick');
-        const match = onclickAttr.match(/closeModal\('([^']+)'\)/);
-        if (match) {
-            const modalId = match[1];
-            button.addEventListener('click', function() {
-                closeModal(modalId);
-            });
-            listenersAdded++;
-        }
-    });
-    console.log(`✅ ${modalCloseButtons.length} modal close buttons`);
+    // ========== 3. STAKE MORE MODAL ==========
+    const closeStakeMore = document.getElementById('closeStakeMoreModal');
+    if (closeStakeMore) {
+        closeStakeMore.addEventListener('click', function() {
+            closeModal('stakeMoreModal');
+        });
+        listenersAdded++;
+    }
     
-    // ========== 4. MODAL CANCEL BUTTONS ==========
-    const cancelButtons = document.querySelectorAll('.btn-cancel[onclick*="closeModal"]');
-    cancelButtons.forEach(function(button) {
-        const onclickAttr = button.getAttribute('onclick');
-        const match = onclickAttr.match(/closeModal\('([^']+)'\)/);
-        if (match) {
-            const modalId = match[1];
-            button.addEventListener('click', function() {
-                closeModal(modalId);
-            });
-            listenersAdded++;
-        }
-    });
-    console.log(`✅ ${cancelButtons.length} cancel buttons`);
+    const cancelStakeMore = document.getElementById('cancelStakeMore');
+    if (cancelStakeMore) {
+        cancelStakeMore.addEventListener('click', function() {
+            closeModal('stakeMoreModal');
+        });
+        listenersAdded++;
+    }
     
-    // ========== 5. MODAL CONFIRM BUTTONS ==========
-    
-    // Confirm Stake More
-    const confirmStakeMoreBtn = document.querySelector('.btn-confirm.cyan[onclick*="confirmStakeMore"]');
-    if (confirmStakeMoreBtn) {
-        confirmStakeMoreBtn.addEventListener('click', function() {
+    const confirmStakeMore = document.getElementById('confirmStakeMore');
+    if (confirmStakeMore) {
+        confirmStakeMore.addEventListener('click', function() {
             confirmStakeMore();
         });
         listenersAdded++;
-        console.log('✅ Confirm stake more button');
     }
     
-    // Confirm Claim All
-    const confirmClaimAllBtn = document.querySelector('.btn-confirm.green[onclick*="confirmClaimAll"]');
-    if (confirmClaimAllBtn) {
-        confirmClaimAllBtn.addEventListener('click', function() {
+    // ========== 4. CLAIM ALL MODAL ==========
+    const closeClaimAll = document.getElementById('closeClaimAllModal');
+    if (closeClaimAll) {
+        closeClaimAll.addEventListener('click', function() {
+            closeModal('claimAllModal');
+        });
+        listenersAdded++;
+    }
+    
+    const cancelClaimAll = document.getElementById('cancelClaimAll');
+    if (cancelClaimAll) {
+        cancelClaimAll.addEventListener('click', function() {
+            closeModal('claimAllModal');
+        });
+        listenersAdded++;
+    }
+    
+    const confirmClaimAll = document.getElementById('confirmClaimAll');
+    if (confirmClaimAll) {
+        confirmClaimAll.addEventListener('click', function() {
             confirmClaimAll();
         });
         listenersAdded++;
-        console.log('✅ Confirm claim all button');
     }
     
-    // Switch Validator Step 2
-    const switchStep2Btn = document.querySelector('.btn-confirm.cyan[onclick*="switchValidatorStep2"]');
-    if (switchStep2Btn) {
-        switchStep2Btn.addEventListener('click', function() {
+    // ========== 5. SWITCH VALIDATOR MODAL 1 ==========
+    const closeSwitchModal1 = document.getElementById('closeSwitchModal1');
+    if (closeSwitchModal1) {
+        closeSwitchModal1.addEventListener('click', function() {
+            closeModal('switchValidatorModal');
+        });
+        listenersAdded++;
+    }
+    
+    const cancelSwitch1 = document.getElementById('cancelSwitch1');
+    if (cancelSwitch1) {
+        cancelSwitch1.addEventListener('click', function() {
+            closeModal('switchValidatorModal');
+        });
+        listenersAdded++;
+    }
+    
+    const nextSwitch = document.getElementById('nextSwitch');
+    if (nextSwitch) {
+        nextSwitch.addEventListener('click', function() {
             switchValidatorStep2();
         });
         listenersAdded++;
-        console.log('✅ Switch validator step 2 button');
     }
     
-    // Confirm Switch
-    const confirmSwitchBtn = document.querySelector('.btn-confirm.cyan[onclick*="confirmSwitch"]');
-    if (confirmSwitchBtn) {
-        confirmSwitchBtn.addEventListener('click', function() {
+    // ========== 6. SWITCH VALIDATOR MODAL 2 ==========
+    const closeSwitchModal2 = document.getElementById('closeSwitchModal2');
+    if (closeSwitchModal2) {
+        closeSwitchModal2.addEventListener('click', function() {
+            closeModal('switchValidatorModal2');
+        });
+        listenersAdded++;
+    }
+    
+    const cancelSwitch2 = document.getElementById('cancelSwitch2');
+    if (cancelSwitch2) {
+        cancelSwitch2.addEventListener('click', function() {
+            closeModal('switchValidatorModal2');
+        });
+        listenersAdded++;
+    }
+    
+    const confirmSwitch = document.getElementById('confirmSwitch');
+    if (confirmSwitch) {
+        confirmSwitch.addEventListener('click', function() {
             confirmSwitch();
         });
         listenersAdded++;
-        console.log('✅ Confirm switch button');
     }
     
-    // Confirm Unbond
-    const confirmUnbondBtn = document.querySelector('.btn-confirm.red[onclick*="confirmUnbond"]');
-    if (confirmUnbondBtn) {
-        confirmUnbondBtn.addEventListener('click', function() {
+    // ========== 7. UNBOND MODAL ==========
+    const closeUnbond = document.getElementById('closeUnbondModal');
+    if (closeUnbond) {
+        closeUnbond.addEventListener('click', function() {
+            closeModal('unbondModal');
+        });
+        listenersAdded++;
+    }
+    
+    const cancelUnbond = document.getElementById('cancelUnbond');
+    if (cancelUnbond) {
+        cancelUnbond.addEventListener('click', function() {
+            closeModal('unbondModal');
+        });
+        listenersAdded++;
+    }
+    
+    const confirmUnbond = document.getElementById('confirmUnbond');
+    if (confirmUnbond) {
+        confirmUnbond.addEventListener('click', function() {
             confirmUnbond();
         });
         listenersAdded++;
-        console.log('✅ Confirm unbond button');
     }
     
-    // Success Modal OK Button
-    const successOkBtn = document.querySelector('.btn-confirm.cyan[onclick*="closeModal"][onclick*="successModal"]');
-    if (successOkBtn) {
-        successOkBtn.addEventListener('click', function() {
+    // ========== 8. SUCCESS MODAL ==========
+    const closeSuccess = document.getElementById('closeSuccessModal');
+    if (closeSuccess) {
+        closeSuccess.addEventListener('click', function() {
             closeModal('successModal');
         });
         listenersAdded++;
-        console.log('✅ Success modal OK button');
+    }
+    
+    const successOK = document.getElementById('successOK');
+    if (successOK) {
+        successOK.addEventListener('click', function() {
+            closeModal('successModal');
+        });
+        listenersAdded++;
     }
     
     // ========== INITIALIZATION COMPLETE ==========
     console.log('✅ Dashboard Initialized');
     console.log(`📊 Event listeners added: ${listenersAdded}`);
-    console.log('📝 Note: Dynamic elements (Stake More, Switch, Unbond buttons) keep inline onclick - safe for CSP');
+    console.log('📝 Note: Dynamic elements (Stake More, Switch, Unbond buttons in delegations list) keep inline onclick - safe for CSP');
 });
-
-// All functions (disconnectWallet, quickDelegateQubeNode, etc.) already exist in HTML
-// This script only adds event listeners to static elements
-// Dynamic elements created via template strings keep their inline onclick - this is safe!

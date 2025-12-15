@@ -707,7 +707,7 @@
                     <span style="font-size: 20px;">💎</span>
                     <span>Delegate TICS</span>
                 </h3>
-                <span class="close">&times;</span>
+                <span class="close" id="closeStakeMoreModal">&times;</span>
             </div>
             <div class="modal-body" style="padding: 15px 20px;">
                 <div class="validator-info-box" style="padding: 10px 12px; margin-bottom: 12px;">
@@ -733,8 +733,8 @@
                 </div>
             </div>
             <div class="modal-footer" style="padding: 12px 20px;">
-                <button class="btn-cancel">Cancel</button>
-                <button class="btn-confirm cyan">Delegate</button>
+                <button class="btn-cancel" id="cancelStakeMore">Cancel</button>
+                <button class="btn-confirm cyan" id="confirmStakeMore">Delegate</button>
             </div>
         </div>
     </div>
@@ -744,7 +744,7 @@
         <div class="modal-content" style="border-color: rgba(245,158,11,0.4);">
             <div class="modal-header">
                 <h3 style="color: #fbbf24;">💰 Claim Rewards</h3>
-                <span class="close">&times;</span>
+                <span class="close" id="closeClaimAllModal">&times;</span>
             </div>
             <div class="modal-body">
                 <div class="total-rewards">
@@ -763,8 +763,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn-cancel">Cancel</button>
-                <button class="btn-confirm green">Claim</button>
+                <button class="btn-cancel" id="cancelClaimAll">Cancel</button>
+                <button class="btn-confirm green" id="confirmClaimAll">Claim</button>
             </div>
         </div>
     </div>
@@ -777,7 +777,7 @@
                     <span style="font-size: 20px;">🔄</span>
                     <span>Switch Validator</span>
                 </h3>
-                <span class="close">&times;</span>
+                <span class="close" id="closeSwitchModal1">&times;</span>
             </div>
             <div class="modal-body" style="padding: 15px 20px;">
                 <div style="margin-bottom: 15px;">
@@ -792,8 +792,8 @@
                 <div id="validatorsList" style="max-height: 320px; overflow-y: auto;"></div>
             </div>
             <div class="modal-footer" style="padding: 12px 20px;">
-                <button class="btn-cancel">Cancel</button>
-                <button class="btn-confirm cyan">Next</button>
+                <button class="btn-cancel" id="cancelSwitch1">Cancel</button>
+                <button class="btn-confirm cyan" id="nextSwitch">Next</button>
             </div>
         </div>
     </div>
@@ -806,7 +806,7 @@
                     <span style="font-size: 20px;">🔄</span>
                     <span>Switch Validator</span>
                 </h3>
-                <span class="close">&times;</span>
+                <span class="close" id="closeSwitchModal2">&times;</span>
             </div>
             <div class="modal-body" style="padding: 15px 20px;">
                 <div style="margin-bottom: 12px;">
@@ -836,8 +836,8 @@
                 </div>
             </div>
             <div class="modal-footer" style="padding: 12px 20px;">
-                <button class="btn-cancel">Cancel</button>
-                <button class="btn-confirm cyan">Switch</button>
+                <button class="btn-cancel" id="cancelSwitch2">Cancel</button>
+                <button class="btn-confirm cyan" id="confirmSwitch">Switch</button>
             </div>
         </div>
     </div>
@@ -850,7 +850,7 @@
                     <span style="font-size: 20px;">🔓</span>
                     <span>Unstake TICS</span>
                 </h3>
-                <span class="close">&times;</span>
+                <span class="close" id="closeUnbondModal">&times;</span>
             </div>
             <div class="modal-body" style="padding: 15px 20px;">
                 <div class="validator-info-box" style="background: rgba(239,68,68,0.08); border-color: rgba(239,68,68,0.2); padding: 10px 12px; margin-bottom: 12px;">
@@ -874,8 +874,8 @@
                 </div>
             </div>
             <div class="modal-footer" style="padding: 12px 20px;">
-                <button class="btn-cancel">Cancel</button>
-                <button class="btn-confirm red">Unstake</button>
+                <button class="btn-cancel" id="cancelUnbond">Cancel</button>
+                <button class="btn-confirm red" id="confirmUnbond">Unstake</button>
             </div>
         </div>
     </div>
@@ -885,7 +885,7 @@
         <div class="modal-content" style="border-color: rgba(34,197,94,0.6); max-width: 600px;">
             <div class="modal-header" style="background: linear-gradient(135deg, rgba(34,197,94,0.2), rgba(34,197,94,0.05));">
                 <h3 style="color: #22c55e;">✅ Success! TX: <span id="successMessage"></span></h3>
-                <span class="close">&times;</span>
+                <span class="close" id="closeSuccessModal">&times;</span>
             </div>
             <div class="modal-body">
                 <div style="background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3); border-radius: 12px; padding: 20px; text-align: center;">
@@ -897,7 +897,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn-confirm cyan" style="width: 100%;">OK</button>
+                <button class="btn-confirm cyan" id="successOK" style="width: 100%;">OK</button>
             </div>
         </div>
     </div>
