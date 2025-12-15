@@ -1,9 +1,9 @@
 /**
- * Dashboard Page Initialization Script - FIXED VERSION
+ * Dashboard Page Initialization Script - CORRECTED VERSION
  * Handles wallet operations, delegations, and modal interactions
- * Uses specific IDs for each button to ensure proper event attachment
+ * Fixed: No name conflicts between buttons and functions
  * 
- * Date: 2025-12-16 (FIXED)
+ * Date: 2025-12-16 (FIXED v2)
  */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -38,142 +38,142 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // ========== 3. STAKE MORE MODAL ==========
-    const closeStakeMore = document.getElementById('closeStakeMoreModal');
-    if (closeStakeMore) {
-        closeStakeMore.addEventListener('click', function() {
+    const closeStakeMoreBtn = document.getElementById('closeStakeMoreModal');
+    if (closeStakeMoreBtn) {
+        closeStakeMoreBtn.addEventListener('click', function() {
             closeModal('stakeMoreModal');
         });
         listenersAdded++;
     }
     
-    const cancelStakeMore = document.getElementById('cancelStakeMore');
-    if (cancelStakeMore) {
-        cancelStakeMore.addEventListener('click', function() {
+    const cancelStakeMoreBtn = document.getElementById('cancelStakeMore');
+    if (cancelStakeMoreBtn) {
+        cancelStakeMoreBtn.addEventListener('click', function() {
             closeModal('stakeMoreModal');
         });
         listenersAdded++;
     }
     
-    const confirmStakeMore = document.getElementById('confirmStakeMore');
-    if (confirmStakeMore) {
-        confirmStakeMore.addEventListener('click', function() {
-            confirmStakeMore();
+    const confirmStakeMoreBtn = document.getElementById('confirmStakeMore');
+    if (confirmStakeMoreBtn) {
+        confirmStakeMoreBtn.addEventListener('click', function() {
+            confirmStakeMore();  // ✅ Викликаємо ФУНКЦІЮ confirmStakeMore()
         });
         listenersAdded++;
     }
     
     // ========== 4. CLAIM ALL MODAL ==========
-    const closeClaimAll = document.getElementById('closeClaimAllModal');
-    if (closeClaimAll) {
-        closeClaimAll.addEventListener('click', function() {
+    const closeClaimAllBtn = document.getElementById('closeClaimAllModal');
+    if (closeClaimAllBtn) {
+        closeClaimAllBtn.addEventListener('click', function() {
             closeModal('claimAllModal');
         });
         listenersAdded++;
     }
     
-    const cancelClaimAll = document.getElementById('cancelClaimAll');
-    if (cancelClaimAll) {
-        cancelClaimAll.addEventListener('click', function() {
+    const cancelClaimAllBtn = document.getElementById('cancelClaimAll');
+    if (cancelClaimAllBtn) {
+        cancelClaimAllBtn.addEventListener('click', function() {
             closeModal('claimAllModal');
         });
         listenersAdded++;
     }
     
-    const confirmClaimAll = document.getElementById('confirmClaimAll');
-    if (confirmClaimAll) {
-        confirmClaimAll.addEventListener('click', function() {
-            confirmClaimAll();
+    const confirmClaimAllBtn = document.getElementById('confirmClaimAll');
+    if (confirmClaimAllBtn) {
+        confirmClaimAllBtn.addEventListener('click', function() {
+            confirmClaimAll();  // ✅ Викликаємо ФУНКЦІЮ confirmClaimAll()
         });
         listenersAdded++;
     }
     
     // ========== 5. SWITCH VALIDATOR MODAL 1 ==========
-    const closeSwitchModal1 = document.getElementById('closeSwitchModal1');
-    if (closeSwitchModal1) {
-        closeSwitchModal1.addEventListener('click', function() {
+    const closeSwitchModal1Btn = document.getElementById('closeSwitchModal1');
+    if (closeSwitchModal1Btn) {
+        closeSwitchModal1Btn.addEventListener('click', function() {
             closeModal('switchValidatorModal');
         });
         listenersAdded++;
     }
     
-    const cancelSwitch1 = document.getElementById('cancelSwitch1');
-    if (cancelSwitch1) {
-        cancelSwitch1.addEventListener('click', function() {
+    const cancelSwitch1Btn = document.getElementById('cancelSwitch1');
+    if (cancelSwitch1Btn) {
+        cancelSwitch1Btn.addEventListener('click', function() {
             closeModal('switchValidatorModal');
         });
         listenersAdded++;
     }
     
-    const nextSwitch = document.getElementById('nextSwitch');
-    if (nextSwitch) {
-        nextSwitch.addEventListener('click', function() {
-            switchValidatorStep2();
+    const nextSwitchBtn = document.getElementById('nextSwitch');
+    if (nextSwitchBtn) {
+        nextSwitchBtn.addEventListener('click', function() {
+            switchValidatorStep2();  // ✅ Викликаємо ФУНКЦІЮ switchValidatorStep2()
         });
         listenersAdded++;
     }
     
     // ========== 6. SWITCH VALIDATOR MODAL 2 ==========
-    const closeSwitchModal2 = document.getElementById('closeSwitchModal2');
-    if (closeSwitchModal2) {
-        closeSwitchModal2.addEventListener('click', function() {
+    const closeSwitchModal2Btn = document.getElementById('closeSwitchModal2');
+    if (closeSwitchModal2Btn) {
+        closeSwitchModal2Btn.addEventListener('click', function() {
             closeModal('switchValidatorModal2');
         });
         listenersAdded++;
     }
     
-    const cancelSwitch2 = document.getElementById('cancelSwitch2');
-    if (cancelSwitch2) {
-        cancelSwitch2.addEventListener('click', function() {
+    const cancelSwitch2Btn = document.getElementById('cancelSwitch2');
+    if (cancelSwitch2Btn) {
+        cancelSwitch2Btn.addEventListener('click', function() {
             closeModal('switchValidatorModal2');
         });
         listenersAdded++;
     }
     
-    const confirmSwitch = document.getElementById('confirmSwitch');
-    if (confirmSwitch) {
-        confirmSwitch.addEventListener('click', function() {
-            confirmSwitch();
+    const confirmSwitchBtn = document.getElementById('confirmSwitch');
+    if (confirmSwitchBtn) {
+        confirmSwitchBtn.addEventListener('click', function() {
+            confirmSwitch();  // ✅ Викликаємо ФУНКЦІЮ confirmSwitch()
         });
         listenersAdded++;
     }
     
     // ========== 7. UNBOND MODAL ==========
-    const closeUnbond = document.getElementById('closeUnbondModal');
-    if (closeUnbond) {
-        closeUnbond.addEventListener('click', function() {
+    const closeUnbondBtn = document.getElementById('closeUnbondModal');
+    if (closeUnbondBtn) {
+        closeUnbondBtn.addEventListener('click', function() {
             closeModal('unbondModal');
         });
         listenersAdded++;
     }
     
-    const cancelUnbond = document.getElementById('cancelUnbond');
-    if (cancelUnbond) {
-        cancelUnbond.addEventListener('click', function() {
+    const cancelUnbondBtn = document.getElementById('cancelUnbond');
+    if (cancelUnbondBtn) {
+        cancelUnbondBtn.addEventListener('click', function() {
             closeModal('unbondModal');
         });
         listenersAdded++;
     }
     
-    const confirmUnbond = document.getElementById('confirmUnbond');
-    if (confirmUnbond) {
-        confirmUnbond.addEventListener('click', function() {
-            confirmUnbond();
+    const confirmUnbondBtn = document.getElementById('confirmUnbond');
+    if (confirmUnbondBtn) {
+        confirmUnbondBtn.addEventListener('click', function() {
+            confirmUnbond();  // ✅ Викликаємо ФУНКЦІЮ confirmUnbond()
         });
         listenersAdded++;
     }
     
     // ========== 8. SUCCESS MODAL ==========
-    const closeSuccess = document.getElementById('closeSuccessModal');
-    if (closeSuccess) {
-        closeSuccess.addEventListener('click', function() {
+    const closeSuccessBtn = document.getElementById('closeSuccessModal');
+    if (closeSuccessBtn) {
+        closeSuccessBtn.addEventListener('click', function() {
             closeModal('successModal');
         });
         listenersAdded++;
     }
     
-    const successOK = document.getElementById('successOK');
-    if (successOK) {
-        successOK.addEventListener('click', function() {
+    const successOKBtn = document.getElementById('successOK');
+    if (successOKBtn) {
+        successOKBtn.addEventListener('click', function() {
             closeModal('successModal');
         });
         listenersAdded++;
@@ -182,5 +182,16 @@ document.addEventListener('DOMContentLoaded', function() {
     // ========== INITIALIZATION COMPLETE ==========
     console.log('✅ Dashboard Initialized');
     console.log(`📊 Event listeners added: ${listenersAdded}`);
-    console.log('📝 Note: Dynamic elements (Stake More, Switch, Unbond buttons in delegations list) keep inline onclick - safe for CSP');
+    console.log('📝 Note: Dynamic elements keep inline onclick - safe for CSP');
 });
+
+// All functions exist in dashboard.html:
+// - disconnectWallet()
+// - quickDelegateQubeNode()
+// - quickClaimAll()
+// - closeModal(modalId)
+// - confirmStakeMore()
+// - confirmClaimAll()
+// - switchValidatorStep2()
+// - confirmSwitch()
+// - confirmUnbond()
