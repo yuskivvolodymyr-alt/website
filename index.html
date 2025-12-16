@@ -2390,7 +2390,7 @@
                     </defs>
                 </svg>
             </a>
-            <a href="mailto:validator.qubenode@gmail.com" class="fixed-contact-icon">
+            <a href="/cdn-cgi/l/email-protection#0d7b6c6164696c79627f237c786f68636269684d6a606c6461236e6260" class="fixed-contact-icon">
                 <svg viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect x="11" y="16" width="28" height="18" rx="2" stroke="url(#iconGrad2)" stroke-width="3.5" fill="none"/>
                     <path d="M11 19L25 28L39 19" stroke="url(#iconGrad2)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -2571,7 +2571,7 @@
                 </svg>
                 <span>Telegram</span>
             </a>
-            <a href="mailto:validator.qubenode@gmail.com" class="contact-link">
+            <a href="/cdn-cgi/l/email-protection#4e382f22272a2f3a213c603f3b2c2b20212a2b0e29232f2722602d2123" class="contact-link">
                 <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                 </svg>
@@ -5073,7 +5073,7 @@
     </script>
 
     <!-- Cosmos Staking Module Integration - Load in correct order -->
-    <script src="chain-config.js"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="chain-config.js"></script>
     <script src="wallet-manager.js"></script>
     <script src="chain-client.js"></script>
     <script src="transaction-builder.js"></script>
@@ -5081,39 +5081,6 @@
     <script src="cosmos-staking.js"></script>
     <script src="sync.js"></script>
 
-    <script>
-    // TEST: Verify functions are loaded
-    // console.log('🔧 Testing function definitions...');
-    // console.log('quickStakeMore type:', typeof window.quickStakeMore);
-    // console.log('quickStakeQubeNode type:', typeof window.quickStakeQubeNode);
-    // console.log('quickClaimAllRewards type:', typeof window.quickClaimAllRewards);
-    
-    if (typeof window.quickStakeQubeNode === 'function') {
-        // console.log('✅ Functions are loaded correctly!');
-        
-        // Attach event listeners to Quick Actions buttons (FIRST block - before My Delegations)
-        const btnQuickStakeQubeNode = document.getElementById('btnQuickStakeQubeNode');
-        const btnQuickClaimAllRewards = document.getElementById('btnQuickClaimAllRewards');
-        
-        if (btnQuickStakeQubeNode) {
-            btnQuickStakeQubeNode.addEventListener('click', function() {
-                // console.log('🚀 Quick Stake QubeNode clicked!');
-                window.quickStakeQubeNode();
-            });
-            // console.log('✅ btnQuickStakeQubeNode listener attached');
-        }
-        
-        if (btnQuickClaimAllRewards) {
-            btnQuickClaimAllRewards.addEventListener('click', function() {
-                // console.log('💰 Quick Claim All Rewards clicked!');
-                window.quickClaimAllRewards();
-            });
-            // console.log('✅ btnQuickClaimAllRewards listener attached');
-        }
-    } else {
-        // console.error('❌ Functions are NOT loaded!');
-    }
-    </script>
     
     <!-- WALLET CONNECTOR - Adapted from TicsLab -->
     <script src="validators-registry.js"></script>
