@@ -2313,13 +2313,17 @@
             try {
                 // Wait for modules to load (max 5 seconds)
                 let attempts = 0;
-                while (typeof CosmosStakingModule === 'undefined' && attempts < 50) {
+                while ((typeof CosmosStakingModule === 'undefined' || typeof QUBETICS_CHAIN_CONFIG === 'undefined') && attempts < 50) {
                     await new Promise(resolve => setTimeout(resolve, 100));
                     attempts++;
                 }
                 
                 if (typeof CosmosStakingModule === 'undefined') {
                     throw new Error('Modules failed to load. Reload the page.');
+                }
+                
+                if (typeof QUBETICS_CHAIN_CONFIG === 'undefined') {
+                    throw new Error('Chain configuration not loaded. Reload the page.');
                 }
                 
                 await initializeStaking();
@@ -5069,6 +5073,8 @@
             await originalDisconnectWallet();
             resetHeaderWalletButton();
         }
+
+    </script>
 
     <!-- Cosmos Staking Module Integration - Load in correct order -->
     <script src="chain-config.js"></script>
