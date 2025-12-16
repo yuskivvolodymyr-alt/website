@@ -2394,7 +2394,7 @@
                     </defs>
                 </svg>
             </a>
-            <a href="/cdn-cgi/l/email-protection#0e786f62676a6f7a617c207f7b6c6b60616a6b4e69636f6762206d6163" class="fixed-contact-icon">
+            <a href="mailto:validator.qubenode@gmail.com" class="fixed-contact-icon">
                 <svg viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect x="11" y="16" width="28" height="18" rx="2" stroke="url(#iconGrad2)" stroke-width="3.5" fill="none"/>
                     <path d="M11 19L25 28L39 19" stroke="url(#iconGrad2)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -2575,7 +2575,7 @@
                 </svg>
                 <span>Telegram</span>
             </a>
-            <a href="/cdn-cgi/l/email-protection#baccdbd6d3dedbced5c894cbcfd8dfd4d5dedffaddd7dbd3d694d9d5d7" class="contact-link">
+            <a href="mailto:validator.qubenode@gmail.com" class="contact-link">
                 <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                 </svg>
@@ -3201,80 +3201,6 @@
             if (event.target.classList.contains('modal')) {
                 event.target.classList.remove('show');
                 event.target.style.display = 'none';
-            }
-        }
-
-        // ============ HEADER WALLET FUNCTIONS (MUST BE DEFINED FIRST) ============
-        let headerWalletConnected = false;
-        
-        function toggleHeaderWalletDropdown(event) {
-            if (event) event.stopPropagation();
-            
-            const dropdown = document.getElementById('headerWalletDropdown');
-            if (dropdown) {
-                dropdown.classList.toggle('show');
-            }
-        }
-        
-        async function connectHeaderWallet(walletType) {
-            const dropdown = document.getElementById('headerWalletDropdown');
-            if (dropdown) dropdown.classList.remove('show');
-            
-            const headerBtn = document.getElementById('headerWalletBtn');
-            if (headerBtn) {
-                headerBtn.innerHTML = '<span>⏳</span><span>Connecting...</span>';
-                headerBtn.style.pointerEvents = 'none';
-            }
-            
-            try {
-                await initializeStaking();
-                const result = await cosmosStaking.connectWallet(walletType);
-                
-                if (result.success) {
-                    headerWalletConnected = true;
-                    
-                    // Get wallet info
-                    const walletInfo = cosmosStaking.getWalletInfo();
-                    
-                    // Redirect to dashboard with wallet params
-                    window.location.href = `dashboard.html?wallet=${walletType}&address=${walletInfo.address}`;
-                }
-            } catch (error) {
-                // console.error('Header wallet connection error:', error);
-                alert('Connection error: ' + error.message);
-                resetHeaderWalletButton();
-            } finally {
-                if (headerBtn) headerBtn.style.pointerEvents = 'auto';
-            }
-        }
-        
-        function resetHeaderWalletButton() {
-            const headerBtn = document.getElementById('headerWalletBtn');
-            if (headerBtn) {
-                headerBtn.innerHTML = '<span>💼</span><span>Connect Wallet</span>';
-                headerBtn.classList.remove('wallet-connected');
-            }
-        }
-        
-        function disconnectHeaderWallet() {
-            headerWalletConnected = false;
-            if (cosmosStaking) {
-                cosmosStaking.disconnect();
-            }
-            resetHeaderWalletButton();
-            const dropdown = document.getElementById('headerWalletDropdown');
-            if (dropdown) {
-                dropdown.innerHTML = `
-                    <button class="wallet-option" id="headerKeplrOption">
-                        <span>🔷</span>
-                        <span>Keplr Wallet</span>
-                    </button>
-                    <button class="wallet-option" id="headerCosmostationOption">
-                        <span>🔶</span>
-                        <span>Cosmostation</span>
-                    </button>
-                `;
-                dropdown.classList.remove('show');
             }
         }
 
