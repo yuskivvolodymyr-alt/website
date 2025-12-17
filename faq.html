@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://swagger.qubetics.com https://tendermint.qubetics.com https://rpc.qubetics.com https://api.mexc.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+    
     <title>FAQ - QubeNode</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -411,7 +415,7 @@
                     <p>You can contact us through:</p>
                     <ul>
                         <li><strong><a href="https://t.me/+sRnz7RyoL4Q0MWEy" target="_blank">Telegram</a>:</strong> Our support team is always ready to help</li>
-                        <li><strong>Email:</strong> <a href="mailto:validator.qubenode@gmail.com">validator.qubenode@gmail.com</a></li>
+                        <li><strong>Email:</strong> <a href="/cdn-cgi/l/email-protection#196f7875707d786d766b37686c7b7c77767d7c597e74787075377a7674"><span class="__cf_email__" data-cfemail="83f5e2efeae7e2f7ecf1adf2f6e1e6edece7e6c3e4eee2eaefade0ecee">[email&#160;protected]</span></a></li>
                     </ul>
                 </div>
             </div>
@@ -434,7 +438,7 @@
         </footer>
     </div>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         function toggleFaq(button) {
             const answer = button.nextElementSibling;
             const isActive = button.classList.contains('active');
@@ -446,11 +450,11 @@
             });
             
             // Toggle current answer
-            if (!isActive) {
-                button.classList.add('active');
-                answer.classList.add('active');
-            }
+        if (!isActive) {
+            button.classList.add('active');
+            answer.classList.add('active');
         }
+    }
     </script>
     
     <!-- FAQ Initialization -->

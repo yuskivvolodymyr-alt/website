@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://swagger.qubetics.com https://tendermint.qubetics.com https://rpc.qubetics.com https://api.mexc.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+    
     <!-- Safari theme color - fixes pull-to-refresh background -->
     <meta name="theme-color" content="#000000">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -2394,7 +2398,7 @@
                     </defs>
                 </svg>
             </a>
-            <a href="mailto:validator.qubenode@gmail.com" class="fixed-contact-icon">
+            <a href="/cdn-cgi/l/email-protection#b5c3d4d9dcd1d4c1dac79bc4c0d7d0dbdad1d0f5d2d8d4dcd99bd6dad8" class="fixed-contact-icon">
                 <svg viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect x="11" y="16" width="28" height="18" rx="2" stroke="url(#iconGrad2)" stroke-width="3.5" fill="none"/>
                     <path d="M11 19L25 28L39 19" stroke="url(#iconGrad2)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -2575,7 +2579,7 @@
                 </svg>
                 <span>Telegram</span>
             </a>
-            <a href="mailto:validator.qubenode@gmail.com" class="contact-link">
+            <a href="/cdn-cgi/l/email-protection#2b5d4a47424f4a5f4459055a5e494e45444f4e6b4c464a424705484446" class="contact-link">
                 <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                 </svg>
@@ -3078,7 +3082,7 @@
     </div>
 
     <!-- FAQ Modal -->
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // FAQ Accordion Toggle
         function toggleFaq(button) {
             const faqItem = button.parentElement;
@@ -5048,8 +5052,8 @@
     <!-- WALLET CONNECTOR - Adapted from TicsLab -->
     <script src="validators-registry.js"></script>
     <script src="wallet-connector.js"></script>
-
-    <!-- Index Page Initialization – Event Listeners for CSP Compliance -->
+    
+    <!-- Index Page Initialization - Event Listeners for CSP Compliance -->
     <script src="init-index.js"></script>
 </body>
 </html>
