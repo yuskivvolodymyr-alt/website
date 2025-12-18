@@ -177,8 +177,26 @@
             <p>© 2025 QubeNode. All rights reserved. | <a href="https://t.me/+sRnz7RyoL4Q0MWEy" target="_blank">Telegram</a></p>
         </footer>
     </div>
-
-    <!-- FAQ Initialization -->
+    
+    <script>
+        // FAQ Accordion Toggle Function
+        function toggleFaq(button) {
+            const faqItem = button.parentElement;
+            const isActive = faqItem.classList.contains('active');
+            
+            // Close all other FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Toggle current item
+            if (!isActive) {
+                faqItem.classList.add('active');
+            }
+        }
+    </script>
+    
+    <!-- FAQ Initialization - Event Listeners for CSP Compliance -->
     <script src="init-faq.js"></script>
 </body>
 </html>
