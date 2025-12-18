@@ -2299,13 +2299,13 @@
         let headerWalletConnected = false;
         let cosmosStaking = null;
         
-        function toggleHeaderWalletDropdown(event) {
+        window.toggleHeaderWalletDropdown = function(event) {
             if (event) event.stopPropagation();
             const dropdown = document.getElementById('headerWalletDropdown');
             if (dropdown) dropdown.classList.toggle('show');
         }
         
-        async function connectHeaderWallet(walletType) {
+        window.connectHeaderWallet = async function(walletType) {
             const dropdown = document.getElementById('headerWalletDropdown');
             if (dropdown) dropdown.classList.remove('show');
             
@@ -3125,7 +3125,7 @@
             });
         }
     
-        function openModal(id) {
+        window.openModal = function(id) {
             var modal = document.getElementById(id);
             
             if (modal) {
@@ -3182,7 +3182,7 @@
             }
         }
 
-        function closeModal(id) {
+        window.closeModal = function(id) {
             var modal = document.getElementById(id);
             if (modal) {
                 modal.classList.remove('show');
@@ -3301,7 +3301,7 @@
             }
         }
 
-        async function disconnectWallet() {
+        window.disconnectWallet = async function() {
             if (cosmosStaking) {
                 cosmosStaking.disconnect();
             }
@@ -4225,7 +4225,7 @@
             }
         }
 
-        function disconnectDashboard() {
+        window.disconnectDashboard = function() {
             if (confirm('Disconnect Wallet?')) {
                 if (cosmosStaking) {
                     cosmosStaking.disconnect();
@@ -4633,7 +4633,7 @@
             }
         }
 
-        function showStakingTab(tab) {
+        window.showStakingTab = function(tab) {
             document.querySelectorAll('.staking-tab').forEach(btn => {
                 btn.style.background = 'transparent';
                 btn.style.color = '#94a3b8';
@@ -4647,7 +4647,7 @@
             document.getElementById(tab + 'Tab').style.display = 'block';
         }
 
-        async function executeDelegate() {
+        window.executeDelegate = async function() {
             const amount = parseFloat(document.getElementById('delegateAmount').value);
             
             if (!amount || amount < 0.1) {
@@ -4672,7 +4672,7 @@
             }
         }
 
-        async function executeUndelegate() {
+        window.executeUndelegate = async function() {
             const amount = parseFloat(document.getElementById('undelegateAmount').value);
             
             if (!amount || amount < 0.1) {
@@ -4701,7 +4701,7 @@
             }
         }
 
-        async function executeClaim() {
+        window.executeClaim = async function() {
             try {
                 showTxStatus('processing', 'Processing transaction...');
                 
@@ -4825,7 +4825,7 @@
             }
         }
 
-        function closeWalletModal() {
+        window.closeWalletModal = function() {
             const modal = document.getElementById('walletModal');
             if (modal) {
                 modal.classList.remove('active');
@@ -5000,7 +5000,7 @@
 
         // Check if wallet gets disconnected in modal and update header
         const originalDisconnectWallet = disconnectWallet;
-        async function disconnectWallet() {
+        window.disconnectWallet = async function() {
             await originalDisconnectWallet();
             resetHeaderWalletButton();
         }

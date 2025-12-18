@@ -912,6 +912,7 @@
     <script src="dashboard-dom-helpers.js"></script>
     
     <!-- CSP Compliant: Safe Function Overrides -->
+    <script src="dashboard-functions.js"></script>
     
     <script>
         const QUBENODE_VALIDATOR = 'qubeticsvaloper1tzk9f84cv2gmk3du3m9dpxcuph70sfj6uf6kld';
@@ -1038,7 +1039,7 @@
             return tics.toFixed(isMobile ? 2 : 3);
         }
         
-        function closeModal(modalId) {
+        window.closeModal = function(modalId) {
             document.getElementById(modalId).style.display = 'none';
             
             // Очищення errorMessage та віdновлення стану dля successModal
@@ -1194,7 +1195,7 @@
         }
         
         // Quick Delegate to QubeNode
-        function quickDelegateQubeNode() {
+        window.quickDelegateQubeNode = function() {
             stakeMore(QUBENODE_VALIDATOR, '0');
         }
         
@@ -1333,7 +1334,7 @@
             event.currentTarget.classList.add('selected');
         }
         
-        function switchValidatorStep2() {
+        window.switchValidatorStep2 = function() {
             if (!selectedSwitchValidator) {
                 alert('Select validator');
                 return;
@@ -1477,7 +1478,7 @@
             }
         }
         
-        function disconnectWallet() {
+        window.disconnectWallet = function() {
             window.location.href = 'index.html';
         }
         
