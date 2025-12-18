@@ -17,6 +17,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- Ecosystem Styles (CSP Compliant) -->
+    <link href="ecosystem-styles.css" rel="stylesheet">
+    
     <style>
         * {
             margin: 0;
@@ -736,7 +739,7 @@
             <p class="hero-text">
                 <strong>Qubetics is a new generation blockchain, the world's first Layer-1 Web3 ecosystem that will unite leading networks such as Bitcoin, Ethereum, Solana and others into one platform.</strong>
             </p>
-            <p class="hero-text" style="margin-top: 20px;">
+            <p class="hero-text hero-text-spaced">
                 The network is built on Cosmos SDK and supports EVM compatibility, allowing assets, data and applications to move freely between different blockchains without bridges, third-party services or complex technical solutions.
             </p>
         </div>
@@ -747,9 +750,9 @@
         </div>
 
         <!-- Goals - Simple Text -->
-        <div class="simple-text animate-on-scroll" style="text-align: center;">
+        <div class="simple-text animate-on-scroll simple-text-center">
             <h2>Qubetics aims to become the foundation for:</h2>
-            <div class="simple-list" style="max-width: 800px; margin: 40px auto; text-align: left;">
+            <div class="simple-list simple-list-centered">
                 <p>next-generation financial services</p>
                 <p>fast international payments</p>
                 <p>decentralized applications</p>
@@ -758,9 +761,9 @@
         </div>
 
         <!-- Why Important - Simple Text -->
-        <div class="simple-text animate-on-scroll" style="text-align: center;">
+        <div class="simple-text animate-on-scroll simple-text-center">
             <h2>Why This Matters</h2>
-            <div style="max-width: 1000px; margin: 0 auto; text-align: left;">
+            <div class="content-wrapper-wide">
                 <p>
                     <strong>Traditional blockchains operate in isolation — they cannot fully exchange data and assets with each other.</strong><br>
                     This creates barriers, risks, delays and complicates scaling.
@@ -773,7 +776,7 @@
         </div>
 
         <!-- Technologies Header - Simple Text -->
-        <div class="simple-text animate-on-scroll" style="text-align: center; margin: 80px 0 60px 0;">
+        <div class="simple-text animate-on-scroll simple-text-spaced">
             <h2>💡 Future Technologies and Innovations</h2>
         </div>
 
@@ -829,8 +832,8 @@
                             </svg>
                         </span>
                         <div>
-                            <div style="font-size: 11px; opacity: 0.7;">GET IT ON</div>
-                            <div style="font-size: 16px; font-weight: 600;">App Store</div>
+                            <div class="download-button-label">GET IT ON</div>
+                            <div class="download-button-name">App Store</div>
                         </div>
                     </a>
                     <a href="https://play.google.com/store/apps/details?id=com.qubetics.wallet" target="_blank" class="download-btn">
@@ -840,8 +843,8 @@
                             </svg>
                         </span>
                         <div>
-                            <div style="font-size: 11px; opacity: 0.7;">GET IT ON</div>
-                            <div style="font-size: 16px; font-weight: 600;">Google Play</div>
+                            <div class="download-button-label">GET IT ON</div>
+                            <div class="download-button-name">Google Play</div>
                         </div>
                     </a>
                     <a href="https://chromewebstore.google.com/detail/qubetics-wallet/oabinpbnodlcmbnohnnbnbjpfkpclhim" target="_blank" class="download-btn">
@@ -851,8 +854,8 @@
                             </svg>
                         </span>
                         <div>
-                            <div style="font-size: 11px; opacity: 0.7;">Available in</div>
-                            <div style="font-size: 16px; font-weight: 600;">Chrome Web Store</div>
+                            <div class="download-button-label">Available in</div>
+                            <div class="download-button-name">Chrome Web Store</div>
                         </div>
                     </a>
                 </div>
@@ -891,15 +894,15 @@
         </div>
 
         <!-- Final Section - Simple Text -->
-        <div class="simple-text animate-on-scroll" style="text-align: center; margin: 80px 0;">
+        <div class="simple-text animate-on-scroll bottom-section-spaced">
             <h2>Why Qubetics is the Future of Blockchain</h2>
-            <div style="max-width: 1000px; margin: 0 auto;">
+            <div class="content-wrapper-centered">
                 <p>
                     <strong>Qubetics is not just another blockchain.</strong><br>
                     It is a platform that will combine traditional finance, Web3 innovations and practical tools for everyday use.
                 </p>
                 <p><strong>In the future, the Qubetics ecosystem will include:</strong></p>
-                <div class="simple-list" style="max-width: 800px; margin: 30px auto; text-align: left;">
+                <div class="simple-list simple-list-spaced">
                     <p>cross-network interaction powered by CAP</p>
                     <p>a single convenient wallet for all Web3 capabilities</p>
                     <p>decentralized VPN for privacy and freedom on the internet</p>
@@ -907,7 +910,7 @@
                     <p>international settlements on one platform</p>
                     <p>tokenization of real assets</p>
                 </div>
-                <p style="margin-top: 40px; font-size: clamp(18px, 2vw, 22px); color: #00FFF0; line-height: 1.6;">
+                <p class="final-paragraph">
                     <strong>Qubetics is building the future today — making blockchain simple, useful and accessible to millions of people around the world.</strong>
                 </p>
             </div>
@@ -932,25 +935,7 @@
     </div>
 
     <!-- Scroll Animation Script -->
-    <script>
-        // Intersection Observer for scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        // Observe all animated elements
-        document.querySelectorAll('.animate-on-scroll, .network-image, .section-block, .column-card, .simple-text, .cta-buttons').forEach(el => {
-            observer.observe(el);
-        });
-    </script>
+    <!-- Ecosystem Functions (CSP Compliant) -->
+    <script src="init-ecosystem.js"></script>
 </body>
 </html>

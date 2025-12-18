@@ -1,0 +1,78 @@
+/* Calculator Page - Additional Styles (CSP Compliant) */
+
+/* Page subtitle */
+.page-subtitle {
+    color: #94a3b8;
+    font-size: 1.1em;
+}
+
+/* Breakdown values with colors */
+.breakdown-value-green {
+    color: #22c55e;
+}
+
+.breakdown-value-green-large {
+    color: #22c55e;
+    font-size: 1.05em;
+}
+
+.breakdown-value-yellow {
+    color: #fbbf24;
+}
+
+.breakdown-label-final {
+    color: #22c55e;
+    font-size: 1.15em;
+    font-weight: 700;
+}
+
+.breakdown-value-final {
+    color: #22c55e;
+    font-size: 1.15em;
+}
+
+/* Comparison section */
+.comparison-header {
+    color: #94a3b8;
+    margin-bottom: 10px;
+}
+
+.comparison-value-default {
+    color: #fff;
+    font-size: 1.3em;
+    font-weight: 600;
+}
+
+.comparison-value-compound {
+    color: #22c55e;
+    font-size: 1.3em;
+    font-weight: 700;
+}
+
+.comparison-usd-default {
+    color: #fff;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+.comparison-usd-compound {
+    color: #22c55e;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+/* Sub-value styles for amounts (used in JS) */
+.amount-sub-white {
+    font-size: 0.85em;
+    color: #ffffff;
+}
+
+.amount-sub-green {
+    font-size: 0.85em;
+    color: #22c55e;
+}
+
+.amount-sub-yellow {
+    font-size: 0.85em;
+    color: #fbbf24;
+}

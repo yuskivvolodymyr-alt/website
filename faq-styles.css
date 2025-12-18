@@ -1,0 +1,18 @@
+/* FAQ Page - Additional Styles (CSP Compliant) */
+
+/* Page subtitle */
+.page-subtitle {
+    color: #94a3b8;
+    font-size: 1.1em;
+}
+
+/* Highlight text for calculations */
+.highlight-calculation {
+    color: #00FFF0;
+    font-weight: 600;
+}
+
+/* Security notice with top margin */
+.security-notice {
+    margin-top: 15px;
+}

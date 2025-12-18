@@ -1,0 +1,765 @@
+/* Dashboard Page - Additional Styles (CSP Compliant) */
+/* УВАГА: Тільки статичні стилі, не торкаємось wallet логіки! */
+
+/* Header section */
+.dashboard-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.dashboard-title {
+    color: #00D4FF;
+    margin: 0;
+}
+
+/* Back button with hover effect */
+.back-btn {
+    padding: 10px 20px;
+    background: rgba(0,212,255,0.15);
+    border: 1px solid rgba(0,212,255,0.4);
+    border-radius: 8px;
+    color: #00D4FF;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.back-btn:hover {
+    background: rgba(0,212,255,0.25);
+}
+
+/* Wallet address */
+.wallet-address-row {
+    color: #64748b;
+    margin-bottom: 12px;
+    word-break: break-all;
+}
+
+.wallet-address-value {
+    color: #00FFF0;
+}
+
+/* Disconnect button with hover */
+.disconnect-btn {
+    padding: 10px 20px;
+    background: rgba(239,68,68,0.15);
+    border: 1px solid rgba(239,68,68,0.4);
+    border-radius: 8px;
+    color: #ef4444;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.disconnect-btn:hover {
+    background: rgba(239,68,68,0.25);
+}
+
+/* Stat cards color borders */
+.stat-card-blue {
+    border-color: rgba(0,212,255,0.3);
+}
+
+.stat-card-green {
+    border-color: rgba(34,197,94,0.3);
+}
+
+.stat-card-red {
+    border-color: rgba(239,68,68,0.3);
+}
+
+/* Stat values colors */
+.stat-value-blue {
+    color: #00D4FF;
+}
+
+.stat-value-green {
+    color: #22c55e;
+}
+
+.stat-value-green-light {
+    color: #86efac;
+    font-size: 18px;
+}
+
+.stat-value-red {
+    color: #ef4444;
+}
+
+/* Forecast note */
+.forecast-note {
+    color: #64748b;
+    font-size: 12px;
+    margin-top: 16px;
+}
+
+/* Quick actions */
+.quick-action-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.quick-action-icon {
+    font-size: 20px;
+}
+
+.quick-action-amount {
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+/* Section title with icon */
+.section-title-with-icon {
+    color: #00D4FF;
+    font-size: 18px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Empty state */
+.empty-state {
+    text-align: center;
+    color: #64748b;
+    padding: 20px;
+}
+
+/* Utility classes */
+.hidden {
+    display: none;
+}
+
+.padding-compact {
+    padding: 10px 12px;
+    margin-bottom: 12px;
+}
+
+.padding-medium {
+    padding: 12px 20px;
+    min-height: auto;
+}
+
+.padding-large {
+    padding: 15px 20px;
+}
+
+/* Modal specific styles */
+.modal-content-blue {
+    border-color: rgba(0,212,255,0.4);
+}
+
+.modal-content-yellow {
+    border-color: rgba(245,158,11,0.4);
+}
+
+.modal-content-red {
+    border-color: rgba(239,68,68,0.4);
+}
+
+.modal-title-blue {
+    color: #00D4FF;
+    font-size: 18px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.modal-title-yellow {
+    color: #fbbf24;
+}
+
+.modal-title-red {
+    color: #ef4444;
+}
+
+.modal-icon {
+    font-size: 20px;
+}
+
+.validator-info-box-padding {
+    padding: 10px 12px;
+    margin-bottom: 12px;
+}
+
+.validator-name {
+    color: #00D4FF;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+
+.validator-address {
+    color: #64748b;
+    font-size: 11px;
+    word-break: break-all;
+}
+
+.form-group {
+    margin-bottom: 12px;
+}
+
+.form-label {
+    color: #94a3b8;
+    font-size: 13px;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.balance-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    color: #64748b;
+    font-size: 12px;
+}
+
+.checkbox-container {
+    background: rgba(34,197,94,0.08);
+    border: 1px solid rgba(34,197,94,0.2);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: #86efac;
+    font-size: 12px;
+}
+
+.checkbox-label-large {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: #86efac;
+    font-size: 14px;
+}
+
+.checkbox-input {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.checkbox-input-large {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.rewards-intro {
+    margin-bottom: 16px;
+    color: #94a3b8;
+    font-size: 14px;
+}
+
+.checkbox-container-large {
+    background: rgba(34,197,94,0.08);
+    border: 1px solid rgba(34,197,94,0.2);
+    border-radius: 12px;
+    padding: 14px;
+}
+
+.section-title-red {
+    color: #ef4444;
+}
+
+.flex-column-centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.margin-bottom-15 {
+    margin-bottom: 15px;
+}
+
+/* Delegation Card Styles */
+.delegation-card {
+    background: rgba(15,23,42,0.6);
+    border: 1px solid rgba(100,116,139,0.3);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.delegation-card:hover {
+    border-color: rgba(0,212,255,0.6);
+    background: rgba(15,23,42,0.9);
+}
+
+.delegation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 16px;
+}
+
+.delegation-validator-name {
+    color: #00D4FF;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.delegation-validator-addr {
+    color: #64748b;
+    font-size: 12px;
+}
+
+.delegation-amount-col {
+    text-align: right;
+}
+
+.delegation-amount {
+    color: #00FFF0;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.delegation-amount-label {
+    color: #94a3b8;
+    font-size: 11px;
+}
+
+.delegation-rewards-box {
+    background: rgba(34,197,94,0.08);
+    border: 1px solid rgba(34,197,94,0.2);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 16px;
+}
+
+.delegation-rewards-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.delegation-rewards-label {
+    color: #86efac;
+    font-size: 13px;
+}
+
+.delegation-rewards-amount {
+    color: #86efac;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.delegation-buttons-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.delegation-btn {
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.delegation-btn-stake {
+    background: rgba(14,165,233,0.15);
+    border: 1px solid rgba(14,165,233,0.4);
+    color: #0ea5e9;
+}
+
+.delegation-btn-stake:hover {
+    background: rgba(14,165,233,0.25);
+}
+
+.delegation-btn-switch {
+    background: rgba(107,114,128,0.15);
+    border: 1px solid rgba(107,114,128,0.4);
+    color: #94a3b8;
+}
+
+.delegation-btn-switch:hover {
+    background: rgba(107,114,128,0.25);
+}
+
+.delegation-btn-unbond {
+    background: rgba(153,27,27,0.15);
+    border: 1px solid rgba(153,27,27,0.4);
+    color: #ef4444;
+}
+
+.delegation-btn-unbond:hover {
+    background: rgba(153,27,27,0.25);
+}
+
+/* Unbonding Entry Styles */
+.unbonding-entry {
+    background: rgba(15,23,42,0.6);
+    border: 1px solid rgba(239,68,68,0.3);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+}
+
+.unbonding-top-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.unbonding-validator-name {
+    color: white;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.unbonding-validator-addr {
+    color: #64748b;
+    font-size: 11px;
+    margin-bottom: 8px;
+}
+
+.unbonding-amount-col {
+    text-align: right;
+}
+
+.unbonding-amount {
+    color: #ef4444;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.unbonding-time-label {
+    color: #fca5a5;
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+
+.unbonding-time {
+    color: #ef4444;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.unbonding-completion {
+    color: #64748b;
+    font-size: 11px;
+}
+
+/* Reward Entry Styles */
+.reward-entry {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background: rgba(15,23,42,0.5);
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.reward-validator-name {
+    color: #94a3b8;
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+
+.reward-amount {
+    color: #fbbf24;
+    font-weight: 600;
+}
+
+/* Validator Selection Item Styles */
+.validator-list-item {
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: all 0.3s;
+    background: rgba(15,23,42,0.5);
+    border: 1px solid rgba(100,116,139,0.3);
+}
+
+.validator-list-item:hover {
+    background: rgba(15,23,42,0.8);
+    border-color: rgba(0,212,255,0.4);
+}
+
+.validator-list-item-qubenode {
+    background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(99,102,241,0.15));
+    border: 1.5px solid rgba(0,212,255,0.4);
+}
+
+.validator-item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.validator-item-left {
+    flex: 1;
+    min-width: 0;
+}
+
+.validator-item-name {
+    color: white;
+    font-weight: 600;
+    margin-bottom: 4px;
+    font-size: 14px;
+}
+
+.validator-item-name-qubenode {
+    color: #00FFF0;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.validator-item-addr {
+    color: #64748b;
+    font-size: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.validator-item-right {
+    text-align: right;
+}
+
+.validator-item-commission-label {
+    color: #64748b;
+    font-size: 9px;
+    margin-bottom: 2px;
+}
+
+.validator-item-commission {
+    color: #94a3b8;
+    font-size: 11px;
+    font-weight: normal;
+    white-space: nowrap;
+}
+
+.validator-item-commission-qubenode {
+    color: #00D4FF;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+/* Additional modal element styles */
+.switch-validator-name {
+    color: #00D4FF;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.switch-validator-addr {
+    color: #64748b;
+    font-size: 10px;
+    margin-bottom: 4px;
+    word-break: break-all;
+}
+
+.switch-validator-staked {
+    color: #94a3b8;
+    font-size: 11px;
+}
+
+.explorer-link {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #00D4FF, #00FFF0);
+    border-radius: 8px;
+    color: #000;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.validator-info-box-medium {
+    padding: 10px 12px;
+}
+
+.validator-info-box-small {
+    padding: 8px 10px;
+}
+
+.warning-item-small {
+    font-size: 11px;
+    margin-bottom: 6px;
+}
+
+.warning-item-no-margin {
+    font-size: 11px;
+    margin-bottom: 0;
+}
+
+.modal-header-gap {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.flex-1-min-width-0 {
+    flex: 1;
+    min-width: 0;
+}
+
+.switch-from-label {
+    color: #00D4FF;
+    font-size: 13px;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.switch-to-label {
+    color: #94a3b8;
+    font-size: 13px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.validators-list-scrollable {
+    max-height: 320px;
+    overflow-y: auto;
+}
+
+.switch-from-label-small {
+    color: #00D4FF;
+    font-size: 12px;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.text-right-balance {
+    text-align: right;
+    margin-bottom: 15px;
+    color: #64748b;
+    font-size: 12px;
+}
+
+.unbond-validator-name {
+    color: #ef4444;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+
+.unbond-staked-info {
+    color: #94a3b8;
+    font-size: 11px;
+}
+
+.unbond-warning-box {
+    background: rgba(239,68,68,0.08);
+    border-color: rgba(239,68,68,0.2);
+}
+
+.success-ok-button {
+    width: 100%;
+}
+
+/* Success Modal Styles */
+.success-modal-content {
+    border-color: rgba(34,197,94,0.6);
+    max-width: 600px;
+}
+
+.success-modal-header {
+    background: linear-gradient(135deg, rgba(34,197,94,0.2), rgba(34,197,94,0.05));
+}
+
+.success-modal-title {
+    color: #22c55e;
+}
+
+.success-modal-body {
+    background: rgba(34,197,94,0.1);
+    border: 1px solid rgba(34,197,94,0.3);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+}
+
+.success-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+
+.success-title {
+    color: #86efac;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.success-tx-label {
+    color: #94a3b8;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.success-tx-hash {
+    background: rgba(0,0,0,0.3);
+    padding: 12px;
+    border-radius: 8px;
+    word-break: break-all;
+    font-family: monospace;
+    font-size: 13px;
+    color: #00FFF0;
+}
+
+.success-explorer-link {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #00D4FF, #00FFF0);
+    border-radius: 8px;
+    color: #000;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* Unbond Modal Styles */
+.unbond-input {
+    border-color: rgba(239,68,68,0.3);
+}
+
+.unbond-modal-title {
+    color: #ef4444;
+    font-size: 18px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.margin-bottom-10 {
+    margin-bottom: 10px;
+}
+
+/* Claim Rewards Modal - dynamic elements */
+.claim-validator-name {
+    color: white;
+    font-weight: 500;
+}
+
+.claim-reward-amount {
+    color: #fbbf24;
+    font-weight: 600;
+}

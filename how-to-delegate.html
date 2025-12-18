@@ -7,6 +7,7 @@
     
     <title>How to Delegate - QubeNode</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="how-to-delegate-styles.css" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
@@ -268,17 +269,17 @@
         </header>
 
         <!-- Об'єднаний розділ БЕЗ контейнера -->
-        <div style="max-width: 900px; margin: 25px auto; padding: 0 20px;">
-            <h3 style="color: #00FFF0; font-size: 1.6em; margin-bottom: 20px;">How to Delegate $TICS</h3>
+        <div class="delegate-content-wrapper">
+            <h3 class="delegate-title">How to Delegate $TICS</h3>
             
-            <p style="color: #cbd5e1; line-height: 1.8; margin-bottom: 15px;">You can delegate using the <span style="color: #67e8f9;">Keplr</span> wallet (<a href="#" class="link">guide</a>) or <span style="color: #67e8f9;">Cosmostation</span>.</p>
+            <p class="delegate-text">You can delegate using the <span class="highlight-wallet">Keplr</span> wallet (<a href="#" class="link">guide</a>) or <span class="highlight-wallet">Cosmostation</span>.</p>
             
-            <p style="color: #cbd5e1; line-height: 1.8; margin-bottom: 15px;">For convenience, delegation is also available directly on the <span style="color: #67e8f9;">QubeNode</span> validator website.</p>
+            <p class="delegate-text">For convenience, delegation is also available directly on the <span class="highlight-wallet">QubeNode</span> validator website.</p>
             
-            <p style="color: #cbd5e1; line-height: 1.8; margin-bottom: 25px;">Connect your <span style="color: #67e8f9;">Keplr</span> or <span style="color: #67e8f9;">Cosmostation</span> wallet on the website to make instant delegation.</p>
+            <p class="delegate-text-last">Connect your <span class="highlight-wallet">Keplr</span> or <span class="highlight-wallet">Cosmostation</span> wallet on the website to make instant delegation.</p>
             
-            <div class="info-box" style="margin-top: 30px; margin-bottom: 30px;">
-                <p style="color: #00FFF0; font-weight: 600; margin-bottom: 12px; font-size: 1.05em;">
+            <div class="info-box info-box-spacing">
+                <p class="info-box-title">
                     💎 After connecting your wallet, you will be able to:
                 </p>
                 <ul>
@@ -291,113 +292,61 @@
                 </ul>
             </div>
 
-            <div style="text-align: center; margin-top: 30px;">
-                <p style="color: #cbd5e1; margin-bottom: 15px; font-weight: 600;">Connect wallet to delegate $TICS:</p>
+            <div class="connect-wallet-section">
+                <p class="connect-wallet-title">Connect wallet to delegate $TICS:</p>
                 
-                <div style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 15px;">
-                    <button id="connectKeplrBtn" style="flex: 1; min-width: 200px; max-width: 300px; padding: 18px 24px; background: rgba(0, 212, 255, 0.15); border: 2px solid rgba(0, 212, 255, 0.4); border-radius: 12px; color: #00FFF0; font-size: 1.1em; font-weight: 700; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px;">
-                        <img src="keplr.png" alt="Keplr" style="width: 28px; height: 28px; border-radius: 6px;">
+                <div class="wallet-buttons-container">
+                    <button id="connectKeplrBtn" class="wallet-connect-button">
+                        <img src="keplr.png" alt="Keplr" class="wallet-button-icon">
                         <span>Keplr Wallet</span>
                     </button>
                     
-                    <button id="connectCosmostationBtn" style="flex: 1; min-width: 200px; max-width: 300px; padding: 18px 24px; background: rgba(0, 212, 255, 0.15); border: 2px solid rgba(0, 212, 255, 0.4); border-radius: 12px; color: #00FFF0; font-size: 1.1em; font-weight: 700; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px;">
-                        <img src="Cosmostation.png" alt="Cosmostation" style="width: 28px; height: 28px; border-radius: 6px;">
+                    <button id="connectCosmostationBtn" class="wallet-connect-button">
+                        <img src="Cosmostation.png" alt="Cosmostation" class="wallet-button-icon">
                         <span>Cosmostation</span>
                     </button>
                 </div>
                 
-                <p style="color: #64748b; font-size: 0.85em;">After connection, delegator dashboard will open</p>
+                <p class="connect-wallet-notice">After connection, delegator dashboard will open</p>
             </div>
         </div>
 
         <!-- Додаткова інформація -->
         <div class="section">
-            <h3 style="margin-bottom: 20px;">Why Choose QubeNode?</h3>
-            <div style="display: grid; gap: 20px;">
-                <div style="display: flex; gap: 15px; align-items: start;">
-                    <span style="font-size: 1.5em;">🛡️</span>
+            <h3 class="why-choose-title">Why Choose QubeNode?</h3>
+            <div class="features-grid">
+                <div class="feature-row">
+                    <span class="feature-icon">🛡️</span>
                     <div>
-                        <h4 style="color: #00FFF0; margin-bottom: 8px;">Reliability</h4>
-                        <p style="margin: 0;">High uptime — stable node operation 24/7 with professional monitoring</p>
+                        <h4 class="feature-title">Reliability</h4>
+                        <p class="feature-description">High uptime — stable node operation 24/7 with professional monitoring</p>
                     </div>
                 </div>
-                <div style="display: flex; gap: 15px; align-items: start;">
-                    <span style="font-size: 1.5em;">💎</span>
+                <div class="feature-row">
+                    <span class="feature-icon">💎</span>
                     <div>
-                        <h4 style="color: #00FFF0; margin-bottom: 8px;">Minimal Validator Commission</h4>
-                        <p style="margin: 0;">Fixed 5% commission — more rewards stay with you</p>
+                        <h4 class="feature-title">Minimal Validator Commission</h4>
+                        <p class="feature-description">Fixed 5% commission — more rewards stay with you</p>
                     </div>
                 </div>
-                <div style="display: flex; gap: 15px; align-items: start;">
-                    <span style="font-size: 1.5em;">⚡</span>
+                <div class="feature-row">
+                    <span class="feature-icon">⚡</span>
                     <div>
-                        <h4 style="color: #00FFF0; margin-bottom: 8px;">Performance</h4>
-                        <p style="margin: 0;">Powerful hardware and optimized node configuration for maximum efficiency</p>
+                        <h4 class="feature-title">Performance</h4>
+                        <p class="feature-description">Powerful hardware and optimized node configuration for maximum efficiency</p>
                     </div>
                 </div>
-                <div style="display: flex; gap: 15px; align-items: start;">
-                    <span style="font-size: 1.5em;">🤝</span>
+                <div class="feature-row">
+                    <span class="feature-icon">🤝</span>
                     <div>
-                        <h4 style="color: #00FFF0; margin-bottom: 8px;">Support</h4>
-                        <p style="margin: 0;">Fast support and open communication with delegators</p>
+                        <h4 class="feature-title">Support</h4>
+                        <p class="feature-description">Fast support and open communication with delegators</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     
-    <script>
-        const CHAIN_ID = 'qubetics_9030-1';
-        
-        async function connectWallet(walletType) {
-            const btn = document.getElementById(walletType === 'keplr' ? 'connectKeplrBtn' : 'connectCosmostationBtn');
-            btn.innerHTML = '<span>⏳</span><span>Connecting...</span>';
-            btn.style.pointerEvents = 'none';
-            
-            try {
-                let address;
-                
-                if (walletType === 'keplr') {
-                    if (!window.keplr) {
-                        alert('Please install Keplr Wallet');
-                        btn.style.pointerEvents = 'auto';
-                        btn.innerHTML = '<img src="keplr.png" alt="Keplr" style="width: 28px; height: 28px; border-radius: 6px;"><span>Keplr Wallet</span>';
-                        return;
-                    }
-                    
-                    await window.keplr.enable(CHAIN_ID);
-                    const offlineSigner = window.keplr.getOfflineSigner(CHAIN_ID);
-                    const accounts = await offlineSigner.getAccounts();
-                    address = accounts[0].address;
-                    
-                } else if (walletType === 'cosmostation') {
-                    if (!window.cosmostation) {
-                        alert('Please install Cosmostation Wallet');
-                        btn.style.pointerEvents = 'auto';
-                        btn.innerHTML = '<img src="Cosmostation.png" alt="Cosmostation" style="width: 28px; height: 28px; border-radius: 6px;"><span>Cosmostation</span>';
-                        return;
-                    }
-                    
-                    const provider = window.cosmostation.providers.keplr;
-                    await provider.enable(CHAIN_ID);
-                    const offlineSigner = provider.getOfflineSigner(CHAIN_ID);
-                    const accounts = await offlineSigner.getAccounts();
-                    address = accounts[0].address;
-                }
-                
-                // Redirect to dashboard with wallet info
-                window.location.href = `dashboard.html?wallet=${walletType}&address=${address}`;
-                
-            } catch (error) {
-                console.error('Wallet connection error:', error);
-                alert('Connection error: ' + error.message);
-                btn.style.pointerEvents = 'auto';
-                btn.innerHTML = walletType === 'keplr' ? 
-                    '<img src="keplr.png" alt="Keplr" style="width: 28px; height: 28px; border-radius: 6px;"><span>Keplr Wallet</span>' : 
-                    '<img src="Cosmostation.png" alt="Cosmostation" style="width: 28px; height: 28px; border-radius: 6px;"><span>Cosmostation</span>';
-            }
-        }
-    </script>
     
     <!-- Keplr Instruction Modal -->
     <div id="keplrModal" class="modal-overlay">
@@ -515,24 +464,8 @@
     </footer>
     </div>
     
-    <script>
-        function openKeplrModal() {
-            document.getElementById('keplrModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        
-        function closeKeplrModal() {
-            document.getElementById('keplrModal').classList.remove('active');
-            document.body.style.overflow = '';
-        }
-        
-        // Close modal on ESC key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeKeplrModal();
-            }
-        });
-    </script>
+    <!-- How To Delegate Functions (CSP Compliant) -->
+    <script src="init-how-to-delegate.js"></script>
     
     <!-- How To Delegate Initialization -->
     <script src="init-how-to-delegate.js"></script>

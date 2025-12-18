@@ -1,0 +1,133 @@
+/* How To Delegate Page - Additional Styles (CSP Compliant) */
+
+/* Main content wrapper */
+.delegate-content-wrapper {
+    max-width: 900px;
+    margin: 25px auto;
+    padding: 0 20px;
+}
+
+/* Page title */
+.delegate-title {
+    color: #00FFF0;
+    font-size: 1.6em;
+    margin-bottom: 20px;
+}
+
+/* Paragraph styles */
+.delegate-text {
+    color: #cbd5e1;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+.delegate-text-last {
+    color: #cbd5e1;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+/* Highlight spans */
+.highlight-wallet {
+    color: #67e8f9;
+}
+
+/* Info box styling */
+.info-box-spacing {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.info-box-title {
+    color: #00FFF0;
+    font-weight: 600;
+    margin-bottom: 12px;
+    font-size: 1.05em;
+}
+
+/* Connect wallet section */
+.connect-wallet-section {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.connect-wallet-title {
+    color: #cbd5e1;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.wallet-buttons-container {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+/* Wallet buttons */
+.wallet-connect-button {
+    flex: 1;
+    min-width: 200px;
+    max-width: 300px;
+    padding: 18px 24px;
+    background: rgba(0, 212, 255, 0.15);
+    border: 2px solid rgba(0, 212, 255, 0.4);
+    border-radius: 12px;
+    color: #00FFF0;
+    font-size: 1.1em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.wallet-connect-button:hover {
+    background: rgba(0, 212, 255, 0.25);
+    border-color: rgba(0, 212, 255, 0.6);
+    transform: translateY(-2px);
+}
+
+.wallet-button-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+}
+
+/* Connect wallet notice */
+.connect-wallet-notice {
+    color: #64748b;
+    font-size: 0.85em;
+}
+
+/* Why choose section */
+.why-choose-title {
+    margin-bottom: 20px;
+}
+
+.features-grid {
+    display: grid;
+    gap: 20px;
+}
+
+.feature-row {
+    display: flex;
+    gap: 15px;
+    align-items: start;
+}
+
+.feature-icon {
+    font-size: 1.5em;
+}
+
+.feature-title {
+    color: #00FFF0;
+    margin-bottom: 8px;
+}
+
+.feature-description {
+    margin: 0;
+}

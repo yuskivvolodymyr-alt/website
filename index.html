@@ -51,6 +51,9 @@
     <meta property="twitter:description" content="Stable and reliable Qubetics network validator. 100% uptime, 5% commission, 30% APY.">
     <meta property="twitter:image" content="https://qubenode.space/android-chrome-512x512.png">
     
+    <!-- Index Page Styles (CSP Compliant) -->
+    <link href="index-styles.css" rel="stylesheet">
+    
     <style>
         * {
             margin: 0;
@@ -2368,17 +2371,17 @@
     </script>
     
     <!-- КОНТЕЙНЕР ДЛЯ ІКОНОК - ТІЛЬКИ ВГОРІ САЙТУ -->
-    <div id="mobile-icons-container" style="position: absolute !important; top: 0 !important; left: 0 !important; right: 0 !important; width: 100% !important; height: 80px !important; z-index: 999999 !important; pointer-events: none !important; margin: 0 !important; padding: 0 !important;">
+    <div id="mobile-icons-container" class="mobile-header-overlay">
         <!-- Hamburger Menu - ЗЛІВА -->
-        <label for="menu-toggle" class="hamburger" style="position: absolute !important; top: 20px !important; left: 20px !important; pointer-events: auto !important; display: flex !important; width: 50px !important; height: 50px !important; flex-direction: column !important; justify-content: center !important; align-items: center !important; gap: 6px !important; background: transparent !important; border: none !important; z-index: 1000000 !important; cursor: pointer !important;">
-            <span style="display: block !important; width: 30px !important; height: 3.5px !important; background: linear-gradient(135deg, #00FFB3 0%, #00D4FF 25%, #6366F1 50%, #A855F7 75%, #FFD60A 100%) !important; border-radius: 2px !important; transition: all 0.3s ease !important;"></span>
-            <span style="display: block !important; width: 30px !important; height: 3.5px !important; background: linear-gradient(135deg, #00FFB3 0%, #00D4FF 25%, #6366F1 50%, #A855F7 75%, #FFD60A 100%) !important; border-radius: 2px !important; transition: all 0.3s ease !important;"></span>
-            <span style="display: block !important; width: 30px !important; height: 3.5px !important; background: linear-gradient(135deg, #00FFB3 0%, #00D4FF 25%, #6366F1 50%, #A855F7 75%, #FFD60A 100%) !important; border-radius: 2px !important; transition: all 0.3s ease !important;"></span>
+        <label for="menu-toggle" class="hamburger mobile-hamburger-btn">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
         </label>
 
 
         <!-- Fixed Mobile Контакти Icons - СПРАВА ГОРИЗОНТАЛЬНО -->
-        <div class="fixed-mobile-contacts" style="position: absolute !important; top: 20px !important; right: 20px !important; display: flex !important; flex-direction: row !important; gap: 15px !important; pointer-events: auto !important; z-index: 1000000 !important;">
+        <div class="fixed-mobile-contacts mobile-header-buttons">
             <a href="https://t.me/+sRnz7RyoL4Q0MWEy" class="fixed-contact-icon" target="_blank">
                 <svg viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M10 25L18 27.5L21 37L27 30L36 37L39 12L10 25Z" stroke="url(#iconGrad)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
@@ -2422,11 +2425,11 @@
             <p class="wallet-modal-subtitle">Choose your wallet to connect</p>
             <div class="wallet-buttons">
                 <button id="modalKeplrBtn" class="wallet-btn">
-                    <img src="keplr.png" alt="Keplr" style="width: 32px; height: 32px; border-radius: 8px;">
+                    <img src="keplr.png" alt="Keplr" class="img-icon-32">
                     <span>Keplr Wallet</span>
                 </button>
                 <button id="modalCosmostationBtn" class="wallet-btn">
-                    <img src="Cosmostation.png" alt="Cosmostation" style="width: 32px; height: 32px; border-radius: 8px;">
+                    <img src="Cosmostation.png" alt="Cosmostation" class="img-icon-32">
                     <span>Cosmostation</span>
                 </button>
             </div>
@@ -2496,14 +2499,14 @@
     <div class="grid-overlay"></div>
 
     <!-- CSS-only Menu Toggle -->
-    <input type="checkbox" id="menu-toggle" style="display: none;">
+    <input type="checkbox" id="menu-toggle" class="hidden">
 
     <!-- Mobile Menu Overlay -->
     <label for="menu-toggle" class="mobile-menu-overlay" id="menuOverlay"></label>
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
-        <div style="padding: 15px 20px 20px 20px; text-align: left; border-bottom: 1px solid rgba(0, 212, 255, 0.2); color: #00D4FF; font-weight: 700; font-size: 32px; margin-bottom: 20px; padding-left: 30px;">
+        <div class="modal-title-large">
             Menu
         </div>
         <div class="mobile-menu-items">
@@ -2552,18 +2555,18 @@
                 <span>❓</span>
                 <span>FAQ</span>
             </button>
-            <div style="position: relative;">
+            <div class="position-relative">
                 <button class="header-wallet-button" id="headerWalletBtn">
                     <span>💼</span>
                     <span>Connect Wallet</span>
                 </button>
                 <div class="wallet-dropdown" id="headerWalletDropdown">
                     <button class="wallet-option" id="headerKeplrOption">
-                        <img src="keplr.png" alt="Keplr" style="width: 24px; height: 24px; border-radius: 6px;">
+                        <img src="keplr.png" alt="Keplr" class="img-icon-24">
                         <span>Keplr</span>
                     </button>
                     <button class="wallet-option" id="headerCosmostationOption">
-                        <img src="Cosmostation.png" alt="Cosmostation" style="width: 24px; height: 24px; border-radius: 6px;">
+                        <img src="Cosmostation.png" alt="Cosmostation" class="img-icon-24">
                         <span>Cosmostation</span>
                     </button>
                 </div>
@@ -2601,7 +2604,7 @@
                     <span class="status-dot"></span>
                     <span>Active Validator</span>
                 </div>
-                <div class="block-info" style="text-align: center; margin-bottom: 4px; width: 100%;">
+                <div class="block-info" class="block-info-centered">
                     Блок #<span id="currentBlock">—</span> • Avg Block Time: <span id="avgBlockTime">—</span>
                 </div>
                 <div class="blocks-chain-inline" id="blocksChainInline" style="width: 100%; display: flex; overflow: hidden; position: relative;">
@@ -2648,7 +2651,7 @@
             </div>
             <div class="stat-card">
                 <div class="stat-label">24H Change</div>
-                <div class="stat-value" style="color: #22c55e;"><span id="ticsChange">--</span></div>
+                <div class="stat-value" class="text-green"><span id="ticsChange">--</span></div>
                 <div class="stat-subvalue">24h price change</div>
             </div>
         </div>
@@ -2675,7 +2678,7 @@
 
         <footer>
             <p><strong>QubeNode</strong> - Professional Qubetics Network validator</p>
-            <p>© 2025 QubeNode. All rights reserved. | <a href="https://t.me/+sRnz7RyoL4Q0MWEy" target="_blank" style="color: #00D4FF; text-decoration: none;">Telegram</a></p>
+            <p>© 2025 QubeNode. All rights reserved. | <a href="https://t.me/+sRnz7RyoL4Q0MWEy" target="_blank" class="footer-link">Telegram</a></p>
         </footer>
     </div>
 
@@ -2691,100 +2694,100 @@
                 <!-- DELEGATOR DASHBOARD - Shows when wallet is connected -->
 
                 <!-- Способи делегування -->
-                <div style="background: rgba(0, 212, 255, 0.03); border: 1px solid rgba(0, 212, 255, 0.2); border-radius: 20px; padding: 40px; margin: 30px 0;">
+                <div class="info-box-with-border">
                     
                     <!-- Спосіб 1: Через гаманці Keplr/Cosmostation -->
-                    <div style="margin-bottom: 40px;">
-                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                    <div class="margin-bottom-40">
+                        <div class="flex-gap-center margin-bottom-20">
                             <div style="width: 45px; height: 45px; background: linear-gradient(135deg, #00D4FF, #00FFF0); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4em; font-weight: 800; color: #000;">1</div>
-                            <h3 style="color: #00FFF0; font-size: 1.5em; margin: 0;">Delegation via Mobile Wallet</h3>
+                            <h3 class="heading-cyan-xlarge">Delegation via Mobile Wallet</h3>
                         </div>
                         
-                        <p style="color: #cbd5e1; margin-bottom: 20px; line-height: 1.8;">
+                        <p class="text-slate-body">
                             You can make delegation in wallet 
-                            <span style="color: #00D4FF; font-weight: 600; cursor: pointer;"  data-modal="keplrGuideModal">Keplr (<u>guide</u>)</span> 
+                            <span class="text-cyan-clickable"  data-modal="keplrGuideModal">Keplr (<u>guide</u>)</span> 
                             or 
-                            <span style="color: #00D4FF; font-weight: 600;">Cosmostation</span>.
+                            <span class="text-cyan-bold">Cosmostation</span>.
                         </p>
                         
-                        <div style="background: rgba(250, 204, 21, 0.1); border-left: 4px solid #facc15; padding: 15px 20px; border-radius: 8px; margin-top: 15px;">
-                            <p style="color: #fde047; margin: 0; font-size: 0.95em;">
-                                <span style="font-weight: 700;">💡 Recommendation:</span> We recommend using Keplr wallet for mobile delegation.
+                        <div class="info-box-yellow">
+                            <p class="text-warning-yellow">
+                                <span class="font-weight-700">💡 Recommendation:</span> We recommend using Keplr wallet for mobile delegation.
                             </p>
                         </div>
                     </div>
 
                     <!-- Спосіб 2: Через наш сайт -->
                     <div>
-                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                        <div class="flex-gap-center margin-bottom-20">
                             <div style="width: 45px; height: 45px; background: linear-gradient(135deg, #00D4FF, #00FFF0); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4em; font-weight: 800; color: #000;">2</div>
-                            <h3 style="color: #00FFF0; font-size: 1.5em; margin: 0;">Delegation via QubeNode.space</h3>
+                            <h3 class="heading-cyan-xlarge">Delegation via QubeNode.space</h3>
                         </div>
                         
-                        <p style="color: #cbd5e1; margin-bottom: 20px; line-height: 1.8;">
+                        <p class="text-slate-body">
                             The easiest way is to connect wallet directly on this page for instant delegation.
                         </p>
                         
-                        <div style="background: rgba(0, 212, 255, 0.05); border-left: 4px solid #00D4FF; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
-                            <p style="color: #00FFF0; font-weight: 600; margin-bottom: 12px; font-size: 1.05em;">
+                        <div class="info-box-blue">
+                            <p class="text-heading-cyan">
                                 💎 After connecting wallet you will be able to:
                             </p>
-                            <ul style="color: #cbd5e1; margin: 0; padding-left: 20px; line-height: 2;">
-                                <li><strong style="color: #00D4FF;">View delegator dashboard</strong> — balance, delegations, rewards</li>
-                                <li><strong style="color: #00D4FF;">Delegate tokens</strong> to QubeNode validator</li>
-                                <li><strong style="color: #00D4FF;">Redelegate</strong> tokens between validators</li>
-                                <li><strong style="color: #00D4FF;">Claim rewards</strong> at any time</li>
-                                <li><strong style="color: #00D4FF;">Make Undelegate</strong> (unlocking for 14 days)</li>
-                                <li><strong style="color: #00D4FF;">Cancel active Unbond</strong> during unlocking period</li>
+                            <ul class="styled-list">
+                                <li><strong class="text-cyan">View delegator dashboard</strong> — balance, delegations, rewards</li>
+                                <li><strong class="text-cyan">Delegate tokens</strong> to QubeNode validator</li>
+                                <li><strong class="text-cyan">Redelegate</strong> tokens between validators</li>
+                                <li><strong class="text-cyan">Claim rewards</strong> at any time</li>
+                                <li><strong class="text-cyan">Make Undelegate</strong> (unlocking for 14 days)</li>
+                                <li><strong class="text-cyan">Cancel active Unbond</strong> during unlocking period</li>
                             </ul>
                         </div>
 
                         <!-- Wallet Connection Section -->
                         <div id="walletSection">
-                            <p style="color: #cbd5e1; margin-bottom: 15px; font-size: 0.95em; font-weight: 600;">Connect wallet for $TICS delegation:</p>
+                            <p class="text-slate-small font-weight-700 margin-bottom-15">Connect wallet for $TICS delegation:</p>
                             
-                            <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 15px;">
-                                <button id="connectKeplrBtn" style="flex: 1; min-width: 180px; padding: 14px 24px; background: rgba(0, 212, 255, 0.15); border: 2px solid rgba(0, 212, 255, 0.4); border-radius: 10px; color: #00FFF0; font-size: 1em; font-weight: 600; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px;">
-                                    <span style="font-size: 1.2em;">🔷</span>
+                            <div class="wallet-buttons-container">
+                                <button id="connectKeplrBtn" class="wallet-connect-button">
+                                    <span class="wallet-button-icon">🔷</span>
                                     <span>Keplr Wallet</span>
                                 </button>
                                 
-                                <button id="connectCosmostationBtn" style="flex: 1; min-width: 180px; padding: 14px 24px; background: rgba(0, 212, 255, 0.15); border: 2px solid rgba(0, 212, 255, 0.4); border-radius: 10px; color: #00FFF0; font-size: 1em; font-weight: 600; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px;">
-                                    <span style="font-size: 1.2em;">🔶</span>
+                                <button id="connectCosmostationBtn" class="wallet-connect-button">
+                                    <span class="wallet-button-icon">🔶</span>
                                     <span>Cosmostation</span>
                                 </button>
                             </div>
                             
-                            <div id="walletStatus" style="display: none; padding: 20px; background: rgba(0, 212, 255, 0.1); border-radius: 12px; margin-top: 20px;">
-                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <div id="walletStatus" class="wallet-status-box">
+                                <div class="wallet-status-header">
                                     <div>
-                                        <div style="color: #00FFF0; font-weight: 600; margin-bottom: 5px;">Connected: <span id="connectedWallet"></span></div>
-                                        <div style="color: #94a3b8; font-size: 0.9em; word-break: break-all;"><span id="connectedAddress"></span></div>
+                                        <div class="wallet-connected-label">Connected: <span id="connectedWallet"></span></div>
+                                        <div class="wallet-connected-address"><span id="connectedAddress"></span></div>
                                     </div>
-                                    <button id="disconnectWalletBtn" style="padding: 10px 20px; background: rgba(255, 0, 0, 0.2); border: 1px solid rgba(255, 0, 0, 0.4); border-radius: 8px; color: #ff6b6b; cursor: pointer; font-weight: 600;">Disconnect</button>
+                                    <button id="disconnectWalletBtn" class="wallet-disconnect-button">Disconnect</button>
                                 </div>
                                 
-                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;">
-                                    <div style="padding: 15px; background: rgba(0, 0, 0, 0.3); border-radius: 10px;">
-                                        <div style="color: #94a3b8; font-size: 0.9em; margin-bottom: 5px;">Balance</div>
-                                        <div style="color: #00FFF0; font-size: 1.3em; font-weight: 700;"><span id="walletBalance">0</span> TICS</div>
+                                <div class="wallet-stats-grid">
+                                    <div class="wallet-stat-card">
+                                        <div class="wallet-stat-label">Balance</div>
+                                        <div class="wallet-stat-value"><span id="walletBalance">0</span> TICS</div>
                                     </div>
-                                    <div style="padding: 15px; background: rgba(0, 0, 0, 0.3); border-radius: 10px;">
-                                        <div style="color: #94a3b8; font-size: 0.9em; margin-bottom: 5px;">Delegated</div>
-                                        <div style="color: #00FFF0; font-size: 1.3em; font-weight: 700;"><span id="walletDelegated">0</span> TICS</div>
+                                    <div class="wallet-stat-item">
+                                        <div class="wallet-stat-label-gray">Delegated</div>
+                                        <div class="wallet-stat-value-cyan"><span id="walletDelegated">0</span> TICS</div>
                                     </div>
-                                    <div style="padding: 15px; background: rgba(0, 0, 0, 0.3); border-radius: 10px;">
-                                        <div style="color: #94a3b8; font-size: 0.9em; margin-bottom: 5px;">Rewards</div>
-                                        <div style="color: #22c55e; font-size: 1.3em; font-weight: 700;"><span id="walletRewards">0</span> TICS</div>
+                                    <div class="wallet-stat-item">
+                                        <div class="wallet-stat-label-gray">Rewards</div>
+                                        <div class="wallet-stat-value-green"><span id="walletRewards">0</span> TICS</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
                         <!-- Staking Actions Section -->
-                        <div id="stakingActions" style="display: none; margin-top: 30px;">
-                            <div style="background: rgba(0, 0, 0, 0.3); border-radius: 15px; padding: 25px;">
-                                <h4 style="color: #00FFF0; font-size: 1.2em; margin-bottom: 20px;">Staking Operations</h4>
+                        <div id="stakingActions" class="staking-actions-container">
+                            <div class="card-dark-xlarge">
+                                <h4 class="staking-tabs-header">Staking Operations</h4>
                                 
                                 <div style="display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 2px solid rgba(0, 212, 255, 0.2); padding-bottom: 10px;">
                                     <button id="tabDelegate" class="staking-tab active" style="padding: 12px 24px; background: rgba(0, 212, 255, 0.2); border: none; border-radius: 8px; color: #00FFF0; font-weight: 600; cursor: pointer; transition: all 0.3s;">Delegate</button>
@@ -2794,9 +2797,9 @@
                                 
                                 <!-- Delegate Tab -->
                                 <div id="delegateTab" class="staking-tab-content">
-                                    <p style="color: #cbd5e1; margin-bottom: 15px;">Minimum delegation amount: <strong style="color: #00FFF0;">0.1 TICS</strong></p>
-                                    <div style="margin-bottom: 20px;">
-                                        <label style="color: #94a3b8; font-size: 0.95em; margin-bottom: 8px; display: block;">TICS Amount:</label>
+                                    <p class="content-description">Minimum delegation amount: <strong class="text-cyan-bright">0.1 TICS</strong></p>
+                                    <div class="margin-bottom-20">
+                                        <label class="form-label-alt">TICS Amount:</label>
                                         <input type="number" id="delegateAmount" placeholder="0.1" step="0.1" min="0.1" style="width: 100%; padding: 15px; background: rgba(0, 0, 0, 0.5); border: 2px solid rgba(0, 212, 255, 0.3); border-radius: 10px; color: #fff; font-size: 1.1em;">
                                     </div>
                                     <button id="executeDelegateBtn" style="width: 100%; padding: 18px; background: linear-gradient(135deg, #00D4FF, #00FFF0); border: none; border-radius: 12px; color: #000; font-size: 1.2em; font-weight: 700; cursor: pointer; transition: all 0.3s;">
@@ -2805,10 +2808,10 @@
                                 </div>
                                 
                                 <!-- Undelegate Tab -->
-                                <div id="undelegateTab" class="staking-tab-content" style="display: none;">
-                                    <p style="color: #cbd5e1; margin-bottom: 15px;">Undelegation period: <strong style="color: #ff6b6b;">14 days</strong></p>
-                                    <div style="margin-bottom: 20px;">
-                                        <label style="color: #94a3b8; font-size: 0.95em; margin-bottom: 8px; display: block;">TICS Amount:</label>
+                                <div id="undelegateTab" class="staking-tab-content" class="hidden">
+                                    <p class="content-description">Undelegation period: <strong style="color: #ff6b6b;">14 days</strong></p>
+                                    <div class="margin-bottom-20">
+                                        <label class="form-label-alt">TICS Amount:</label>
                                         <input type="number" id="undelegateAmount" placeholder="0.1" step="0.1" min="0.1" style="width: 100%; padding: 15px; background: rgba(0, 0, 0, 0.5); border: 2px solid rgba(0, 212, 255, 0.3); border-radius: 10px; color: #fff; font-size: 1.1em;">
                                     </div>
                                     <button id="executeUndelegateBtn" style="width: 100%; padding: 18px; background: rgba(255, 107, 107, 0.2); border: 2px solid rgba(255, 107, 107, 0.4); border-radius: 12px; color: #ff6b6b; font-size: 1.2em; font-weight: 700; cursor: pointer; transition: all 0.3s;">
@@ -2817,10 +2820,10 @@
                                 </div>
                                 
                                 <!-- Claim Tab -->
-                                <div id="claimTab" class="staking-tab-content" style="display: none;">
+                                <div id="claimTab" class="staking-tab-content" class="hidden">
                                     <p style="color: #cbd5e1; margin-bottom: 20px;">Claim your accumulated reward:</p>
                                     <div style="padding: 20px; background: rgba(34, 197, 94, 0.1); border: 2px solid rgba(34, 197, 94, 0.3); border-radius: 12px; margin-bottom: 20px; text-align: center;">
-                                        <div style="color: #94a3b8; font-size: 0.9em; margin-bottom: 5px;">Available reward</div>
+                                        <div class="wallet-stat-label-gray">Available reward</div>
                                         <div style="color: #22c55e; font-size: 2em; font-weight: 700;"><span id="claimableRewards">0</span> TICS</div>
                                     </div>
                                     <button id="executeClaimBtn" style="width: 100%; padding: 18px; background: linear-gradient(135deg, #22c55e, #16a34a); border: none; border-radius: 12px; color: #000; font-size: 1.2em; font-weight: 700; cursor: pointer; transition: all 0.3s;">
@@ -2872,7 +2875,7 @@
                     </div>
                     
                     <!-- Rewards Forecast Section - MOVED UP -->
-                    <div style="background: rgba(0, 0, 0, 0.3); border-radius: 12px; padding: 18px; margin-bottom: 20px;">
+                    <div class="card-dark-large">
                         <h4 style="color: #00FFF0; font-size: 1.1em; margin-bottom: 15px; display: flex; align-items: center; gap: 8px;">
                             <span>📈</span>
                             <span>Rewards Forecast</span>
@@ -2926,7 +2929,7 @@
                     </div>
                     
                     <!-- My Delegations Section - MOVED UP -->
-                    <div style="background: rgba(0, 0, 0, 0.3); border-radius: 12px; padding: 18px; margin-bottom: 15px;">
+                    <div class="card-dark">
                         <h4 style="color: #00FFF0; font-size: 1.1em; margin-bottom: 15px; display: flex; align-items: center; gap: 8px;">
                             <span>📊</span>
                             <span>My Delegations</span>
@@ -2998,73 +3001,73 @@
                 </p>
                 
                 <!-- Steps -->
-                <div style="display: flex; flex-direction: column; gap: 20px;">
-                    <div style="display: flex; gap: 15px;">
-                        <div style="min-width: 35px; height: 35px; background: linear-gradient(135deg, #00D4FF, #00FFF0); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #000; font-size: 1.1em;">1</div>
-                        <p style="color: #cbd5e1; margin: 0; padding-top: 5px;">Download Keplr Wallet from App Store or Play Store</p>
+                <div class="steps-container">
+                    <div class="step-row">
+                        <div class="step-number">1</div>
+                        <p class="step-text">Download Keplr Wallet from App Store or Play Store</p>
                     </div>
                     
-                    <div style="display: flex; gap: 15px;">
-                        <div style="min-width: 35px; height: 35px; background: linear-gradient(135deg, #00D4FF, #00FFF0); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #000; font-size: 1.1em;">2</div>
-                        <p style="color: #cbd5e1; margin: 0; padding-top: 5px;">Create new wallet</p>
+                    <div class="step-row">
+                        <div class="step-number">2</div>
+                        <p class="step-text">Create new wallet</p>
                     </div>
                     
-                    <div style="display: flex; gap: 15px;">
-                        <div style="min-width: 35px; height: 35px; background: linear-gradient(135deg, #00D4FF, #00FFF0); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #000; font-size: 1.1em;">3</div>
-                        <p style="color: #cbd5e1; margin: 0; padding-top: 5px;">Securely save your seed phrase and password. <strong style="color: #ef4444;">Never share them with anyone</strong></p>
+                    <div class="step-row">
+                        <div class="step-number">3</div>
+                        <p class="step-text">Securely save your seed phrase and password. <strong style="color: #ef4444;">Never share them with anyone</strong></p>
                     </div>
                     
-                    <div style="display: flex; gap: 15px;">
-                        <div style="min-width: 35px; height: 35px; background: linear-gradient(135deg, #00D4FF, #00FFF0); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #000; font-size: 1.1em;">4</div>
-                        <p style="color: #cbd5e1; margin: 0; padding-top: 5px;">Add Qubetics Mainnet: find Qubetics and enable it</p>
+                    <div class="step-row">
+                        <div class="step-number">4</div>
+                        <p class="step-text">Add Qubetics Mainnet: find Qubetics and enable it</p>
                     </div>
                     
-                    <div style="display: flex; gap: 15px;">
-                        <div style="min-width: 35px; height: 35px; background: linear-gradient(135deg, #00D4FF, #00FFF0); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #000; font-size: 1.1em;">5</div>
-                        <p style="color: #cbd5e1; margin: 0; padding-top: 5px;">On main screen tap <strong style="color: #00FFF0;">Deposit</strong> → find Qubetics → copy your Qubetics Mainnet wallet address (select <strong style="color: #00FFF0;">EVM address</strong>, it starts with <code style="background: rgba(0,212,255,0.1); padding: 2px 6px; border-radius: 4px; color: #00D4FF;">0x...</code>)</p>
+                    <div class="step-row">
+                        <div class="step-number">5</div>
+                        <p class="step-text">On main screen tap <strong class="text-cyan-bright">Deposit</strong> → find Qubetics → copy your Qubetics Mainnet wallet address (select <strong class="text-cyan-bright">EVM address</strong>, it starts with <code style="background: rgba(0,212,255,0.1); padding: 2px 6px; border-radius: 4px; color: #00D4FF;">0x...</code>)</p>
                     </div>
                     
-                    <div style="display: flex; gap: 15px;">
-                        <div style="min-width: 35px; height: 35px; background: linear-gradient(135deg, #00D4FF, #00FFF0); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #000; font-size: 1.1em;">6</div>
-                        <p style="color: #cbd5e1; margin: 0; padding-top: 5px;">Send $TICS to copied address</p>
+                    <div class="step-row">
+                        <div class="step-number">6</div>
+                        <p class="step-text">Send $TICS to copied address</p>
                     </div>
                     
-                    <div style="display: flex; gap: 15px;">
-                        <div style="min-width: 35px; height: 35px; background: linear-gradient(135deg, #00D4FF, #00FFF0); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #000; font-size: 1.1em;">7</div>
-                        <p style="color: #cbd5e1; margin: 0; padding-top: 5px;">When transaction completes and you see $TICS in your Keplr wallet, tap <strong style="color: #00FFF0;">Qubetics Mainnet</strong> on main screen</p>
+                    <div class="step-row">
+                        <div class="step-number">7</div>
+                        <p class="step-text">When transaction completes and you see $TICS in your Keplr wallet, tap <strong class="text-cyan-bright">Qubetics Mainnet</strong> on main screen</p>
                     </div>
                     
-                    <div style="display: flex; gap: 15px;">
-                        <div style="min-width: 35px; height: 35px; background: linear-gradient(135deg, #00D4FF, #00FFF0); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #000; font-size: 1.1em;">8</div>
-                        <p style="color: #cbd5e1; margin: 0; padding-top: 5px;">Tap <strong style="color: #00FFF0;">Stake</strong></p>
+                    <div class="step-row">
+                        <div class="step-number">8</div>
+                        <p class="step-text">Tap <strong class="text-cyan-bright">Stake</strong></p>
                     </div>
                     
-                    <div style="display: flex; gap: 15px;">
-                        <div style="min-width: 35px; height: 35px; background: linear-gradient(135deg, #00D4FF, #00FFF0); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #000; font-size: 1.1em;">9</div>
-                        <p style="color: #cbd5e1; margin: 0; padding-top: 5px;">Tap <strong style="color: #00FFF0;">Stake</strong> ще раз</p>
+                    <div class="step-row">
+                        <div class="step-number">9</div>
+                        <p class="step-text">Tap <strong class="text-cyan-bright">Stake</strong> ще раз</p>
                     </div>
                     
-                    <div style="display: flex; gap: 15px;">
-                        <div style="min-width: 35px; height: 35px; background: linear-gradient(135deg, #00D4FF, #00FFF0); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #000; font-size: 1.1em;">10</div>
-                        <p style="color: #cbd5e1; margin: 0; padding-top: 5px;">Select validator <strong style="color: #00FFF0;">QubeNode</strong></p>
+                    <div class="step-row">
+                        <div class="step-number">10</div>
+                        <p class="step-text">Select validator <strong class="text-cyan-bright">QubeNode</strong></p>
                     </div>
                     
-                    <div style="display: flex; gap: 15px;">
-                        <div style="min-width: 35px; height: 35px; background: linear-gradient(135deg, #00D4FF, #00FFF0); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #000; font-size: 1.1em;">11</div>
-                        <p style="color: #cbd5e1; margin: 0; padding-top: 5px;">Tap <strong style="color: #00FFF0;">Stake</strong></p>
+                    <div class="step-row">
+                        <div class="step-number">11</div>
+                        <p class="step-text">Tap <strong class="text-cyan-bright">Stake</strong></p>
                     </div>
                     
-                    <div style="display: flex; gap: 15px;">
-                        <div style="min-width: 35px; height: 35px; background: linear-gradient(135deg, #00D4FF, #00FFF0); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #000; font-size: 1.1em;">12</div>
-                        <p style="color: #cbd5e1; margin: 0; padding-top: 5px;">Enter staking amount (leave <em style="color: #94a3b8;">Memo</em> field empty) → tap <strong style="color: #00FFF0;">Next</strong></p>
+                    <div class="step-row">
+                        <div class="step-number">12</div>
+                        <p class="step-text">Enter staking amount (leave <em style="color: #94a3b8;">Memo</em> field empty) → tap <strong class="text-cyan-bright">Next</strong></p>
                     </div>
                     
-                    <div style="display: flex; gap: 15px;">
-                        <div style="min-width: 35px; height: 35px; background: linear-gradient(135deg, #00D4FF, #00FFF0); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #000; font-size: 1.1em;">13</div>
-                        <p style="color: #cbd5e1; margin: 0; padding-top: 5px;">Confirm transaction</p>
+                    <div class="step-row">
+                        <div class="step-number">13</div>
+                        <p class="step-text">Confirm transaction</p>
                     </div>
                     
-                    <div style="display: flex; gap: 15px;">
+                    <div class="step-row">
                         <div style="min-width: 35px; height: 35px; background: linear-gradient(135deg, #22c55e, #16a34a); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #fff; font-size: 1.3em;">✓</div>
                         <p style="color: #22c55e; margin: 0; padding-top: 5px; font-weight: 600; font-size: 1.1em;">Done! You are officially staking 🎉</p>
                     </div>
@@ -3344,15 +3347,15 @@
             const available = overview ? cosmosStaking.formatTics(overview.balance) : '0';
             
             modal.innerHTML = `
-                <div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border: 2px solid rgba(0, 212, 255, 0.4); border-radius: 20px; padding: 30px; max-width: 500px; width: 90%; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);">
-                    <h3 style="color: #00D4FF; font-size: 1.5em; margin: 0 0 20px 0; text-align: center;">💎 Delegate TICS</h3>
+                <div class="modal-content-cyan">
+                    <h3 class="modal-title-center">💎 Delegate TICS</h3>
                     
-                    <div style="background: rgba(0, 212, 255, 0.1); border: 1px solid rgba(0, 212, 255, 0.3); border-radius: 12px; padding: 16px; margin-bottom: 20px;">
-                        <div style="color: #00FFF0; font-weight: 600; margin-bottom: 8px; font-size: 1.1em;">${validatorName}</div>
+                    <div class="modal-info-card-cyan">
+                        <div class="modal-validator-name">${validatorName}</div>
                         <div style="color: #64748b; font-size: 0.85em; font-family: monospace; word-break: break-all;">${validatorAddress}</div>
                     </div>
                     
-                    <div style="margin-bottom: 20px;">
+                    <div class="margin-bottom-20">
                         <label style="color: #94a3b8; font-size: 0.9em; display: block; margin-bottom: 8px; font-weight: 500;">Amount to delegate (TICS)</label>
                         <input 
                             type="number" 
@@ -3375,7 +3378,7 @@
                     </div>
                     
                     <div style="display: flex; gap: 12px;">
-                        <button onclick="document.getElementById('customStakeModal').remove()" style="flex: 1; padding: 14px; background: rgba(100, 116, 139, 0.2); border: 1px solid rgba(100, 116, 139, 0.4); border-radius: 12px; color: #94a3b8; font-size: 1em; font-weight: 600; cursor: pointer;">
+                        <button onclick="document.getElementById('customStakeModal').remove()" class="btn-cancel">
                             Cancel
                         </button>
                         <button id="modalConfirmBtn" style="flex: 1; padding: 14px; background: linear-gradient(135deg, #00D4FF, #00FFF0); border: none; border-radius: 12px; color: #000; font-size: 1em; font-weight: 700; cursor: pointer; box-shadow: 0 4px 12px rgba(0, 212, 255, 0.4);">
@@ -3513,16 +3516,16 @@
             }
             
             modal.innerHTML = `
-                <div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border: 2px solid rgba(0, 212, 255, 0.4); border-radius: 20px; padding: 30px; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);">
-                    <h3 style="color: #00D4FF; font-size: 1.5em; margin: 0 0 20px 0; text-align: center;">🔄 Switch Validator</h3>
+                <div class="modal-content-cyan-large">
+                    <h3 class="modal-title-center">🔄 Switch Validator</h3>
                     
-                    <div style="background: rgba(0, 212, 255, 0.1); border: 1px solid rgba(0, 212, 255, 0.3); border-radius: 12px; padding: 16px; margin-bottom: 20px;">
+                    <div class="modal-info-card-cyan">
                         <div style="color: #00FFF0; font-weight: 600; margin-bottom: 8px;">From:</div>
                         <div style="color: #00D4FF; font-size: 1.1em; font-weight: 700; margin-bottom: 4px;">${fromValidatorName}</div>
                         <div style="color: #64748b; font-size: 0.85em;">Staked: ${parseFloat(currentAmount).toFixed(4)} TICS</div>
                     </div>
                     
-                    <div style="margin-bottom: 20px;">
+                    <div class="margin-bottom-20">
                         <label style="color: #94a3b8; font-size: 0.9em; display: block; margin-bottom: 12px; font-weight: 600;">Select Validator:</label>
                         <div id="validatorList" style="max-height: 200px; overflow-y: auto;">
                             ${validatorOptions}
@@ -3546,7 +3549,7 @@
                     </div>
                     
                     <div style="display: flex; gap: 12px;">
-                        <button onclick="document.getElementById('customSwitchModal').remove()" style="flex: 1; padding: 14px; background: rgba(100, 116, 139, 0.2); border: 1px solid rgba(100, 116, 139, 0.4); border-radius: 12px; color: #94a3b8; font-size: 1em; font-weight: 600; cursor: pointer;">
+                        <button onclick="document.getElementById('customSwitchModal').remove()" class="btn-cancel">
                             Cancel
                         </button>
                         <button id="modalSwitchBtn" disabled style="flex: 1; padding: 14px; background: linear-gradient(135deg, #00D4FF, #00FFF0); border: none; border-radius: 12px; color: #000; font-size: 1em; font-weight: 700; cursor: pointer; box-shadow: 0 4px 12px rgba(0, 212, 255, 0.4); opacity: 0.5;">
@@ -3676,7 +3679,7 @@
             `;
             
             modal.innerHTML = `
-                <div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border: 2px solid rgba(239, 68, 68, 0.4); border-radius: 20px; padding: 30px; max-width: 500px; width: 90%; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);">
+                <div class="modal-content-red">
                     <h3 style="color: #ef4444; font-size: 1.5em; margin: 0 0 20px 0; text-align: center;">🔓 Unstake TICS</h3>
                     
                     <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 12px; padding: 16px; margin-bottom: 20px;">
@@ -3684,7 +3687,7 @@
                         <div style="color: #64748b; font-size: 0.85em;">Staked: ${parseFloat(currentAmount).toFixed(4)} TICS</div>
                     </div>
                     
-                    <div style="margin-bottom: 20px;">
+                    <div class="margin-bottom-20">
                         <label style="color: #94a3b8; font-size: 0.9em; display: block; margin-bottom: 8px; font-weight: 500;">Amount (TICS)</label>
                         <input 
                             type="number" 
@@ -3709,7 +3712,7 @@
                     </div>
                     
                     <div style="display: flex; gap: 12px;">
-                        <button onclick="document.getElementById('customUnbondModal').remove()" style="flex: 1; padding: 14px; background: rgba(100, 116, 139, 0.2); border: 1px solid rgba(100, 116, 139, 0.4); border-radius: 12px; color: #94a3b8; font-size: 1em; font-weight: 600; cursor: pointer;">
+                        <button onclick="document.getElementById('customUnbondModal').remove()" class="btn-cancel">
                             Cancel
                         </button>
                         <button id="modalUnbondBtn" style="flex: 1; padding: 14px; background: linear-gradient(135deg, #ef4444, #dc2626); border: none; border-radius: 12px; color: #fff; font-size: 1em; font-weight: 700; cursor: pointer; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);">
@@ -3833,7 +3836,7 @@
                     if (parseFloat(rewards) > 0) {
                         validatorsList += `
                             <div style="display: flex; justify-content: space-between; padding: 12px; background: rgba(250, 204, 21, 0.05); border-radius: 8px; margin-bottom: 8px;">
-                                <span style="color: #94a3b8; font-size: 0.9em;">${name}</span>
+                                <span class="text-muted">${name}</span>
                                 <span style="color: #facc15; font-weight: 600; font-size: 0.9em;">${rewards} TICS</span>
                             </div>
                         `;
@@ -3842,7 +3845,7 @@
             }
             
             modal.innerHTML = `
-                <div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border: 2px solid rgba(250, 204, 21, 0.4); border-radius: 20px; padding: 30px; max-width: 500px; width: 90%; max-height: 80vh; overflow-y: auto; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);">
+                <div class="modal-content-yellow">
                     <h3 style="color: #facc15; font-size: 1.5em; margin: 0 0 20px 0; text-align: center;">💰 Claim Rewards</h3>
                     
                     <div style="background: rgba(250, 204, 21, 0.15); border: 2px solid rgba(250, 204, 21, 0.4); border-radius: 12px; padding: 20px; margin-bottom: 20px; text-align: center;">
@@ -3850,7 +3853,7 @@
                         <div style="color: #facc15; font-size: 2em; font-weight: 700;">${totalRewards} TICS</div>
                     </div>
                     
-                    <div style="margin-bottom: 20px;">
+                    <div class="margin-bottom-20">
                         <div style="color: #94a3b8; font-size: 0.9em; margin-bottom: 12px; font-weight: 600;">Rewards from validators:</div>
                         <div style="max-height: 250px; overflow-y: auto;">
                             ${validatorsList}
@@ -3864,7 +3867,7 @@
                     </div>
                     
                     <div style="display: flex; gap: 12px;">
-                        <button onclick="document.getElementById('customClaimModal').remove()" style="flex: 1; padding: 14px; background: rgba(100, 116, 139, 0.2); border: 1px solid rgba(100, 116, 139, 0.4); border-radius: 12px; color: #94a3b8; font-size: 1em; font-weight: 600; cursor: pointer;">
+                        <button onclick="document.getElementById('customClaimModal').remove()" class="btn-cancel">
                             Cancel
                         </button>
                         <button id="modalClaimBtn" style="flex: 1; padding: 14px; background: linear-gradient(135deg, #facc15, #eab308); border: none; border-radius: 12px; color: #000; font-size: 1em; font-weight: 700; cursor: pointer; box-shadow: 0 4px 12px rgba(250, 204, 21, 0.3);">
