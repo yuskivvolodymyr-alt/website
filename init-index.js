@@ -2110,7 +2110,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     const desktopFaqBtn = document.getElementById('desktopFaqBtn');
     if (desktopFaqBtn) {
-        desktopFaqBtn.addEventListener('click', () => openModal('faqModal'));
+        desktopFaqBtn.addEventListener('click', () => window.location.href = 'faq.html');
         console.log('✅ desktopFaqBtn listener attached');
     }
     
@@ -2141,7 +2141,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     const mobileMenuFaq = document.getElementById('mobileMenuFaq');
     if (mobileMenuFaq) {
-        mobileMenuFaq.addEventListener('click', () => openModal('faqModal'));
+        mobileMenuFaq.addEventListener('click', () => window.location.href = 'faq.html');
         console.log('✅ mobileMenuFaq listener attached');
     }
     
