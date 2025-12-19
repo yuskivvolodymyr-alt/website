@@ -1,13 +1,8 @@
 /**
  * Dashboard Page - Complete Script
- * All functions moved from inline <script> block for CSP compliance
+ * Functions are global, event listeners in DOMContentLoaded
  */
 
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('✅ Dashboard Page Initialized');
-    
-            const QUBENODE_VALIDATOR = 'qubeticsvaloper1tzk9f84cv2gmk3du3m9dpxcuph70sfj6uf6kld';
-            let cosmosStaking = null;
             let validatorNamesCache = {};
             let currentValidatorAddress = '';
             let selectedSwitchValidator = '';
@@ -740,5 +735,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         console.error('Auto-refresh error:', error);
                     }
                 }
-            }, 10000);
-});
+
+// Event listeners initialization moved to end of global scope
+// Functions are accessible globally
