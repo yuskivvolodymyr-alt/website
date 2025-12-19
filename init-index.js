@@ -2080,105 +2080,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    console.log('✅ All Index Page event listeners attached');
-});
-
-// === NAVIGATION BUTTONS EVENT LISTENERS ===
-
-// Desktop Navigation Buttons
-const desktopEcosystemBtn = document.getElementById('desktopEcosystemBtn');
-if (desktopEcosystemBtn) {
-    desktopEcosystemBtn.addEventListener('click', function() {
-        window.location.href = 'ecosystem.html';
-    });
-}
-
-const desktopTicsBtn = document.getElementById('desktopTicsBtn');
-if (desktopTicsBtn) {
-    desktopTicsBtn.addEventListener('click', function() {
-        window.location.href = 'tics.html';
-    });
-}
-
-const desktopCalculatorBtn = document.getElementById('desktopCalculatorBtn');
-if (desktopCalculatorBtn) {
-    desktopCalculatorBtn.addEventListener('click', function() {
-        window.location.href = 'calculator.html';
-    });
-}
-
-const desktopDelegateBtn = document.getElementById('desktopDelegateBtn');
-if (desktopDelegateBtn) {
-    desktopDelegateBtn.addEventListener('click', function() {
-        window.location.href = 'how-to-delegate.html';
-    });
-}
-
-const desktopFaqBtn = document.getElementById('desktopFaqBtn');
-if (desktopFaqBtn) {
-    desktopFaqBtn.addEventListener('click', function() {
-        openModal('faqModal');
-    });
-}
-
-// Mobile Menu Buttons
-const mobileMenuEcosystem = document.getElementById('mobileMenuEcosystem');
-if (mobileMenuEcosystem) {
-    mobileMenuEcosystem.addEventListener('click', function() {
-        window.location.href = 'ecosystem.html';
-    });
-}
-
-const mobileMenuTics = document.getElementById('mobileMenuTics');
-if (mobileMenuTics) {
-    mobileMenuTics.addEventListener('click', function() {
-        window.location.href = 'tics.html';
-    });
-}
-
-const mobileMenuCalculator = document.getElementById('mobileMenuCalculator');
-if (mobileMenuCalculator) {
-    mobileMenuCalculator.addEventListener('click', function() {
-        window.location.href = 'calculator.html';
-    });
-}
-
-const mobileMenuDelegate = document.getElementById('mobileMenuDelegate');
-if (mobileMenuDelegate) {
-    mobileMenuDelegate.addEventListener('click', function() {
-        window.location.href = 'how-to-delegate.html';
-    });
-}
-
-const mobileMenuFaq = document.getElementById('mobileMenuFaq');
-if (mobileMenuFaq) {
-    mobileMenuFaq.addEventListener('click', function() {
-        openModal('faqModal');
-    });
-}
-
-// Mobile Header Wallet Button
-const mobileHeaderWalletBtn = document.getElementById('mobileHeaderWalletBtn');
-if (mobileHeaderWalletBtn) {
-    mobileHeaderWalletBtn.addEventListener('click', function() {
-        openModal('delegatorModal');
-    });
-}
-
-// Modal Wallet Buttons
-const modalKeplrBtn = document.getElementById('modalKeplrBtn');
-if (modalKeplrBtn) {
-    modalKeplrBtn.addEventListener('click', function() {
-        connectWallet('keplr');
-    });
-}
-
-const modalCosmostationBtn = document.getElementById('modalCosmostationBtn');
-if (modalCosmostationBtn) {
-    modalCosmostationBtn.addEventListener('click', function() {
-        connectWallet('cosmostation');
-    });
-}
     
     // === NAVIGATION BUTTONS ===
     
@@ -2186,71 +2087,84 @@ if (modalCosmostationBtn) {
     const desktopEcosystemBtn = document.getElementById('desktopEcosystemBtn');
     if (desktopEcosystemBtn) {
         desktopEcosystemBtn.addEventListener('click', () => window.location.href = 'ecosystem.html');
+        console.log('✅ desktopEcosystemBtn listener attached');
     }
     
     const desktopTicsBtn = document.getElementById('desktopTicsBtn');
     if (desktopTicsBtn) {
         desktopTicsBtn.addEventListener('click', () => window.location.href = 'tics.html');
+        console.log('✅ desktopTicsBtn listener attached');
     }
     
     const desktopCalculatorBtn = document.getElementById('desktopCalculatorBtn');
     if (desktopCalculatorBtn) {
         desktopCalculatorBtn.addEventListener('click', () => window.location.href = 'calculator.html');
+        console.log('✅ desktopCalculatorBtn listener attached');
     }
     
     const desktopDelegateBtn = document.getElementById('desktopDelegateBtn');
     if (desktopDelegateBtn) {
         desktopDelegateBtn.addEventListener('click', () => window.location.href = 'how-to-delegate.html');
+        console.log('✅ desktopDelegateBtn listener attached');
     }
     
     const desktopFaqBtn = document.getElementById('desktopFaqBtn');
     if (desktopFaqBtn) {
         desktopFaqBtn.addEventListener('click', () => openModal('faqModal'));
+        console.log('✅ desktopFaqBtn listener attached');
     }
     
     // Mobile Menu
     const mobileMenuEcosystem = document.getElementById('mobileMenuEcosystem');
     if (mobileMenuEcosystem) {
         mobileMenuEcosystem.addEventListener('click', () => window.location.href = 'ecosystem.html');
+        console.log('✅ mobileMenuEcosystem listener attached');
     }
     
     const mobileMenuTics = document.getElementById('mobileMenuTics');
     if (mobileMenuTics) {
         mobileMenuTics.addEventListener('click', () => window.location.href = 'tics.html');
+        console.log('✅ mobileMenuTics listener attached');
     }
     
     const mobileMenuCalculator = document.getElementById('mobileMenuCalculator');
     if (mobileMenuCalculator) {
         mobileMenuCalculator.addEventListener('click', () => window.location.href = 'calculator.html');
+        console.log('✅ mobileMenuCalculator listener attached');
     }
     
     const mobileMenuDelegate = document.getElementById('mobileMenuDelegate');
     if (mobileMenuDelegate) {
         mobileMenuDelegate.addEventListener('click', () => window.location.href = 'how-to-delegate.html');
+        console.log('✅ mobileMenuDelegate listener attached');
     }
     
     const mobileMenuFaq = document.getElementById('mobileMenuFaq');
     if (mobileMenuFaq) {
         mobileMenuFaq.addEventListener('click', () => openModal('faqModal'));
+        console.log('✅ mobileMenuFaq listener attached');
     }
     
     // Mobile Header Wallet
     const mobileHeaderWalletBtn = document.getElementById('mobileHeaderWalletBtn');
     if (mobileHeaderWalletBtn) {
         mobileHeaderWalletBtn.addEventListener('click', () => openModal('delegatorModal'));
+        console.log('✅ mobileHeaderWalletBtn listener attached');
     }
     
     // Modal Wallet Buttons
     const modalKeplrBtn = document.getElementById('modalKeplrBtn');
     if (modalKeplrBtn) {
         modalKeplrBtn.addEventListener('click', () => connectWallet('keplr'));
+        console.log('✅ modalKeplrBtn listener attached');
     }
     
     const modalCosmostationBtn = document.getElementById('modalCosmostationBtn');
     if (modalCosmostationBtn) {
         modalCosmostationBtn.addEventListener('click', () => connectWallet('cosmostation'));
+        console.log('✅ modalCosmostationBtn listener attached');
     }
     
-    console.log('✅ All navigation and wallet buttons initialized');
+    console.log('✅ All navigation buttons initialized');
     console.log('✅ All Index Page event listeners attached');
 });
