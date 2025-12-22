@@ -3,7 +3,8 @@
  * All functions moved from inline <script> blocks for CSP compliance
  */
 
-const CHAIN_ID = 'qubetics_9030-1';
+if (typeof CHAIN_ID === 'undefined') { var CHAIN_ID = 'qubetics_9030-1';
+}
 
 // Connect Wallet Function
 async function connectWallet(walletType) {
