@@ -1,5 +1,6 @@
 /**
- * Calculator - All functions GLOBAL
+ * Calculator Page - Complete Script
+ * Functions from inline <script> + Event Listeners
  */
 
         let currentTicsPrice = 0.047190;
@@ -224,7 +225,6 @@
         setInterval(fetchTicsPrice, 30000);
     </script>
 
-// Event Listeners
 /**
  * Calculator Page Initialization Script
  * Handles preset buttons and input events
