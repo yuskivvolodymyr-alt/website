@@ -1,13 +1,11 @@
 /**
  * How To Delegate Page - Complete Script
- * All functions moved from inline <script> blocks for CSP compliance
+ * Using direct chain ID value to avoid conflicts
  */
-
-if (typeof CHAIN_ID === 'undefined') { var CHAIN_ID = 'qubetics_9030-1';
-}
 
 // Connect Wallet Function
 async function connectWallet(walletType) {
+    const chainId = 'qubetics_9030-1';
     const btn = document.getElementById(walletType === 'keplr' ? 'connectKeplrBtn' : 'connectCosmostationBtn');
     btn.innerHTML = '<span>⏳</span><span>Connecting...</span>';
     btn.style.pointerEvents = 'none';
@@ -23,8 +21,8 @@ async function connectWallet(walletType) {
                 return;
             }
             
-            await window.keplr.enable(CHAIN_ID);
-            const offlineSigner = window.keplr.getOfflineSigner(CHAIN_ID);
+            await window.keplr.enable(chainId);
+            const offlineSigner = window.keplr.getOfflineSigner(chainId);
             const accounts = await offlineSigner.getAccounts();
             address = accounts[0].address;
             
@@ -37,14 +35,14 @@ async function connectWallet(walletType) {
             }
             
             const provider = window.cosmostation.providers.keplr;
-            await provider.enable(CHAIN_ID);
-            const offlineSigner = provider.getOfflineSigner(CHAIN_ID);
+            await provider.enable(chainId);
+            const offlineSigner = provider.getOfflineSigner(chainId);
             const accounts = await offlineSigner.getAccounts();
             address = accounts[0].address;
         }
         
-        // Redirect to dashboard with wallet info
-        window.location.href = `dashboard.html?wallet=${walletType}&address=${address}`;
+        // Redirect to dashboard
+        window.location.href = \`dashboard.html?wallet=\${walletType}&address=\${address}\`;
         
     } catch (error) {
         console.error('Wallet connection error:', error);
@@ -67,34 +65,29 @@ function closeKeplrModal() {
     document.body.style.overflow = '';
 }
 
-// DOMContentLoaded - Event Listeners
+// Event Listeners
 document.addEventListener('DOMContentLoaded', function() {
     console.log('✅ How To Delegate Page Initialized');
     
-    // Connect Keplr button
+    // Wallet buttons
     const connectKeplrBtn = document.getElementById('connectKeplrBtn');
     if (connectKeplrBtn) {
-        connectKeplrBtn.addEventListener('click', function() {
-            connectWallet('keplr');
-        });
+        connectKeplrBtn.addEventListener('click', () => connectWallet('keplr'));
     }
     
-    // Connect Cosmostation button
     const connectCosmostationBtn = document.getElementById('connectCosmostationBtn');
     if (connectCosmostationBtn) {
-        connectCosmostationBtn.addEventListener('click', function() {
-            connectWallet('cosmostation');
-        });
+        connectCosmostationBtn.addEventListener('click', () => connectWallet('cosmostation'));
     }
     
-    // Close modal on ESC key
+    // ESC key
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
             closeKeplrModal();
         }
     });
     
-    // Modal overlay - close on click outside
+    // Modal overlay
     const keplrModal = document.getElementById('keplrModal');
     if (keplrModal) {
         keplrModal.addEventListener('click', function(event) {
@@ -107,22 +100,16 @@ document.addEventListener('DOMContentLoaded', function() {
     // Modal close button
     const modalCloseButtons = document.querySelectorAll('.modal-close');
     modalCloseButtons.forEach(function(button) {
-        button.addEventListener('click', function() {
-            closeKeplrModal();
-        });
+        button.addEventListener('click', closeKeplrModal);
     });
     
-    // Guide link - openKeplrModal()
-    const guideLinks = document.querySelectorAll('a.link');
+    // Guide links
+    const guideLinks = document.querySelectorAll('a[href*="Guide"]');
     guideLinks.forEach(function(link) {
-        const onclick = link.getAttribute('onclick');
-        if (onclick && onclick.includes('openKeplrModal')) {
-            link.addEventListener('click', function(event) {
-                event.preventDefault();
-                openKeplrModal();
-                return false;
-            });
-        }
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+            openKeplrModal();
+        });
     });
     
     console.log('✅ How To Delegate event listeners attached');
