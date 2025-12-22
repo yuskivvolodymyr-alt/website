@@ -151,7 +151,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Initial price display
-    document.getElementById('priceDisplay').textContent = `$${currentTicsPrice.toFixed(6)}`;
+    const priceDisplay = document.getElementById('priceDisplay');
+    if (priceDisplay) {
+        priceDisplay.textContent = `$${currentTicsPrice.toFixed(6)}`;
+    }
     
     console.log('✅ Calculator event listeners attached');
 });
