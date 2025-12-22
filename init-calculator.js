@@ -1,6 +1,5 @@
 /**
  * Calculator Page - Complete Script
- * Functions from inline <script> + Event Listeners
  */
 
         let currentTicsPrice = 0.047190;
@@ -223,7 +222,6 @@
         // Fetch price on load and every 30 seconds
         fetchTicsPrice();
         setInterval(fetchTicsPrice, 30000);
-    </script>
 
 /**
  * Calculator Page Initialization Script
