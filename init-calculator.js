@@ -1,57 +1,55 @@
 /**
- * Calculator Page - Complete Script
- * Functions are GLOBAL, event listeners in DOMContentLoaded
+ * Calculator - All functions GLOBAL
  */
 
-let currentTicsPrice = 0.047190;
-let userCustomPrice = null;
-
-function setAmount(value) {
-    document.getElementById('amount').value = value;
-    calculateAuto();
-}
-
-function usePeriod() {
-    const period = document.getElementById('period').value;
-    if (period) {
-        document.getElementById('customDays').value = '';
-        calculateAuto();
-    }
-}
-
-function useCustomDays() {
-    const days = parseInt(document.getElementById('customDays').value);
-    if (days && days > 0) {
-        document.getElementById('period').value = '';
-        calculateAuto();
-    }
-}
-
-function useCustomPrice() {
-    const price = parseFloat(document.getElementById('customPrice').value);
-    if (price && price > 0) {
-        userCustomPrice = price;
-        calculateAuto();
-    } else {
-        userCustomPrice = null;
-        calculateAuto();
-    }
-}
-
-function calculateAuto() {
-    const amount = parseFloat(document.getElementById('amount').value);
-    let period = parseInt(document.getElementById('period').value);
-    const customDays = parseInt(document.getElementById('customDays').value);
-    const compoundFreq = document.getElementById('compoundFrequency').value;
-    
-    if (customDays && customDays > 0) {
-        period = customDays / 30;
-    }
-    
-    if (!amount || amount <= 0 || !period || period <= 0) {
-        document.getElementById('calcResults').style.display = 'none';
-        return;
-    }
+        let currentTicsPrice = 0.047190;
+        let userCustomPrice = null;
+        
+        function setAmount(value) {
+            document.getElementById('amount').value = value;
+            calculateAuto();
+        }
+        
+        function usePeriod() {
+            const period = document.getElementById('period').value;
+            if (period) {
+                document.getElementById('customDays').value = '';
+                calculateAuto();
+            }
+        }
+        
+        function useCustomDays() {
+            const days = parseInt(document.getElementById('customDays').value);
+            if (days && days > 0) {
+                document.getElementById('period').value = '';
+                calculateAuto();
+            }
+        }
+        
+        function useCustomPrice() {
+            const price = parseFloat(document.getElementById('customPrice').value);
+            if (price && price > 0) {
+                userCustomPrice = price;
+                calculateAuto();
+            } else {
+                userCustomPrice = null;
+                calculateAuto();
+            }
+        }
+        
+        function calculateAuto() {
+            const amount = parseFloat(document.getElementById('amount').value);
+            let period = parseInt(document.getElementById('period').value);
+            const customDays = parseInt(document.getElementById('customDays').value);
+            const compoundFreq = document.getElementById('compoundFrequency').value;
+            
+            if (customDays && customDays > 0) {
+                period = customDays / 30;
+            }
+            
+            if (!amount || amount <= 0 || !period || period <= 0) {
+                document.getElementById('calcResults').style.display = 'none';
+                return;
             }
             
             const priceToUse = userCustomPrice || currentTicsPrice;
@@ -224,6 +222,9 @@ function calculateAuto() {
         // Fetch price on load and every 30 seconds
         fetchTicsPrice();
         setInterval(fetchTicsPrice, 30000);
+    </script>
+
+// Event Listeners
 /**
  * Calculator Page Initialization Script
  * Handles preset buttons and input events
