@@ -1,9 +1,9 @@
 /**
  * FAQ Page - Complete Script
- * toggleFaq is global, event listeners in DOMContentLoaded
+ * toggleFaq function + Event Listeners
  */
 
-// FAQ Accordion Toggle Function (GLOBAL)
+// toggleFaq function - GLOBAL
 function toggleFaq(button) {
     const answer = button.nextElementSibling;
     const isActive = button.classList.contains('active');
@@ -21,6 +21,7 @@ function toggleFaq(button) {
     }
 }
 
+// Event Listeners
 document.addEventListener('DOMContentLoaded', function() {
     console.log('✅ FAQ Page Initialized');
     
