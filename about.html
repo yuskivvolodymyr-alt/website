@@ -63,7 +63,9 @@
                 <span class="status-text">VALIDATOR STATUS: <span id="validatorStatus">LOADING...</span></span>
             </div>
             
-            <h1 class="main-title">About QubeNode</h1>
+            <h1 class="main-title">
+                <span class="title-about">About</span> <span class="title-qubenode">QubeNode</span>
+            </h1>
             <p class="main-subtitle">Professional Validator Infrastructure & Real-time Monitoring</p>
             
             <!-- Live Metrics Cards -->
@@ -217,6 +219,150 @@
                 <!-- Rewards Chart -->
                 <div class="rewards-chart-container">
                     <canvas id="rewardsChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Network Share & Performance Section -->
+        <section class="performance-section">
+            <div class="performance-grid">
+                <!-- Network Share Card -->
+                <div class="performance-card network-share-card">
+                    <h2 class="card-title">
+                        <span class="title-icon">📊</span>
+                        Network Share
+                    </h2>
+                    <div class="network-share-content">
+                        <div class="share-percentage" id="networkShare">--</div>
+                        <div class="share-label">of Total Network Stake</div>
+                        <div class="share-stats">
+                            <div class="share-stat">
+                                <span class="stat-label">Our Stake:</span>
+                                <span class="stat-value" id="ourStake">-- TICS</span>
+                            </div>
+                            <div class="share-stat">
+                                <span class="stat-label">Network Total:</span>
+                                <span class="stat-value" id="networkTotal">-- TICS</span>
+                            </div>
+                            <div class="share-stat">
+                                <span class="stat-label">Rank:</span>
+                                <span class="stat-value rank-badge" id="validatorRank">#--</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Validator Performance Card -->
+                <div class="performance-card">
+                    <h2 class="card-title">
+                        <span class="title-icon">⚡</span>
+                        Validator Performance
+                    </h2>
+                    <div class="performance-metrics">
+                        <div class="metric-row">
+                            <span class="metric-label">Block Signing Rate:</span>
+                            <span class="metric-value success">99.98%</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-label">Missed Blocks:</span>
+                            <span class="metric-value">3 / 150,000</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-label">Avg Block Time:</span>
+                            <span class="metric-value" id="avgBlockTime">5.63s</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-label">Jailed Status:</span>
+                            <span class="metric-value success">Never ✓</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-label">Slashing Events:</span>
+                            <span class="metric-value success">0 ✓</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Achievements Card -->
+                <div class="performance-card achievements-card">
+                    <h2 class="card-title">
+                        <span class="title-icon">🎖️</span>
+                        Achievements
+                    </h2>
+                    <div class="achievements-grid">
+                        <div class="achievement-badge">
+                            <div class="badge-icon">✓</div>
+                            <div class="badge-text">100% Uptime<br><span class="badge-subtext">90 days</span></div>
+                        </div>
+                        <div class="achievement-badge">
+                            <div class="badge-icon">✓</div>
+                            <div class="badge-text">Zero Slashing<br><span class="badge-subtext">Perfect record</span></div>
+                        </div>
+                        <div class="achievement-badge">
+                            <div class="badge-icon">🏆</div>
+                            <div class="badge-text">Top 10<br><span class="badge-subtext">Validator</span></div>
+                        </div>
+                        <div class="achievement-badge">
+                            <div class="badge-icon">👥</div>
+                            <div class="badge-text">1000+<br><span class="badge-subtext">Delegators</span></div>
+                        </div>
+                        <div class="achievement-badge">
+                            <div class="badge-icon">✓</div>
+                            <div class="badge-text">Community<br><span class="badge-subtext">Verified</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TOP 20 Delegators Section -->
+        <section class="top-delegators-section">
+            <h2 class="section-title">
+                <span class="title-icon">🏆</span>
+                TOP 20 Delegators
+            </h2>
+            
+            <div class="top-delegators-container">
+                <div class="top-delegators-table">
+                    <div class="top-table-header">
+                        <div class="top-col col-rank">Rank</div>
+                        <div class="top-col col-delegator">Delegator</div>
+                        <div class="top-col col-amount">Amount</div>
+                        <div class="top-col col-share">% Share</div>
+                    </div>
+                    
+                    <div class="top-table-body" id="topDelegatorsTable">
+                        <div class="table-row loading">
+                            <div class="loading-spinner"></div>
+                            <span>Loading top delegators...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Delegation Growth Chart Section -->
+        <section class="growth-section">
+            <h2 class="section-title">
+                <span class="title-icon">📈</span>
+                Delegation Growth (30 Days)
+            </h2>
+            
+            <div class="growth-chart-container">
+                <canvas id="growthChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Live Activity Feed Section -->
+        <section class="activity-section">
+            <h2 class="section-title">
+                <span class="title-icon">🔔</span>
+                Live Activity Feed
+            </h2>
+            
+            <div class="activity-feed" id="activityFeed">
+                <div class="activity-item loading">
+                    <div class="loading-spinner"></div>
+                    <span>Loading activity...</span>
                 </div>
             </div>
         </section>

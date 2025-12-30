@@ -460,3 +460,281 @@
     }
 
 })();
+
+    // ===== FETCH TOP 20 DELEGATORS =====
+    async function fetchTop20Delegators() {
+        try {
+            // Mock data - in production fetch from API
+            const delegators = generateMockTop20();
+            
+            const tableBody = document.getElementById('topDelegatorsTable');
+            if (!tableBody) return;
+            
+            tableBody.innerHTML = '';
+            
+            delegators.forEach((delegator, index) => {
+                const row = document.createElement('div');
+                row.className = 'table-row';
+                row.style.animationDelay = (index * 0.03) + 's';
+                
+                const rank = index + 1;
+                let medal = '';
+                if (rank === 1) medal = '🥇';
+                else if (rank === 2) medal = '🥈';
+                else if (rank === 3) medal = '🥉';
+                
+                row.innerHTML = `
+                    <div class="top-rank"><span class="medal">${medal}</span>#${rank}</div>
+                    <div class="delegator-address">${formatAddress(delegator.address)}</div>
+                    <div class="delegation-amount">${delegator.amount} TICS</div>
+                    <div class="top-share">${delegator.share}%</div>
+                `;
+                
+                tableBody.appendChild(row);
+            });
+            
+        } catch (error) {
+            console.error('Error fetching top delegators:', error);
+        }
+    }
+
+    function generateMockTop20() {
+        const delegators = [];
+        const totalStake = 13600000; // 13.6M TICS
+        
+        for (let i = 0; i < 20; i++) {
+            const amount = Math.floor((500000 - i * 20000) + Math.random() * 10000);
+            const share = ((amount / totalStake) * 100).toFixed(2);
+            const randomAddress = 'qubetics1' + Math.random().toString(36).substring(2, 40);
+            
+            delegators.push({
+                address: randomAddress,
+                amount: formatNumber(amount),
+                share: share
+            });
+        }
+        
+        return delegators;
+    }
+
+    // ===== NETWORK SHARE =====
+    function updateNetworkShare() {
+        const ourStake = 13600000; // 13.6M TICS
+        const networkTotal = 80000000; // 80M TICS total
+        const share = ((ourStake / networkTotal) * 100).toFixed(2);
+        
+        const networkShareEl = document.getElementById('networkShare');
+        const ourStakeEl = document.getElementById('ourStake');
+        const networkTotalEl = document.getElementById('networkTotal');
+        const validatorRankEl = document.getElementById('validatorRank');
+        
+        if (networkShareEl) networkShareEl.textContent = share + '%';
+        if (ourStakeEl) ourStakeEl.textContent = formatNumber(ourStake);
+        if (networkTotalEl) networkTotalEl.textContent = formatNumber(networkTotal);
+        if (validatorRankEl) validatorRankEl.textContent = '#8';
+    }
+
+    // ===== DELEGATION GROWTH CHART =====
+    function initGrowthChart() {
+        const canvas = document.getElementById('growthChart');
+        if (!canvas) return;
+        
+        const ctx = canvas.getContext('2d');
+        const width = canvas.width = canvas.offsetWidth * 2;
+        const height = canvas.height = 600;
+        
+        // Generate mock growth data for 30 days
+        const data = [];
+        let baseValue = 10000000; // Start at 10M
+        
+        for (let i = 0; i < 30; i++) {
+            baseValue += Math.random() * 300000 + 50000; // Growth trend
+            data.push(baseValue);
+        }
+        
+        const max = Math.max(...data);
+        const min = Math.min(...data);
+        const padding = 40;
+        const chartWidth = width - padding * 2;
+        const chartHeight = height - padding * 2;
+        
+        // Clear canvas
+        ctx.clearRect(0, 0, width, height);
+        
+        // Draw gradient background
+        const gradient = ctx.createLinearGradient(0, padding, 0, height - padding);
+        gradient.addColorStop(0, 'rgba(0, 212, 255, 0.3)');
+        gradient.addColorStop(1, 'rgba(0, 212, 255, 0)');
+        
+        // Draw area
+        ctx.beginPath();
+        ctx.moveTo(padding, height - padding);
+        
+        data.forEach((value, index) => {
+            const x = padding + (chartWidth / (data.length - 1)) * index;
+            const y = height - padding - ((value - min) / (max - min)) * chartHeight;
+            ctx.lineTo(x, y);
+        });
+        
+        ctx.lineTo(width - padding, height - padding);
+        ctx.closePath();
+        ctx.fillStyle = gradient;
+        ctx.fill();
+        
+        // Draw line
+        ctx.beginPath();
+        data.forEach((value, index) => {
+            const x = padding + (chartWidth / (data.length - 1)) * index;
+            const y = height - padding - ((value - min) / (max - min)) * chartHeight;
+            
+            if (index === 0) {
+                ctx.moveTo(x, y);
+            } else {
+                ctx.lineTo(x, y);
+            }
+        });
+        
+        ctx.strokeStyle = '#00D4FF';
+        ctx.lineWidth = 4;
+        ctx.stroke();
+        
+        // Draw points
+        data.forEach((value, index) => {
+            const x = padding + (chartWidth / (data.length - 1)) * index;
+            const y = height - padding - ((value - min) / (max - min)) * chartHeight;
+            
+            ctx.beginPath();
+            ctx.arc(x, y, 6, 0, Math.PI * 2);
+            ctx.fillStyle = '#00D4FF';
+            ctx.fill();
+            ctx.strokeStyle = '#000';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+        });
+        
+        // Draw axes
+        ctx.strokeStyle = 'rgba(0, 212, 255, 0.2)';
+        ctx.lineWidth = 2;
+        
+        // Y axis
+        ctx.beginPath();
+        ctx.moveTo(padding, padding);
+        ctx.lineTo(padding, height - padding);
+        ctx.stroke();
+        
+        // X axis
+        ctx.beginPath();
+        ctx.moveTo(padding, height - padding);
+        ctx.lineTo(width - padding, height - padding);
+        ctx.stroke();
+        
+        // Labels
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '24px Space Grotesk';
+        ctx.textAlign = 'center';
+        
+        ctx.fillText('30d ago', padding + 50, height - 10);
+        ctx.fillText('15d', width / 2, height - 10);
+        ctx.fillText('Today', width - padding - 50, height - 10);
+    }
+
+    // ===== LIVE ACTIVITY FEED =====
+    function initActivityFeed() {
+        const feedEl = document.getElementById('activityFeed');
+        if (!feedEl) return;
+        
+        const activities = generateMockActivities(8);
+        feedEl.innerHTML = '';
+        
+        activities.forEach((activity, index) => {
+            const item = document.createElement('div');
+            item.className = 'activity-item';
+            item.style.animationDelay = (index * 0.05) + 's';
+            
+            item.innerHTML = `
+                <div class="activity-icon">${activity.icon}</div>
+                <div class="activity-content">
+                    <div class="activity-type">${activity.type}</div>
+                    <div class="activity-details">${activity.details}</div>
+                </div>
+                <div class="activity-time">${activity.time}</div>
+            `;
+            
+            feedEl.appendChild(item);
+        });
+        
+        // Add new activity every 10 seconds
+        setInterval(() => {
+            const newActivity = generateMockActivities(1)[0];
+            const item = document.createElement('div');
+            item.className = 'activity-item';
+            
+            item.innerHTML = `
+                <div class="activity-icon">${newActivity.icon}</div>
+                <div class="activity-content">
+                    <div class="activity-type">${newActivity.type}</div>
+                    <div class="activity-details">${newActivity.details}</div>
+                </div>
+                <div class="activity-time">${newActivity.time}</div>
+            `;
+            
+            feedEl.insertBefore(item, feedEl.firstChild);
+            
+            // Remove last item if more than 8
+            if (feedEl.children.length > 8) {
+                feedEl.removeChild(feedEl.lastChild);
+            }
+        }, 10000);
+    }
+
+    function generateMockActivities(count) {
+        const activities = [];
+        const types = [
+            { icon: '💰', type: 'New Delegation', template: '+ {amount} TICS from {address}' },
+            { icon: '🎁', type: 'Reward Claimed', template: '{address} claimed {amount} TICS' },
+            { icon: '✓', type: 'Block Signed', template: 'Block #{block} signed successfully' },
+            { icon: '🔄', type: 'Redelegate', template: '{address} redelegated {amount} TICS' },
+            { icon: '📤', type: 'Undelegate', template: '{address} undelegated {amount} TICS' }
+        ];
+        
+        const now = Date.now();
+        
+        for (let i = 0; i < count; i++) {
+            const type = types[Math.floor(Math.random() * types.length)];
+            const amount = (Math.random() * 500 + 50).toFixed(1);
+            const address = 'qubetics1' + Math.random().toString(36).substring(2, 15) + '...';
+            const block = Math.floor(2881000 + Math.random() * 100);
+            const time = now - (Math.random() * 600000); // Last 10 minutes
+            
+            let details = type.template
+                .replace('{amount}', amount)
+                .replace('{address}', address)
+                .replace('{block}', block);
+            
+            activities.push({
+                icon: type.icon,
+                type: type.type,
+                details: details,
+                time: timeAgo(time)
+            });
+        }
+        
+        return activities;
+    }
+
+    // ===== UPDATE INIT FUNCTION =====
+    // Add to existing init() function
+    const originalInit = init;
+    init = function() {
+        originalInit();
+        
+        // Initialize new sections
+        fetchTop20Delegators();
+        updateNetworkShare();
+        initGrowthChart();
+        initActivityFeed();
+        
+        // Update top 20 periodically
+        setInterval(fetchTop20Delegators, 60000); // Every minute
+    };
+
