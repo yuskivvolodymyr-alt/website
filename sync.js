@@ -8,6 +8,10 @@ const API_BASE = "https://swagger.qubetics.com";
 const VALIDATOR = "qubeticsvaloper1tzk9f84cv2gmk3du3m9dpxcuph70sfj6uf6kld";
 const TICSSCAN_API = "https://v2.ticsscan.com/api/v2";
 
+// CORS Proxy for testing (remove when using Cloudflare Worker)
+const CORS_PROXY = "https://corsproxy.io/?";
+const USE_CORS_PROXY = true; // Set to false when using Cloudflare Worker
+
 // Validator addresses
 const VALCONS_ADDR = "qubeticsvalcons1dlmj5pzg3fv54nrtejnfxmrj08d7qs09xjp2eu";
 const VAL_HEX_ADDR = "0x6FF72A04488A594ACC6BCCA6936C7279DBE041E5";
@@ -21,7 +25,10 @@ let lastBlockHeight = null;
 // Universal JSON fetch helper
 async function fetchJSON(url, headers = {}) {
   try {
-    const res = await fetch(url, { headers });
+    // Use CORS proxy if enabled
+    const fetchUrl = USE_CORS_PROXY ? CORS_PROXY + encodeURIComponent(url) : url;
+    
+    const res = await fetch(fetchUrl, { headers });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     return await res.json();
   } catch (err) {
