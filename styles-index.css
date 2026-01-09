@@ -386,7 +386,6 @@ html::before {
     gap: 10px;
     align-items: center;
     flex-wrap: nowrap;
-    justify-content: flex-start;
 }
 
 .ecosystem-button {
@@ -416,24 +415,6 @@ html::before {
     border: 1px solid rgba(0, 212, 255, 0.5);
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
-}
-
-/* About QubeNode Button Highlight */
-.ecosystem-button-highlight {
-    background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(0, 255, 240, 0.15));
-    border: 2px solid rgba(0, 212, 255, 0.5);
-    text-decoration: none;
-}
-
-.ecosystem-button-highlight:hover {
-    background: linear-gradient(135deg, rgba(0, 212, 255, 0.3), rgba(0, 255, 240, 0.2));
-    border: 2px solid rgba(0, 212, 255, 0.7);
-    box-shadow: 0 8px 25px rgba(0, 212, 255, 0.4);
-}
-
-/* Mobile menu link style (for About button) */
-.mobile-menu-link {
-    text-decoration: none;
 }
 
 /* Header Wallet Button */

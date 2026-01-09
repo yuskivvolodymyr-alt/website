@@ -60,7 +60,8 @@
         <section class="hero-status">
             <div class="status-badge">
                 <span class="status-dot"></span>
-                <span class="status-text">VALIDATOR STATUS: <span id="validatorStatus">LOADING...</span></span>
+                <span class="status-label">VALIDATOR STATUS:</span>
+                <span class="status-value" id="validatorStatus">ACTIVE</span>
             </div>
             
             <h1 class="main-title">
@@ -68,34 +69,34 @@
             </h1>
             <p class="main-subtitle">Professional Validator Infrastructure & Real-time Monitoring</p>
             
-            <!-- Live Metrics Cards -->
+            <!-- Live Metrics Grid - Without Card Borders -->
             <div class="live-metrics-grid">
-                <div class="metric-card">
+                <div class="metric-card-simple">
                     <div class="metric-icon">📊</div>
                     <div class="metric-label">Block Height</div>
-                    <div class="metric-value" id="blockHeight">--</div>
+                    <div class="metric-value" id="currentBlock">--</div>
                     <div class="metric-subtitle">Current Block</div>
                 </div>
                 
-                <div class="metric-card highlight">
+                <div class="metric-card-simple highlight">
                     <div class="metric-icon">⚡</div>
                     <div class="metric-label">Voting Power</div>
-                    <div class="metric-value" id="votingPower">--</div>
+                    <div class="metric-value" id="delegatedAmountContainer">--</div>
                     <div class="metric-subtitle">TICS Delegated</div>
                 </div>
                 
-                <div class="metric-card">
+                <div class="metric-card-simple">
                     <div class="metric-icon">🔗</div>
                     <div class="metric-label">Network Peers</div>
                     <div class="metric-value" id="peerCount">--</div>
                     <div class="metric-subtitle">Connected</div>
                 </div>
                 
-                <div class="metric-card">
+                <div class="metric-card-simple">
                     <div class="metric-icon">⏱️</div>
                     <div class="metric-label">Uptime</div>
-                    <div class="metric-value" id="uptimeValue">99.98%</div>
-                    <div class="metric-subtitle">Last 30 Days</div>
+                    <div class="metric-value" id="uptimePercent">99.98%</div>
+                    <div class="metric-subtitle">Last 100K Blocks</div>
                 </div>
             </div>
         </section>
@@ -124,8 +125,9 @@
                     </div>
                     <div class="speedometer-info">
                         <span class="info-label">Cores:</span>
-                        <span class="info-value">8 vCPU</span>
+                        <span class="info-value" id="cpuCores">12 vCPU</span>
                     </div>
+                    <canvas id="cpuChart" class="mini-chart"></canvas>
                 </div>
 
                 <!-- RAM Speedometer -->
@@ -143,6 +145,7 @@
                         <span class="info-label">Total:</span>
                         <span class="info-value">48 GB</span>
                     </div>
+                    <canvas id="memoryChart" class="mini-chart"></canvas>
                 </div>
 
                 <!-- Disk Speedometer -->
@@ -160,6 +163,30 @@
                         <span class="info-label">Capacity:</span>
                         <span class="info-value">500 GB NVMe</span>
                     </div>
+                    <canvas id="diskChart" class="mini-chart"></canvas>
+                </div>
+
+                <!-- Disk I/O -->
+                <div class="speedometer-card network-card">
+                    <h3 class="speedometer-title">Disk I/O</h3>
+                    <div class="network-stats">
+                        <div class="network-row">
+                            <span class="network-icon">📖</span>
+                            <span class="network-label">Read</span>
+                            <span class="network-value" id="diskRead">-- MB/s</span>
+                        </div>
+                        <div class="network-row">
+                            <span class="network-icon">📝</span>
+                            <span class="network-label">Write</span>
+                            <span class="network-value" id="diskWrite">-- MB/s</span>
+                        </div>
+                        <div class="network-row total">
+                            <span class="network-icon">💾</span>
+                            <span class="network-label">Total I/O</span>
+                            <span class="network-value" id="diskTotal">-- MB/s</span>
+                        </div>
+                    </div>
+                    <canvas id="diskIoChart" class="network-chart"></canvas>
                 </div>
 
                 <!-- Network Traffic -->
@@ -179,46 +206,10 @@
                         <div class="network-row total">
                             <span class="network-icon">⇅</span>
                             <span class="network-label">Total</span>
-                            <span class="network-value" id="networkTotal">-- MB/s</span>
+                            <span class="network-value" id="networkTotalTraffic">-- MB/s</span>
                         </div>
                     </div>
                     <canvas id="networkChart" class="network-chart"></canvas>
-                </div>
-            </div>
-        </section>
-
-        <!-- Rewards Section -->
-        <section class="rewards-section">
-            <h2 class="section-title">
-                <span class="title-icon">💰</span>
-                Outstanding Rewards
-            </h2>
-            
-            <div class="rewards-container">
-                <!-- Rewards Stats -->
-                <div class="rewards-stats">
-                    <div class="rewards-card">
-                        <div class="rewards-label">Total Rewards (30d)</div>
-                        <div class="rewards-value" id="totalRewards">-- TICS</div>
-                        <div class="rewards-change positive" id="rewardsTrend">+0.0%</div>
-                    </div>
-                    
-                    <div class="rewards-card">
-                        <div class="rewards-label">Average Daily</div>
-                        <div class="rewards-value" id="avgDailyRewards">-- TICS</div>
-                        <div class="rewards-subtitle">Per Day</div>
-                    </div>
-                    
-                    <div class="rewards-card">
-                        <div class="rewards-label">Commission Rate</div>
-                        <div class="rewards-value">5%</div>
-                        <div class="rewards-subtitle">Industry Standard</div>
-                    </div>
-                </div>
-
-                <!-- Rewards Chart -->
-                <div class="rewards-chart-container">
-                    <canvas id="rewardsChart"></canvas>
                 </div>
             </div>
         </section>
@@ -229,7 +220,6 @@
                 <!-- Network Share Card -->
                 <div class="performance-card network-share-card">
                     <h2 class="card-title">
-                        <span class="title-icon">📊</span>
                         Network Share
                     </h2>
                     <div class="network-share-content">
@@ -237,16 +227,31 @@
                         <div class="share-label">of Total Network Stake</div>
                         <div class="share-stats">
                             <div class="share-stat">
-                                <span class="stat-label">Our Stake:</span>
-                                <span class="stat-value" id="ourStake">-- TICS</span>
-                            </div>
-                            <div class="share-stat">
                                 <span class="stat-label">Network Total:</span>
                                 <span class="stat-value" id="networkTotal">-- TICS</span>
                             </div>
                             <div class="share-stat">
-                                <span class="stat-label">Rank:</span>
+                                <span class="stat-label">Our Stake:</span>
+                                <span class="stat-value" id="ourStake">-- TICS</span>
+                            </div>
+                            <div class="share-stat">
+                                <span class="stat-label">Delegators:</span>
+                                <span class="stat-value" id="delegatorsCount">--</span>
+                            </div>
+                            <div class="share-stat">
+                                <span class="stat-label">Rank <span class="stat-sublabel">(by voting power)</span>:</span>
                                 <span class="stat-value rank-badge" id="validatorRank">#--</span>
+                            </div>
+                            <div class="share-stat">
+                                <span class="stat-label">Self-Bonded:</span>
+                                <span class="stat-value" id="selfBonded">-- TICS</span>
+                            </div>
+                            <div class="share-stat">
+                                <span class="stat-label">Commission:</span>
+                                <span class="stat-value" id="commissionRate">5.0%</span>
+                            </div>
+                            <div class="commission-note-simple">
+                                Lowest in network • Actual APY: 28.5% • <a href="calculator.html" class="calculator-link">Calculator →</a>
                             </div>
                         </div>
                     </div>
@@ -255,25 +260,32 @@
                 <!-- Validator Performance Card -->
                 <div class="performance-card">
                     <h2 class="card-title">
-                        <span class="title-icon">⚡</span>
                         Validator Performance
                     </h2>
                     <div class="performance-metrics">
                         <div class="metric-row">
-                            <span class="metric-label">Block Signing Rate:</span>
-                            <span class="metric-value success">99.98%</span>
+                            <span class="metric-label">Validator Since:</span>
+                            <span class="metric-value success">Aug 1, 2025</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-label">Status:</span>
+                            <span class="metric-value success" id="validatorPerformanceStatus">ACTIVE</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-label">Uptime:</span>
+                            <span class="metric-value success" id="validatorUptime">--</span>
                         </div>
                         <div class="metric-row">
                             <span class="metric-label">Missed Blocks:</span>
-                            <span class="metric-value">3 / 150,000</span>
+                            <span class="metric-value success" id="missedBlocks">-- / 100K</span>
                         </div>
                         <div class="metric-row">
-                            <span class="metric-label">Avg Block Time:</span>
-                            <span class="metric-value" id="avgBlockTime">5.63s</span>
+                            <span class="metric-label">Outstanding Rewards (TICS):</span>
+                            <span class="metric-value success" id="outstandingRewards">--</span>
                         </div>
                         <div class="metric-row">
                             <span class="metric-label">Jailed Status:</span>
-                            <span class="metric-value success">Never ✓</span>
+                            <span class="metric-value success" id="jailedStatus">Never ✓</span>
                         </div>
                         <div class="metric-row">
                             <span class="metric-label">Slashing Events:</span>
@@ -282,32 +294,32 @@
                     </div>
                 </div>
 
-                <!-- Achievements Card -->
-                <div class="performance-card achievements-card">
+                <!-- Validator Addresses Card -->
+                <div class="performance-card addresses-card">
                     <h2 class="card-title">
-                        <span class="title-icon">🎖️</span>
-                        Achievements
+                        Validator Addresses
                     </h2>
-                    <div class="achievements-grid">
-                        <div class="achievement-badge">
-                            <div class="badge-icon">✓</div>
-                            <div class="badge-text">100% Uptime<br><span class="badge-subtext">90 days</span></div>
+                    <div class="addresses-list">
+                        <div class="address-row">
+                            <span class="address-label">Account Address:</span>
+                            <span class="address-value">qubetics1tzk9f84cv2gmk3du3m9dpxcuph70sfj6ltvqjf</span>
                         </div>
-                        <div class="achievement-badge">
-                            <div class="badge-icon">✓</div>
-                            <div class="badge-text">Zero Slashing<br><span class="badge-subtext">Perfect record</span></div>
+                        <div class="address-row">
+                            <span class="address-label">Operator Address:</span>
+                            <span class="address-value">qubeticsvaloper1tzk9f84cv2gmk3du3m9dpxcuph70sfj6uf6kld</span>
                         </div>
-                        <div class="achievement-badge">
-                            <div class="badge-icon">🏆</div>
-                            <div class="badge-text">Top 10<br><span class="badge-subtext">Validator</span></div>
+                        <div class="address-row">
+                            <span class="address-label">Hex Address:</span>
+                            <span class="address-value">6FF72A04488A594ACC6BCCA6936C7279DBE041E5</span>
                         </div>
-                        <div class="achievement-badge">
-                            <div class="badge-icon">👥</div>
-                            <div class="badge-text">1000+<br><span class="badge-subtext">Delegators</span></div>
+                        <div class="address-row">
+                            <span class="address-label">Consensus Address:</span>
+                            <span class="address-value">qubeticsvalcons1dlmj5pzg3fv54nrtejnfxmrj08d7qs09xjp2eu</span>
                         </div>
-                        <div class="achievement-badge">
-                            <div class="badge-icon">✓</div>
-                            <div class="badge-text">Community<br><span class="badge-subtext">Verified</span></div>
+                        <div class="address-row">
+                            <span class="address-label">Public Key:</span>
+                            <span class="address-value address-pubkey">{"@type": "/cosmos.crypto.ed25519.PubKey",
+"key": "AwffKHqarKlIZL72uCq4OQHlw0wspQEDGmHrBI1EWvc="}</span>
                         </div>
                     </div>
                 </div>
@@ -317,7 +329,6 @@
         <!-- TOP 20 Delegators Section -->
         <section class="top-delegators-section">
             <h2 class="section-title">
-                <span class="title-icon">🏆</span>
                 TOP 20 Delegators
             </h2>
             
@@ -367,47 +378,6 @@
             </div>
         </section>
 
-        <!-- Latest Delegations -->
-        <section class="delegations-section">
-            <h2 class="section-title">
-                <span class="title-icon">👥</span>
-                Latest Delegations
-            </h2>
-            
-            <div class="delegations-container">
-                <div class="delegations-table">
-                    <div class="table-header">
-                        <div class="table-col col-delegator">Delegator</div>
-                        <div class="table-col col-amount">Amount</div>
-                        <div class="table-col col-time">Time</div>
-                    </div>
-                    
-                    <div class="table-body" id="delegationsTable">
-                        <!-- Will be populated by JavaScript -->
-                        <div class="table-row loading">
-                            <div class="loading-spinner"></div>
-                            <span>Loading latest delegations...</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="delegations-stats">
-                    <div class="stat-item">
-                        <div class="stat-label">Total Delegators</div>
-                        <div class="stat-value" id="totalDelegators">--</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-label">24h Delegations</div>
-                        <div class="stat-value" id="dailyDelegations">--</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-label">Avg. Delegation</div>
-                        <div class="stat-value" id="avgDelegation">-- TICS</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- Server Information -->
         <section class="server-info-section">
             <h2 class="section-title">
@@ -451,7 +421,7 @@
                     <div class="server-card-content">
                         <div class="info-row">
                             <span class="info-label">CPU:</span>
-                            <span class="info-value">8 vCPU Cores</span>
+                            <span class="info-value">12 vCPU Cores</span>
                         </div>
                         <div class="info-row">
                             <span class="info-label">RAM:</span>
@@ -563,7 +533,7 @@
         </footer>
     </div>
 
-    <!-- About Page Initialization - CSP Compliant -->
+    <!-- About Page Script - All Data & Logic -->
     <script src="init-about.js"></script>
 </body>
 </html>
