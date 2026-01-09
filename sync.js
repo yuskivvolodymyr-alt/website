@@ -31,6 +31,21 @@ async function fetchJSON(url, headers = {}) {
   }
 }
 
+// Format large numbers with M/K suffix
+function formatLargeNumber(num) {
+  if (num >= 1000000) {
+    // Truncate to 3 decimal places WITHOUT rounding
+    const millions = num / 1000000;
+    const truncated = Math.floor(millions * 1000) / 1000;
+    return truncated.toFixed(3) + 'M';
+  } else if (num >= 1000) {
+    const thousands = num / 1000;
+    const truncated = Math.floor(thousands * 1000) / 1000;
+    return truncated.toFixed(3) + 'K';
+  }
+  return num.toLocaleString();
+}
+
 // === BLOCK HEIGHT (current block number) ===
 async function updateBlockHeight() {
   const el = document.getElementById("currentBlock");
@@ -674,19 +689,27 @@ async function updateSelfBonded() {
   if (!selfBondedEl) return;
   
   try {
-    const url = `${API_BASE}/cosmos/staking/v1beta1/validators/${VALIDATOR}/delegations`;
-    const data = await fetchJSON(url);
+    const delegationsUrl = 'https://swagger.qubetics.com/cosmos/staking/v1beta1/delegations/qubetics1tzk9f84cv2gmk3du3m9dpxcuph70sfj6ltvqjf';
+    const response = await fetch(delegationsUrl);
     
-    if (data?.delegation_responses) {
+    if (!response.ok) {
+      console.error('❌ Self-Bonded API error:', response.status);
+      return;
+    }
+    
+    const data = await response.json();
+    
+    if (data?.delegation_responses && data.delegation_responses.length > 0) {
       const selfDelegation = data.delegation_responses.find(d => 
-        d.delegation.validator_address === VALIDATOR
+        d.delegation.validator_address === 'qubeticsvaloper1tzk9f84cv2gmk3du3m9dpxcuph70sfj6uf6kld'
       );
       
       if (selfDelegation) {
         const amountMicro = parseFloat(selfDelegation.balance.amount);
-        const amountTICS = amountMicro / 1e18;
-        selfBondedEl.textContent = formatLargeNumber(amountTICS);
-        console.log(`✅ Self-Bonded: ${amountTICS.toFixed(1)} TICS`);
+        const amountTICS = amountMicro / 1000000000000000000;
+        
+        selfBondedEl.textContent = formatLargeNumber(amountTICS) + ' TICS';
+        console.log('✅ Self-Bonded:', amountTICS.toFixed(1), 'TICS');
       }
     }
   } catch (error) {
