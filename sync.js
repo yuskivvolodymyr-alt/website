@@ -539,10 +539,14 @@ document.addEventListener('DOMContentLoaded', () => {
     updateNetworkStats();
     updateMarketCap();
     updateTotalSupply();
-    updateCirculationSupply();
     updateTicsBurn();
     // About page updates - MOVED TO init-about.js
   }, 15000);
+  
+  // Оновлюємо Circulation Supply рідше (кожні 60 секунд) щоб уникнути 429 помилки
+  setInterval(() => {
+    updateCirculationSupply();
+  }, 60000);
 });
 
 // Переініціалізація при зміні розміру вікна (для адаптації)
@@ -848,7 +852,7 @@ async function updateMarketCap() {
   }
 }
 
-// ===== CIRCULATION SUPPLY =====
+// ===== CIRCULATION SUPPLY (updated once per minute to avoid rate limits) =====
 async function updateCirculationSupply() {
   const circulationSupplyEl = document.getElementById("circulationSupply");
   if (!circulationSupplyEl) return;
@@ -861,16 +865,15 @@ async function updateCirculationSupply() {
       const circulatingSupply = parseFloat(data.combined.circulatingSupply);
       circulationSupplyEl.textContent = formatLargeNumber(circulatingSupply);
       console.log(`✅ Circulation Supply: ${circulatingSupply.toLocaleString()} TICS`);
-      return circulatingSupply; // Return for Market Cap calculation
+      return circulatingSupply;
     }
     
-    // Fallback
-    console.warn('⚠️ Circulating supply not found in pricebot API');
+    console.warn('⚠️ Circulating supply not found in pricebot API response');
     circulationSupplyEl.textContent = "--";
     return null;
   } catch (error) {
     console.error('❌ Circulation Supply error:', error);
-    circulationSupplyEl.textContent = "--";
+    // Keep previous value, don't overwrite with --
     return null;
   }
 }
