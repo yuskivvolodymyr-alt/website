@@ -796,42 +796,43 @@ async function updateNetworkStats() {
   }
 }
 
-// ===== TOTAL SUPPLY (1.361B format) =====
+// ===== TOTAL SUPPLY (1.361.867B format with dots) =====
 function updateTotalSupply() {
   const totalSupplyEl = document.getElementById("totalSupply");
   if (!totalSupplyEl) return;
   
   const TOTAL_SUPPLY = 1361867964; // 1,361,867,964 TICS
   
-  // Format as 1.362B (rounded to billions with 3 decimal places)
-  const billions = TOTAL_SUPPLY / 1000000000;
-  const formatted = billions.toFixed(3) + 'B';
+  // Format: 1.361.867B (billions with dots as thousand separators)
+  const billions = Math.floor(TOTAL_SUPPLY / 1000000); // Get millions first
+  const formatted = (billions / 1000).toFixed(3).replace('.', ',').replace(/,/g, '.') + 'B';
   
   totalSupplyEl.textContent = formatted;
   console.log(`✅ Total Supply: ${formatted} (${TOTAL_SUPPLY.toLocaleString()} TICS)`);
 }
 
-// ===== MARKET CAP (using circulating supply, NOT total supply) =====
+// ===== MARKET CAP (using circulating supply from pricebot) =====
 async function updateMarketCap() {
   const marketCapEl = document.getElementById("marketCap");
   if (!marketCapEl) return;
   
   try {
     const workerUrl = "https://tics-price.yuskivvolodymyr.workers.dev";
-    const data = await fetchJSON(workerUrl);
+    const pricebotUrl = "https://pricebot.ticslab.xyz/api/prices";
     
-    if (data && data.lastPrice) {
-      const price = parseFloat(data.lastPrice);
+    const [priceData, pricebotData] = await Promise.all([
+      fetchJSON(workerUrl),
+      fetchJSON(pricebotUrl)
+    ]);
+    
+    if (priceData && priceData.lastPrice && pricebotData?.combined?.circulatingSupply) {
+      const price = parseFloat(priceData.lastPrice);
+      const circulatingSupply = parseFloat(pricebotData.combined.circulatingSupply);
       
-      // TODO: Need CIRCULATING SUPPLY, not total supply
-      // Waiting for correct endpoint from Volodymyr
-      // For now, using placeholder
-      const CIRCULATING_SUPPLY = 207517000; // Placeholder - needs correct source
-      
-      const marketCap = price * CIRCULATING_SUPPLY;
+      const marketCap = price * circulatingSupply;
       
       marketCapEl.textContent = '$' + formatLargeNumber(marketCap);
-      console.log(`✅ Market Cap: $${marketCap.toLocaleString()} (Price: $${price} × Circulating: ${CIRCULATING_SUPPLY.toLocaleString()})`);
+      console.log(`✅ Market Cap: $${marketCap.toLocaleString()} (Price: $${price} × Circulating: ${circulatingSupply.toLocaleString()})`);
     }
   } catch (error) {
     console.error('❌ Market Cap error:', error);
@@ -844,36 +845,24 @@ async function updateCirculationSupply() {
   if (!circulationSupplyEl) return;
   
   try {
-    // Спробуємо отримати з ticsscan API
-    const data = await fetchJSON(`${TICSSCAN_API}/stats`);
+    // Use pricebot API for accurate circulating supply
+    const data = await fetchJSON('https://pricebot.ticslab.xyz/api/prices');
     
-    if (data?.circulating_supply) {
-      const circulatingSupply = parseFloat(data.circulating_supply) / 1e18;
+    if (data?.combined?.circulatingSupply) {
+      const circulatingSupply = parseFloat(data.combined.circulatingSupply);
       circulationSupplyEl.textContent = formatLargeNumber(circulatingSupply);
       console.log(`✅ Circulation Supply: ${circulatingSupply.toLocaleString()} TICS`);
-      return;
+      return circulatingSupply; // Return for Market Cap calculation
     }
     
-    // Якщо API не працює, використовуємо розрахунок
-    const totalSupply = 1361867964;
-    const poolUrl = `${API_BASE}/cosmos/staking/v1beta1/pool`;
-    const poolData = await fetchJSON(poolUrl);
-    
-    if (poolData?.pool) {
-      const totalBonded = parseInt(poolData.pool.bonded_tokens) / 1e18;
-      const totalUnbonded = parseInt(poolData.pool.not_bonded_tokens || "0") / 1e18;
-      const circulatingSupply = totalBonded + totalUnbonded;
-      
-      circulationSupplyEl.textContent = formatLargeNumber(circulatingSupply);
-      console.log(`✅ Circulation Supply (calculated): ${circulatingSupply.toLocaleString()} TICS`);
-    } else {
-      // Fallback - показуємо total supply
-      circulationSupplyEl.textContent = formatLargeNumber(totalSupply);
-    }
+    // Fallback
+    console.warn('⚠️ Circulating supply not found in pricebot API');
+    circulationSupplyEl.textContent = "--";
+    return null;
   } catch (error) {
     console.error('❌ Circulation Supply error:', error);
-    // Fallback значення
-    circulationSupplyEl.textContent = "207.517M";
+    circulationSupplyEl.textContent = "--";
+    return null;
   }
 }
 
@@ -885,13 +874,13 @@ async function updateTicsBurn() {
   try {
     const data = await fetchJSON('https://native-api.qubetics.com/qubetics/explorer/dashboard');
     
-    if (data?.burnedAmount) {
-      const burned = parseFloat(data.burnedAmount);
+    if (data?.data?.burnedAmount) {
+      const burned = parseFloat(data.data.burnedAmount);
       ticsBurnEl.textContent = formatLargeNumber(burned);
       console.log(`✅ TICS Burned: ${burned.toLocaleString()} TICS`);
     } else {
-      ticsBurnEl.textContent = "0";
-      console.warn('⚠️ Burn data not found in response');
+      console.warn('⚠️ Burn data structure:', data);
+      ticsBurnEl.textContent = "--";
     }
   } catch (error) {
     console.error('❌ TICS Burn error:', error);
