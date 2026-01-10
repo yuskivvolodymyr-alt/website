@@ -536,17 +536,17 @@ document.addEventListener('DOMContentLoaded', () => {
     updateBlocksProposed();
     updateSelfBonded();
     updateNetworkShare();
-    updateNetworkStats();
-    updateMarketCap();
     updateTotalSupply();
     updateTicsBurn();
     // About page updates - MOVED TO init-about.js
   }, 15000);
   
-  // Оновлюємо Circulation Supply рідше (кожні 60 секунд) щоб уникнути 429 помилки
+  // Оновлюємо дані з pricebot API дуже рідко (кожні 5 хвилин) щоб уникнути 429 помилки
   setInterval(() => {
     updateCirculationSupply();
-  }, 60000);
+    updateMarketCap();
+    updateNetworkStats(); // Для % Circulation Staked
+  }, 300000); // 300000ms = 5 хвилин
 });
 
 // Переініціалізація при зміні розміру вікна (для адаптації)
@@ -852,7 +852,7 @@ async function updateMarketCap() {
   }
 }
 
-// ===== CIRCULATION SUPPLY (updated once per minute to avoid rate limits) =====
+// ===== CIRCULATION SUPPLY (updated every 5 minutes to avoid rate limits) =====
 async function updateCirculationSupply() {
   const circulationSupplyEl = document.getElementById("circulationSupply");
   if (!circulationSupplyEl) return;
