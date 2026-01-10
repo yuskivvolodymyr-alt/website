@@ -753,14 +753,17 @@ async function updateNetworkShare() {
 }
 
 // ===== NETWORK STATISTICS =====
+// ===== NETWORK STATISTICS =====
 async function updateNetworkStats() {
   try {
     const poolUrl = `${API_BASE}/cosmos/staking/v1beta1/pool`;
     const validatorsUrl = `${API_BASE}/cosmos/staking/v1beta1/validators?status=BOND_STATUS_BONDED&pagination.limit=300`;
+    const pricebotUrl = 'https://pricebot.ticslab.xyz/api/prices';
     
-    const [poolData, validatorsData] = await Promise.all([
+    const [poolData, validatorsData, pricebotData] = await Promise.all([
       fetchJSON(poolUrl),
-      fetchJSON(validatorsUrl)
+      fetchJSON(validatorsUrl),
+      fetchJSON(pricebotUrl)
     ]);
     
     // Total Staked
@@ -779,15 +782,16 @@ async function updateNetworkStats() {
       console.log(`✅ Active Validators: ${count}`);
     }
     
-    // % Circulation Staked
+    // % Circulation Staked (fixed calculation)
     const circulationStakedEl = document.getElementById("circulationStaked");
-    const circulationSupplyEl = document.getElementById("circulationSupply");
-    if (circulationStakedEl && circulationSupplyEl && poolData?.pool) {
+    if (circulationStakedEl && poolData?.pool && pricebotData?.combined?.circulatingSupply) {
       const totalStaked = parseInt(poolData.pool.bonded_tokens) / 1e18;
-      const circulationSupply = parseFloat(circulationSupplyEl.textContent.replace(/[^0-9.]/g, ''));
-      if (circulationSupply > 0) {
-        const percentStaked = ((totalStaked / circulationSupply) * 100).toFixed(2);
+      const circulatingSupply = parseFloat(pricebotData.combined.circulatingSupply);
+      
+      if (circulatingSupply > 0) {
+        const percentStaked = ((totalStaked / circulatingSupply) * 100).toFixed(2);
         circulationStakedEl.textContent = percentStaked + '%';
+        console.log(`✅ % Circulation Staked: ${percentStaked}% (${totalStaked.toLocaleString()} / ${circulatingSupply.toLocaleString()})`);
       }
     }
     
@@ -803,9 +807,14 @@ function updateTotalSupply() {
   
   const TOTAL_SUPPLY = 1361867964; // 1,361,867,964 TICS
   
-  // Format: 1.361.867B (billions with dots as thousand separators)
-  const billions = Math.floor(TOTAL_SUPPLY / 1000000); // Get millions first
-  const formatted = (billions / 1000).toFixed(3).replace('.', ',').replace(/,/g, '.') + 'B';
+  // Format: 1.361.867B
+  // 1361867964 / 1000 = 1361867.964 thousands
+  // Split into: 1 billion, 361 million, 867 thousand
+  const billions = Math.floor(TOTAL_SUPPLY / 1000000000); // 1
+  const millions = Math.floor((TOTAL_SUPPLY % 1000000000) / 1000000); // 361
+  const thousands = Math.floor((TOTAL_SUPPLY % 1000000) / 1000); // 867
+  
+  const formatted = `${billions}.${millions.toString().padStart(3, '0')}.${thousands.toString().padStart(3, '0')}B`;
   
   totalSupplyEl.textContent = formatted;
   console.log(`✅ Total Supply: ${formatted} (${TOTAL_SUPPLY.toLocaleString()} TICS)`);
