@@ -471,8 +471,10 @@ async function updateAll() {
     updateSelfBonded(),       // Self-Bonded amount
     updateNetworkShare(),     // Network Share %
     updateNetworkStats(),     // Network statistics (Total Staked, Active Validators)
-    updateMarketCap(),        // Market Cap
-    updateTotalSupply(),      // Total Supply (static)
+    updateMarketCap(),        // Market Cap (using circulating supply)
+    updateTotalSupply(),      // Total Supply (1.362B format)
+    updateCirculationSupply(), // Circulation Supply
+    updateTicsBurn(),         // TICS Burn Total
     updateAPY()               // APY (static)
   ]);
 }
@@ -536,6 +538,9 @@ document.addEventListener('DOMContentLoaded', () => {
     updateNetworkShare();
     updateNetworkStats();
     updateMarketCap();
+    updateTotalSupply();
+    updateCirculationSupply();
+    updateTicsBurn();
     // About page updates - MOVED TO init-about.js
   }, 15000);
 });
@@ -791,16 +796,22 @@ async function updateNetworkStats() {
   }
 }
 
-// ===== TOTAL SUPPLY (static) =====
+// ===== TOTAL SUPPLY (1.361B format) =====
 function updateTotalSupply() {
   const totalSupplyEl = document.getElementById("totalSupply");
   if (!totalSupplyEl) return;
   
-  const TOTAL_SUPPLY = 1361867964;
-  totalSupplyEl.textContent = formatLargeNumber(TOTAL_SUPPLY);
+  const TOTAL_SUPPLY = 1361867964; // 1,361,867,964 TICS
+  
+  // Format as 1.362B (rounded to billions with 3 decimal places)
+  const billions = TOTAL_SUPPLY / 1000000000;
+  const formatted = billions.toFixed(3) + 'B';
+  
+  totalSupplyEl.textContent = formatted;
+  console.log(`✅ Total Supply: ${formatted} (${TOTAL_SUPPLY.toLocaleString()} TICS)`);
 }
 
-// ===== MARKET CAP =====
+// ===== MARKET CAP (using circulating supply, NOT total supply) =====
 async function updateMarketCap() {
   const marketCapEl = document.getElementById("marketCap");
   if (!marketCapEl) return;
@@ -811,14 +822,80 @@ async function updateMarketCap() {
     
     if (data && data.lastPrice) {
       const price = parseFloat(data.lastPrice);
-      const TOTAL_SUPPLY = 1361867964;
-      const marketCap = price * TOTAL_SUPPLY;
+      
+      // TODO: Need CIRCULATING SUPPLY, not total supply
+      // Waiting for correct endpoint from Volodymyr
+      // For now, using placeholder
+      const CIRCULATING_SUPPLY = 207517000; // Placeholder - needs correct source
+      
+      const marketCap = price * CIRCULATING_SUPPLY;
       
       marketCapEl.textContent = '$' + formatLargeNumber(marketCap);
-      console.log(`✅ Market Cap: $${marketCap.toLocaleString()}`);
+      console.log(`✅ Market Cap: $${marketCap.toLocaleString()} (Price: $${price} × Circulating: ${CIRCULATING_SUPPLY.toLocaleString()})`);
     }
   } catch (error) {
     console.error('❌ Market Cap error:', error);
+  }
+}
+
+// ===== CIRCULATION SUPPLY =====
+async function updateCirculationSupply() {
+  const circulationSupplyEl = document.getElementById("circulationSupply");
+  if (!circulationSupplyEl) return;
+  
+  try {
+    // Спробуємо отримати з ticsscan API
+    const data = await fetchJSON(`${TICSSCAN_API}/stats`);
+    
+    if (data?.circulating_supply) {
+      const circulatingSupply = parseFloat(data.circulating_supply) / 1e18;
+      circulationSupplyEl.textContent = formatLargeNumber(circulatingSupply);
+      console.log(`✅ Circulation Supply: ${circulatingSupply.toLocaleString()} TICS`);
+      return;
+    }
+    
+    // Якщо API не працює, використовуємо розрахунок
+    const totalSupply = 1361867964;
+    const poolUrl = `${API_BASE}/cosmos/staking/v1beta1/pool`;
+    const poolData = await fetchJSON(poolUrl);
+    
+    if (poolData?.pool) {
+      const totalBonded = parseInt(poolData.pool.bonded_tokens) / 1e18;
+      const totalUnbonded = parseInt(poolData.pool.not_bonded_tokens || "0") / 1e18;
+      const circulatingSupply = totalBonded + totalUnbonded;
+      
+      circulationSupplyEl.textContent = formatLargeNumber(circulatingSupply);
+      console.log(`✅ Circulation Supply (calculated): ${circulatingSupply.toLocaleString()} TICS`);
+    } else {
+      // Fallback - показуємо total supply
+      circulationSupplyEl.textContent = formatLargeNumber(totalSupply);
+    }
+  } catch (error) {
+    console.error('❌ Circulation Supply error:', error);
+    // Fallback значення
+    circulationSupplyEl.textContent = "207.517M";
+  }
+}
+
+// ===== TICS BURN =====
+async function updateTicsBurn() {
+  const ticsBurnEl = document.getElementById("ticsBurn");
+  if (!ticsBurnEl) return;
+  
+  try {
+    const data = await fetchJSON('https://native-api.qubetics.com/qubetics/explorer/dashboard');
+    
+    if (data?.burnedAmount) {
+      const burned = parseFloat(data.burnedAmount);
+      ticsBurnEl.textContent = formatLargeNumber(burned);
+      console.log(`✅ TICS Burned: ${burned.toLocaleString()} TICS`);
+    } else {
+      ticsBurnEl.textContent = "0";
+      console.warn('⚠️ Burn data not found in response');
+    }
+  } catch (error) {
+    console.error('❌ TICS Burn error:', error);
+    ticsBurnEl.textContent = "--";
   }
 }
 
