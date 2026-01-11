@@ -2246,11 +2246,6 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log(`✅ QubeNode Index Page Initialized`);
     console.log(`📊 Event listeners added: ${listenersAdded}`);
     console.log(`📝 Note: Dynamic elements (created via JS) keep their inline onclick - this is safe for CSP`);
-    
-    // ========== INITIALIZE MEXC CHART ==========
-    if (typeof initMexcChart === 'function') {
-        initMexcChart();
-    }
 });
 
 // All functions (closeWalletModal, connectHeaderWallet, etc.) already exist in the HTML

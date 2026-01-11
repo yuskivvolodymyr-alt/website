@@ -193,7 +193,6 @@
     
     <!-- Index Styles - CSP Compliant (NO Google Fonts - uses system fallback) -->
     <link rel="stylesheet" href="styles-index.css">
-    <link rel="stylesheet" href="styles-index-enhanced.css">
 </head>
 <body>
     
@@ -623,36 +622,26 @@
 
         <!-- ===== SECTION 3: TICS COIN ===== -->
         <h2 class="section-title">TICS Coin</h2>
-        
-        <!-- Chart + Cards Layout -->
-        <div class="tics-section-container">
-            <!-- Left: MEXC Chart (Lightweight Charts) -->
-            <div class="tics-chart-container">
-                <div id="mexc-chart"></div>
+        <div class="stats-grid stats-grid-4">
+            <div class="stat-card">
+                <div class="stat-label">$TICS Price</div>
+                <div class="stat-value"><span id="ticsPrice">--</span></div>
+                <div class="stat-subvalue">Current market price</div>
             </div>
-            
-            <!-- Right: 4 Cards Vertical -->
-            <div class="tics-cards-vertical">
-                <div class="stat-card">
-                    <div class="stat-label">$TICS Price</div>
-                    <div class="stat-value"><span id="ticsPrice">--</span></div>
-                    <div class="stat-subvalue">Current market price</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-label">24H Change</div>
-                    <div class="stat-value"><span id="ticsChange">--</span></div>
-                    <div class="stat-subvalue">24h price change</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-label">24H High</div>
-                    <div class="stat-value"><span id="ticsHigh24h">--</span></div>
-                    <div class="stat-subvalue">Highest price in 24h</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-label">24H Low</div>
-                    <div class="stat-value"><span id="ticsLow24h">--</span></div>
-                    <div class="stat-subvalue">Lowest price in 24h</div>
-                </div>
+            <div class="stat-card">
+                <div class="stat-label">24H Change</div>
+                <div class="stat-value" style="color: #22c55e;"><span id="ticsChange">--</span></div>
+                <div class="stat-subvalue">24h price change</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">24H High</div>
+                <div class="stat-value"><span id="ticsHigh24h">--</span></div>
+                <div class="stat-subvalue">Highest price in 24h</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">24H Low</div>
+                <div class="stat-value"><span id="ticsLow24h">--</span></div>
+                <div class="stat-subvalue">Lowest price in 24h</div>
             </div>
         </div>
 
@@ -1092,9 +1081,6 @@
     <script src="cosmos-staking.js"></script>
     <script src="sync.js"></script>
 
-    <!-- Lightweight Charts for MEXC price chart -->
-    <script src="https://unpkg.com/lightweight-charts@4.1.0/dist/lightweight-charts.standalone.production.js"></script>
-    <script src="mexc-chart.js"></script>
     
     <!-- Wallet Connector - Adapted from TicsLab -->
     <!-- Wallet Connector - Adapted from TicsLab -->
