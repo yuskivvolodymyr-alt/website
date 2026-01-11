@@ -672,11 +672,22 @@ async function updateLatestDelegations() {
       const amountMicro = parseInt(item.balance.amount);
       const amountTICS = (amountMicro / 1000000000000000000).toFixed(1);
       
-      row.innerHTML = `
-        <div class="delegator-address">${formatAddress(delegator)}</div>
-        <div class="delegation-amount">${amountTICS} TICS</div>
-        <div class="delegation-time">recent</div>
-      `;
+      // ✅ БЕЗПЕЧНО: Створюємо елементи без innerHTML для запобігання XSS
+      const addressDiv = document.createElement('div');
+      addressDiv.className = 'delegator-address';
+      addressDiv.textContent = formatAddress(delegator); // textContent безпечний
+      
+      const amountDiv = document.createElement('div');
+      amountDiv.className = 'delegation-amount';
+      amountDiv.textContent = amountTICS + ' TICS';
+      
+      const timeDiv = document.createElement('div');
+      timeDiv.className = 'delegation-time';
+      timeDiv.textContent = 'recent';
+      
+      row.appendChild(addressDiv);
+      row.appendChild(amountDiv);
+      row.appendChild(timeDiv);
       
       tableBody.appendChild(row);
     });
