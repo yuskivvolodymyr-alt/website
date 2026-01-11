@@ -537,16 +537,36 @@ document.addEventListener('DOMContentLoaded', () => {
     updateBlocksProposed();
     updateSelfBonded();
     updateNetworkShare();
+    updateNetworkStats(); // Використовує кешовані дані з pricebot
+    updateMarketCap(); // Використовує кешовані дані з pricebot
     updateTotalSupply();
     updateTicsBurn();
     // About page updates - MOVED TO init-about.js
   }, 15000);
   
-  // Оновлюємо дані з pricebot API дуже рідко (кожні 5 хвилин) щоб уникнути 429 помилки
-  setInterval(() => {
-    updateCirculationSupply();
-    updateMarketCap();
-    updateNetworkStats(); // Для % Circulation Staked
+  // Оновлюємо дані з pricebot API дуже рідко (кожні 5 хвилин) - ОДИН ЗАПИТ тільки для Circulation Supply
+  setInterval(async () => {
+    try {
+      const pricebotData = await fetchJSON('https://pricebot.ticslab.xyz/api/prices');
+      
+      if (pricebotData?.combined?.circulatingSupply) {
+        const circulatingSupply = parseFloat(pricebotData.combined.circulatingSupply);
+        cachedCirculatingSupply = circulatingSupply;
+        console.log(`✅ Pricebot data fetched: Circulating Supply = ${circulatingSupply.toLocaleString()} TICS`);
+        
+        // Тільки оновлюємо відображення Circulation Supply
+        // Market Cap і % Circulation Staked рахуються в своїх функціях використовуючи кеш
+        updateCirculationSupplyDisplay(circulatingSupply);
+      } else {
+        console.warn('⚠️ Pricebot API returned data without circulatingSupply');
+      }
+    } catch (error) {
+      console.error('❌ Pricebot fetch error:', error);
+      // Використовуємо кешовані дані якщо є
+      if (cachedCirculatingSupply) {
+        updateCirculationSupplyDisplay(cachedCirculatingSupply);
+      }
+    }
   }, 300000); // 300000ms = 5 хвилин
 });
 
@@ -758,17 +778,15 @@ async function updateNetworkShare() {
 }
 
 // ===== NETWORK STATISTICS =====
-// ===== NETWORK STATISTICS =====
+// ===== NETWORK STATISTICS (uses cached circulating supply) =====
 async function updateNetworkStats() {
   try {
     const poolUrl = `${API_BASE}/cosmos/staking/v1beta1/pool`;
     const validatorsUrl = `${API_BASE}/cosmos/staking/v1beta1/validators?status=BOND_STATUS_BONDED&pagination.limit=300`;
-    const pricebotUrl = 'https://pricebot.ticslab.xyz/api/prices';
     
-    const [poolData, validatorsData, pricebotData] = await Promise.all([
+    const [poolData, validatorsData] = await Promise.all([
       fetchJSON(poolUrl),
-      fetchJSON(validatorsUrl),
-      fetchJSON(pricebotUrl)
+      fetchJSON(validatorsUrl)
     ]);
     
     // Total Staked
@@ -787,14 +805,11 @@ async function updateNetworkStats() {
       console.log(`✅ Active Validators: ${count}`);
     }
     
-    // % Circulation Staked (fixed calculation)
+    // % Circulation Staked (uses cached circulating supply)
     const circulationStakedEl = document.getElementById("circulationStaked");
-    if (circulationStakedEl && poolData?.pool && pricebotData?.combined?.circulatingSupply) {
+    if (circulationStakedEl && poolData?.pool && cachedCirculatingSupply) {
       const totalStaked = parseInt(poolData.pool.bonded_tokens) / 1e18;
-      const circulatingSupply = parseFloat(pricebotData.combined.circulatingSupply);
-      
-      // Cache circulating supply
-      cachedCirculatingSupply = circulatingSupply;
+      const circulatingSupply = cachedCirculatingSupply;
       
       if (circulatingSupply > 0) {
         const percentStaked = ((totalStaked / circulatingSupply) * 100).toFixed(2);
@@ -828,26 +843,18 @@ function updateTotalSupply() {
   console.log(`✅ Total Supply: ${formatted} (${TOTAL_SUPPLY.toLocaleString()} TICS)`);
 }
 
-// ===== MARKET CAP (using circulating supply from pricebot) =====
+// ===== MARKET CAP (uses cached circulating supply from pricebot) =====
 async function updateMarketCap() {
   const marketCapEl = document.getElementById("marketCap");
   if (!marketCapEl) return;
   
   try {
     const workerUrl = "https://tics-price.yuskivvolodymyr.workers.dev";
-    const pricebotUrl = "https://pricebot.ticslab.xyz/api/prices";
+    const priceData = await fetchJSON(workerUrl);
     
-    const [priceData, pricebotData] = await Promise.all([
-      fetchJSON(workerUrl),
-      fetchJSON(pricebotUrl)
-    ]);
-    
-    if (priceData && priceData.lastPrice && pricebotData?.combined?.circulatingSupply) {
+    if (priceData && priceData.lastPrice && cachedCirculatingSupply) {
       const price = parseFloat(priceData.lastPrice);
-      const circulatingSupply = parseFloat(pricebotData.combined.circulatingSupply);
-      
-      // Cache circulating supply for use in other functions
-      cachedCirculatingSupply = circulatingSupply;
+      const circulatingSupply = cachedCirculatingSupply;
       
       const marketCap = price * circulatingSupply;
       
@@ -856,6 +863,17 @@ async function updateMarketCap() {
     }
   } catch (error) {
     console.error('❌ Market Cap error:', error);
+  }
+}
+
+// ===== CIRCULATION SUPPLY DISPLAY (uses cached data) =====
+function updateCirculationSupplyDisplay(circulatingSupply) {
+  const circulationSupplyEl = document.getElementById("circulationSupply");
+  if (!circulationSupplyEl) return;
+  
+  if (circulatingSupply) {
+    circulationSupplyEl.textContent = formatLargeNumber(circulatingSupply);
+    console.log(`✅ Circulation Supply displayed: ${circulatingSupply.toLocaleString()} TICS`);
   }
 }
 
