@@ -18,6 +18,7 @@ const VAL_ACCOUNT_ADDR = "qubetics1tzk9f84cv2gmk3du3m9dpxcuph70sfj6ltvqjf"; // A
 let currentBlockTime = 5.87; // Default value
 let blockAnimationInterval = null;
 let lastBlockHeight = null;
+let cachedCirculatingSupply = null; // Cache for circulating supply from pricebot
 
 // Universal JSON fetch helper
 async function fetchJSON(url, headers = {}) {
@@ -792,6 +793,9 @@ async function updateNetworkStats() {
       const totalStaked = parseInt(poolData.pool.bonded_tokens) / 1e18;
       const circulatingSupply = parseFloat(pricebotData.combined.circulatingSupply);
       
+      // Cache circulating supply
+      cachedCirculatingSupply = circulatingSupply;
+      
       if (circulatingSupply > 0) {
         const percentStaked = ((totalStaked / circulatingSupply) * 100).toFixed(2);
         circulationStakedEl.textContent = percentStaked + '%';
@@ -842,6 +846,9 @@ async function updateMarketCap() {
       const price = parseFloat(priceData.lastPrice);
       const circulatingSupply = parseFloat(pricebotData.combined.circulatingSupply);
       
+      // Cache circulating supply for use in other functions
+      cachedCirculatingSupply = circulatingSupply;
+      
       const marketCap = price * circulatingSupply;
       
       marketCapEl.textContent = '$' + formatLargeNumber(marketCap);
@@ -863,17 +870,32 @@ async function updateCirculationSupply() {
     
     if (data?.combined?.circulatingSupply) {
       const circulatingSupply = parseFloat(data.combined.circulatingSupply);
+      cachedCirculatingSupply = circulatingSupply; // Update cache
       circulationSupplyEl.textContent = formatLargeNumber(circulatingSupply);
-      console.log(`✅ Circulation Supply: ${circulatingSupply.toLocaleString()} TICS`);
+      console.log(`✅ Circulation Supply: ${circulatingSupply.toLocaleString()} TICS (from pricebot)`);
       return circulatingSupply;
     }
     
-    console.warn('⚠️ Circulating supply not found in pricebot API response');
+    // Use cached value if API failed but we have cached data
+    if (cachedCirculatingSupply) {
+      circulationSupplyEl.textContent = formatLargeNumber(cachedCirculatingSupply);
+      console.log(`✅ Circulation Supply: ${cachedCirculatingSupply.toLocaleString()} TICS (from cache)`);
+      return cachedCirculatingSupply;
+    }
+    
+    console.warn('⚠️ Circulating supply not found and no cached value');
     circulationSupplyEl.textContent = "--";
     return null;
   } catch (error) {
     console.error('❌ Circulation Supply error:', error);
-    // Keep previous value, don't overwrite with --
+    
+    // Use cached value on error
+    if (cachedCirculatingSupply) {
+      circulationSupplyEl.textContent = formatLargeNumber(cachedCirculatingSupply);
+      console.log(`✅ Circulation Supply: ${cachedCirculatingSupply.toLocaleString()} TICS (from cache after error)`);
+      return cachedCirculatingSupply;
+    }
+    
     return null;
   }
 }
