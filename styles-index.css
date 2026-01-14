@@ -379,11 +379,11 @@ html::before {
 .top-left-menu {
     position: absolute;
     top: 30px;
-    left: 40px;
+    left: 30px;
     right: 420px;
     z-index: 10;
     display: flex;
-    gap: 10px;
+    gap: 8px;
     align-items: center;
     flex-wrap: nowrap;
 }
@@ -391,19 +391,19 @@ html::before {
 .ecosystem-button {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 10px 16px;
+    gap: 6px;
+    padding: 8px 14px;
     background: rgba(0, 212, 255, 0.1);
     border: 1px solid rgba(0, 212, 255, 0.3);
     border-radius: 50px;
     color: #ffffff;
-    font-size: 0.9em;
+    font-size: 0.85em;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
     outline: none;
     white-space: nowrap;
-    height: 40px;
+    height: 38px;
 }
 
 .ecosystem-button span {
@@ -1230,6 +1230,19 @@ footer {
 }
 
 /* Medium screens - adjust menu layout */
+@media (max-width: 1400px) {
+    .top-left-menu {
+        gap: 6px;
+        left: 20px;
+    }
+    
+    .ecosystem-button {
+        font-size: 0.82em;
+        padding: 8px 12px;
+        gap: 5px;
+    }
+}
+
 @media (max-width: 1100px) {
     .top-left-menu {
         flex-wrap: wrap;
@@ -1237,9 +1250,9 @@ footer {
     }
     
     .ecosystem-button, .header-wallet-button {
-        font-size: 0.9em;
-        padding: 10px 16px;
-        height: 40px;
+        font-size: 0.85em;
+        padding: 8px 14px;
+        height: 38px;
     }
 }
 
