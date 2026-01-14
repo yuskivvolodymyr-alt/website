@@ -958,4 +958,3 @@ function updateAPY() {
   
   apyEl.textContent = "30%";
 }
-
