@@ -2465,6 +2465,15 @@ document.addEventListener('DOMContentLoaded', function() {
         listenersAdded++;
     }
     
+    // ========== 4B. MOBILE HEADER WALLET BUTTON ==========
+    const mobileHeaderWalletBtn = document.getElementById('mobileHeaderWalletBtn');
+    if (mobileHeaderWalletBtn) {
+        mobileHeaderWalletBtn.addEventListener('click', function(event) {
+            toggleHeaderWalletDropdown(event);
+        });
+        listenersAdded++;
+    }
+    
     // ========== 5. HEADER WALLET DROPDOWN OPTIONS ==========
     const headerKeplrOption = document.getElementById('headerKeplrOption');
     if (headerKeplrOption) {
