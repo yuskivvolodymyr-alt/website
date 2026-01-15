@@ -2076,13 +2076,14 @@ document.addEventListener('DOMContentLoaded', function() {
         listenersAdded++;
     }
     
-    // ========== 2. MOBILE MENU NAVIGATION (5 buttons) ==========
+    // ========== 2. MOBILE MENU NAVIGATION (6 buttons) ==========
     const mobileMenuPages = {
         'mobileMenuEcosystem': 'ecosystem.html',
         'mobileMenuTics': 'tics.html',
         'mobileMenuCalculator': 'calculator.html',
         'mobileMenuDelegate': 'how-to-delegate.html',
-        'mobileMenuFaq': 'faq.html'
+        'mobileMenuFaq': 'faq.html',
+        'mobileMenuStats': 'stats.html'
     };
     
     Object.keys(mobileMenuPages).forEach(function(id) {
@@ -2095,13 +2096,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // ========== 3. DESKTOP ECOSYSTEM BUTTONS (5 buttons) ==========
+    // ========== 3. DESKTOP ECOSYSTEM BUTTONS (6 buttons) ==========
     const desktopPages = {
         'desktopEcosystemBtn': 'ecosystem.html',
         'desktopTicsBtn': 'tics.html',
         'desktopCalculatorBtn': 'calculator.html',
         'desktopDelegateBtn': 'how-to-delegate.html',
-        'desktopFaqBtn': 'faq.html'
+        'desktopFaqBtn': 'faq.html',
+        'desktopStatsBtn': 'stats.html'
     };
     
     Object.keys(desktopPages).forEach(function(id) {
