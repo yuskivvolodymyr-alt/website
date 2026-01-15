@@ -808,28 +808,120 @@ header {
 /* Section titles for card groups */
 .section-title {
     font-size: 1.8em;
-    font-weight: 600;
-    color: #00D4FF;
-    margin-top: 60px;
-    margin-bottom: 20px;
+    font-weight: 700;
     text-align: center;
+    margin: 80px 0 50px 0;
+    background: linear-gradient(135deg, #00FFB3 0%, #00D4FF 50%, #6366F1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     position: relative;
+    padding-bottom: 25px;
 }
 
 .section-title::after {
     content: '';
-    display: block;
-    width: 80px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
     height: 3px;
     background: linear-gradient(90deg, transparent, #00D4FF, transparent);
-    margin: 15px auto 0;
+    border-radius: 2px;
 }
 
 /* First section title has less top margin */
 .section-title:first-of-type {
     margin-top: 40px;
+}
+
+/* ===== SECTION-SPECIFIC CARD COLORS ===== */
+
+/* Validator Info section - Blue/Cyan accent */
+.stats-grid:nth-of-type(1) .stat-card {
+    border-color: rgba(0, 212, 255, 0.25);
+}
+
+.stats-grid:nth-of-type(1) .stat-card:hover {
+    box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2), 
+                0 0 30px rgba(0, 212, 255, 0.15);
+    border-color: rgba(0, 212, 255, 0.4);
+}
+
+/* Qubetics Network section - Green/Emerald accent */
+.stats-grid:nth-of-type(2) .stat-card {
+    border-color: rgba(16, 185, 129, 0.25);
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.04) 0%, rgba(5, 150, 105, 0.02) 100%);
+}
+
+.stats-grid:nth-of-type(2) .stat-card::before {
+    background: linear-gradient(135deg, #10b981, #059669, #047857);
+}
+
+.stats-grid:nth-of-type(2) .stat-card:hover {
+    box-shadow: 0 20px 40px rgba(16, 185, 129, 0.15), 
+                0 0 30px rgba(16, 185, 129, 0.1);
+    border-color: rgba(16, 185, 129, 0.4);
+}
+
+/* TICS Coin section - Purple/Violet accent */
+.stats-grid:nth-of-type(3) .stat-card {
+    border-color: rgba(139, 92, 246, 0.25);
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.04) 0%, rgba(124, 58, 237, 0.02) 100%);
+}
+
+.stats-grid:nth-of-type(3) .stat-card::before {
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed, #6d28d9);
+}
+
+.stats-grid:nth-of-type(3) .stat-card:hover {
+    box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15), 
+                0 0 30px rgba(139, 92, 246, 0.1);
+    border-color: rgba(139, 92, 246, 0.4);
+}
+
+/* Icon styling for stat labels */
+.stat-label {
+    font-size: 0.95em;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.stat-icon {
+    font-size: 1.2em;
+    opacity: 0.8;
+}
+
+/* ===== DECORATIVE SECTION DIVIDERS ===== */
+.section-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.3), transparent);
+    margin: 70px 0;
+    position: relative;
+}
+
+.section-divider::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background: #00D4FF;
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
 }
 
 /* 4-column grid for TICS Coin section */
@@ -842,12 +934,12 @@ header {
 
 
 .stat-card {
-    background: transparent;
-    backdrop-filter: none;
-    border: none;
-    border-radius: 0;
-    padding: 35px;
-    transition: all 0.4s;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(99, 102, 241, 0.03) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 20px;
+    padding: 35px 25px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     opacity: 0;
     transform: translateY(30px);
     text-align: center;
@@ -855,6 +947,26 @@ header {
     flex-direction: column;
     justify-content: space-between;
     overflow: visible;
+    position: relative;
+}
+
+/* Тонкий градієнтний бордер при ховері */
+.stat-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    padding: 1px;
+    background: linear-gradient(135deg, #00FFB3, #00D4FF, #6366F1);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.stat-card:hover::before {
+    opacity: 1;
 }
 
 .stat-card:nth-child(1) { animation: cardFadeIn 0.6s ease-out 2s forwards; }
@@ -875,15 +987,9 @@ header {
 
 .stat-card:hover {
     transform: translateY(-8px);
-}
-
-.stat-label {
-    font-size: 0.95em;
-    color: #94a3b8;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 15px;
-    font-weight: 700;
+    box-shadow: 0 20px 40px rgba(0, 212, 255, 0.15), 
+                0 0 30px rgba(0, 212, 255, 0.1);
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.08) 0%, rgba(99, 102, 241, 0.05) 100%);
 }
 
 .stat-value {
