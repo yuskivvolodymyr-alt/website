@@ -307,25 +307,40 @@ class MetaMaskConnector {
     }
     
     /**
-     * Get balance in TICS using ethers provider
+     * Get balance in TICS using REST API with Cosmos address
      */
     async getBalance() {
         try {
-            if (!this.signer) {
-                throw new Error('Signer not initialized');
+            if (!this.cosmosAddress) {
+                throw new Error('Cosmos address not available');
             }
             
-            // Get balance directly from provider (works with EVM address)
-            const balance = await this.signer.provider.getBalance(this.address);
+            // Use REST API instead of eth_getBalance
+            const response = await fetch(
+                `${this.restUrl}/cosmos/bank/v1beta1/balances/${this.cosmosAddress}`
+            );
+            
+            if (!response.ok) {
+                throw new Error(`Failed to fetch balance: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            
+            // Find TICS balance
+            const ticsBalance = data.balances.find(b => b.denom === 'tics');
             
             return {
                 denom: 'tics',
-                amount: balance.toString()
+                amount: ticsBalance ? ticsBalance.amount : '0'
             };
             
         } catch (error) {
             console.error('Error fetching balance:', error);
-            throw error;
+            // Return 0 balance on error instead of throwing
+            return {
+                denom: 'tics',
+                amount: '0'
+            };
         }
     }
     
