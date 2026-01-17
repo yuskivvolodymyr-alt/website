@@ -107,32 +107,31 @@ class CosmosStakingModule {
 
     async loadStakingOverview() {
         try {
-            // MetaMask uses different approach
+            // MetaMask uses different approach - only balance via EVM
             if (this.isMetaMask && this.metamaskConnector) {
                 const address = this.metamaskConnector.getAddress();
                 
                 // Get balance from MetaMask
                 const balance = await this.metamaskConnector.getBalance();
                 
-                // Get delegations and rewards from REST API (same as Keplr/Cosmostation)
-                const delegations = await this.chainClient.getDelegations(address);
-                const rewards = await this.chainClient.getRewards(address);
-                const unbonding = await this.chainClient.getUnbondingDelegations(address);
-                
+                // For MetaMask, we cannot get delegations via REST API with EVM address
+                // Return basic structure with balance only
                 this.stakingOverview = {
                     balance: balance.amount,
-                    totalDelegated: this.chainClient.calculateTotalDelegated(delegations),
-                    totalRewards: this.chainClient.calculateTotalRewards(rewards),
-                    totalUnbonding: this.chainClient.calculateTotalUnbonding(unbonding),
-                    delegations: delegations,
-                    rewards: rewards,
-                    unbonding: unbonding
+                    totalDelegated: '0',
+                    totalRewards: '0',
+                    totalUnbonding: '0',
+                    delegations: [],
+                    rewards: { rewards: [], total: [] },
+                    unbonding: []
                 };
+                
+                console.log('📊 MetaMask overview loaded (balance only)');
                 
                 return this.stakingOverview;
             }
             
-            // Keplr/Cosmostation use staking service
+            // Keplr/Cosmostation use staking service with REST API
             if (!this.stakingService) {
                 throw new Error('Staking service not initialized. Please connect wallet first.');
             }

@@ -201,25 +201,20 @@ class MetaMaskConnector {
     }
     
     /**
-     * Get balance in TICS
+     * Get balance in TICS using ethers provider
      */
     async getBalance() {
         try {
-            if (!this.address) {
-                throw new Error('Wallet not connected');
+            if (!this.signer) {
+                throw new Error('Signer not initialized');
             }
             
-            const balance = await window.ethereum.request({
-                method: 'eth_getBalance',
-                params: [this.address, 'latest']
-            });
-            
-            // Convert from wei to TICS (18 decimals)
-            const balanceInTics = ethers.formatEther(balance);
+            // Get balance directly from provider (works with EVM address)
+            const balance = await this.signer.provider.getBalance(this.address);
             
             return {
                 denom: 'tics',
-                amount: ethers.parseEther(balanceInTics).toString()
+                amount: balance.toString()
             };
             
         } catch (error) {
