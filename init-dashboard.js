@@ -237,7 +237,14 @@
             // Якщо немає dаних в overview, спробуємо прямий запит
             if (!unbondingData || unbondingData.length === 0) {
                 try {
-                    const address = cosmosStaking.walletManager.getAddress();
+                    let address;
+                    // Check if MetaMask
+                    if (cosmosStaking.isMetaMask && cosmosStaking.metamaskConnector) {
+                        address = cosmosStaking.metamaskConnector.cosmosAddress;
+                    } else {
+                        address = cosmosStaking.walletManager.getAddress();
+                    }
+                    
                     const response = await fetch(`https://swagger.qubetics.com/cosmos/staking/v1beta1/delegators/${address}/unbonding_delegations`);
                     const data = await response.json();
                     unbondingData = data.unbonding_responses || [];
