@@ -13,6 +13,10 @@ class CosmosStakingModule {
         this.txBuilder = new CosmosTransactionBuilder(this.chainConfig);
         this.stakingService = null;
         
+        // MetaMask support
+        this.metamaskConnector = null;
+        this.isMetaMask = false;
+        
         this.initialized = false;
         this.stakingOverview = null;
         
@@ -46,10 +50,25 @@ class CosmosStakingModule {
 
             let result;
 
-            if (walletType === 'keplr') {
+            if (walletType === 'metamask') {
+                // Initialize MetaMask connector
+                if (!window.MetaMaskConnector) {
+                    throw new Error('MetaMask connector not loaded');
+                }
+                
+                this.metamaskConnector = new MetaMaskConnector();
+                result = await this.metamaskConnector.connect();
+                this.isMetaMask = true;
+                
+                console.log('✅ MetaMask connected successfully');
+                return result;
+                
+            } else if (walletType === 'keplr') {
                 result = await this.walletManager.connectKeplr();
+                this.isMetaMask = false;
             } else if (walletType === 'cosmostation') {
                 result = await this.walletManager.connectCosmostation();
+                this.isMetaMask = false;
             } else {
                 throw new Error('Unknown wallet type: ' + walletType);
             }
@@ -88,6 +107,32 @@ class CosmosStakingModule {
 
     async loadStakingOverview() {
         try {
+            // MetaMask uses different approach
+            if (this.isMetaMask && this.metamaskConnector) {
+                const address = this.metamaskConnector.getAddress();
+                
+                // Get balance from MetaMask
+                const balance = await this.metamaskConnector.getBalance();
+                
+                // Get delegations and rewards from REST API (same as Keplr/Cosmostation)
+                const delegations = await this.chainClient.getDelegations(address);
+                const rewards = await this.chainClient.getRewards(address);
+                const unbonding = await this.chainClient.getUnbondingDelegations(address);
+                
+                this.stakingOverview = {
+                    balance: balance.amount,
+                    totalDelegated: this.chainClient.calculateTotalDelegated(delegations),
+                    totalRewards: this.chainClient.calculateTotalRewards(rewards),
+                    totalUnbonding: this.chainClient.calculateTotalUnbonding(unbonding),
+                    delegations: delegations,
+                    rewards: rewards,
+                    unbonding: unbonding
+                };
+                
+                return this.stakingOverview;
+            }
+            
+            // Keplr/Cosmostation use staking service
             if (!this.stakingService) {
                 throw new Error('Staking service not initialized. Please connect wallet first.');
             }
@@ -109,10 +154,6 @@ class CosmosStakingModule {
 
     async delegate(amountTics, memo = '') {
         try {
-            if (!this.stakingService) {
-                throw new Error('Будь ласка, спочатку підключіть гаманець');
-            }
-
             const amountMinimal = this.ticsToMinimal(amountTics);
 
             // Validate minimum
@@ -122,11 +163,27 @@ class CosmosStakingModule {
 
             console.log('Delegating', amountTics, 'TICS...');
 
-            const result = await this.stakingService.delegate(
-                this.validatorConfig.operatorAddress,
-                amountMinimal,
-                memo
-            );
+            let result;
+            
+            // MetaMask uses precompile
+            if (this.isMetaMask && this.metamaskConnector) {
+                result = await this.metamaskConnector.delegate(
+                    this.validatorConfig.operatorAddress,
+                    amountMinimal
+                );
+            } 
+            // Keplr/Cosmostation use staking service
+            else {
+                if (!this.stakingService) {
+                    throw new Error('Будь ласка, спочатку підключіть гаманець');
+                }
+                
+                result = await this.stakingService.delegate(
+                    this.validatorConfig.operatorAddress,
+                    amountMinimal,
+                    memo
+                );
+            }
 
             await this.loadStakingOverview();
 
@@ -140,19 +197,31 @@ class CosmosStakingModule {
 
     async undelegate(amountTics, memo = '') {
         try {
-            if (!this.stakingService) {
-                throw new Error('Будь ласка, спочатку підключіть гаманець');
-            }
-
             const amountMinimal = this.ticsToMinimal(amountTics);
 
             console.log('Undelegating', amountTics, 'TICS...');
 
-            const result = await this.stakingService.undelegate(
-                this.validatorConfig.operatorAddress,
-                amountMinimal,
-                memo
-            );
+            let result;
+            
+            // MetaMask uses precompile
+            if (this.isMetaMask && this.metamaskConnector) {
+                result = await this.metamaskConnector.undelegate(
+                    this.validatorConfig.operatorAddress,
+                    amountMinimal
+                );
+            }
+            // Keplr/Cosmostation use staking service
+            else {
+                if (!this.stakingService) {
+                    throw new Error('Будь ласка, спочатку підключіть гаманець');
+                }
+                
+                result = await this.stakingService.undelegate(
+                    this.validatorConfig.operatorAddress,
+                    amountMinimal,
+                    memo
+                );
+            }
 
             await this.loadStakingOverview();
 
@@ -193,19 +262,28 @@ class CosmosStakingModule {
 
     async claimRewards(memo = '', validatorAddresses = null) {
         try {
-            if (!this.stakingService) {
-                throw new Error('Будь ласка, спочатку підключіть гаманець');
-            }
-
             console.log('Claiming rewards...');
             
             // If no validator addresses provided, use default (QubeNode)
             const validators = validatorAddresses || this.validatorConfig.operatorAddress;
 
-            const result = await this.stakingService.claimRewards(
-                validators,
-                memo
-            );
+            let result;
+            
+            // MetaMask uses precompile
+            if (this.isMetaMask && this.metamaskConnector) {
+                result = await this.metamaskConnector.claimRewards(validators);
+            }
+            // Keplr/Cosmostation use staking service
+            else {
+                if (!this.stakingService) {
+                    throw new Error('Будь ласка, спочатку підключіть гаманець');
+                }
+                
+                result = await this.stakingService.claimRewards(
+                    validators,
+                    memo
+                );
+            }
 
             await this.loadStakingOverview();
 

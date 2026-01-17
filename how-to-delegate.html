@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>How to Delegate TICS - Step-by-Step Staking Guide | QubeNode Validator</title>
+    <meta name="title" content="How to Delegate TICS - Step-by-Step Staking Guide | QubeNode">
+    <meta name="description" content="Complete guide on how to stake and delegate TICS tokens with QubeNode validator. Step-by-step instructions for Keplr and Cosmostation wallets. Start earning rewards in minutes.">
+    <meta name="keywords" content="how to delegate TICS, stake TICS tokens, Qubetics staking guide, TICS delegation tutorial, Keplr wallet staking, Cosmostation TICS, delegate to QubeNode, Qubetics validator guide, how to stake Qubetics, TICS staking tutorial">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://qubenode.space/how-to-delegate.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://qubenode.space/how-to-delegate.html">
+    <meta property="og:title" content="How to Delegate TICS - Complete Staking Guide">
+    <meta property="og:description" content="Step-by-step guide to stake TICS tokens with QubeNode validator. Easy delegation through Keplr or Cosmostation wallets.">
+    <meta property="og:image" content="https://qubenode.space/android-chrome-512x512.png">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://qubenode.space/how-to-delegate.html">
+    <meta name="twitter:title" content="How to Delegate TICS - Complete Staking Guide">
+    <meta name="twitter:description" content="Learn how to stake TICS tokens with QubeNode. Step-by-step guide for beginners.">
+    <meta name="twitter:image" content="https://qubenode.space/android-chrome-512x512.png">
+    
+    <!-- Structured Data - HowTo Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to Delegate TICS Tokens to QubeNode Validator",
+      "description": "Complete step-by-step guide for delegating TICS tokens to QubeNode validator using Keplr or Cosmostation wallet",
+      "image": "https://qubenode.space/android-chrome-512x512.png",
+      "totalTime": "PT5M",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "USD",
+        "value": "0"
+      },
+      "tool": [
+        {
+          "@type": "HowToTool",
+          "name": "Keplr Wallet"
+        },
+        {
+          "@type": "HowToTool",
+          "name": "Cosmostation Wallet"
+        }
+      ],
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Install Wallet",
+          "text": "Install Keplr or Cosmostation wallet extension in your browser",
+          "url": "https://qubenode.space/how-to-delegate.html#step1"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Connect Wallet",
+          "text": "Connect your wallet to the Qubetics network",
+          "url": "https://qubenode.space/how-to-delegate.html#step2"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Find QubeNode",
+          "text": "Navigate to QubeNode validator in the staking section",
+          "url": "https://qubenode.space/how-to-delegate.html#step3"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Delegate TICS",
+          "text": "Enter the amount of TICS tokens you want to delegate",
+          "url": "https://qubenode.space/how-to-delegate.html#step4"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 5,
+          "name": "Confirm Transaction",
+          "text": "Review and confirm the delegation transaction",
+          "url": "https://qubenode.space/how-to-delegate.html#step5"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 6,
+          "name": "Start Earning",
+          "text": "Your TICS tokens are now staked and earning rewards",
+          "url": "https://qubenode.space/how-to-delegate.html#step6"
+        }
+      ]
+    }
+    </script>
+    
+    <!-- How To Delegate Styles - CSP Compliant -->
+    <link rel="stylesheet" href="styles-how-to-delegate.css">
+    
+    <!-- Ethers.js for MetaMask Support -->
+    <script src="https://cdn.jsdelivr.net/npm/ethers@6.7.0/dist/ethers.umd.min.js"></script>
+</head>
+<body>
+    <!-- Animated background -->
+    <div class="bg-animation"></div>
+    <div class="grid-overlay"></div>
+    
+    <div class="container">
+        <header>
+            <a href="index.html" class="back-button">🏠 To Main</a>
+            <h1 class="page-title">How to Delegate $TICS</h1>
+        </header>
+
+        <!-- Main instruction -->
+        <div class="delegate-content-wrapper">
+            <h3 class="delegate-title">How to Delegate $TICS</h3>
+            
+            <p class="delegate-text">You can delegate using the <span class="highlight-cyan">Keplr</span> wallet (<a href="#" class="link" id="keplrGuideLink">guide</a>), <span class="highlight-cyan">Cosmostation</span> (<a href="#" class="link" id="cosmostationGuideLink">guide</a>), or <span class="highlight-cyan">MetaMask</span>.</p>
+            
+            <p class="delegate-text">For convenience, delegation is also available directly on the <span class="highlight-cyan">QubeNode</span> validator website.</p>
+            
+            <p class="delegate-text-final">Connect your <span class="highlight-cyan">Keplr</span> or <span class="highlight-cyan">Cosmostation</span> wallet on the website to make instant delegation.</p>
+            
+            <div class="info-box info-box-margin">
+                <p class="info-box-title">
+                    ⭐ You can delegate $TICS directly on the website — wallet connection and delegation happen in the browser through our interface!
+                </p>
+            </div>
+            
+            <div class="wallet-connect-section">
+                <p class="wallet-connect-title">Connect wallet to delegate $TICS:</p>
+                
+                <div class="wallet-buttons-wrapper">
+                    <button id="connectKeplrBtn" class="wallet-connect-btn">
+                        <img src="keplr.png" alt="Keplr" class="wallet-icon">
+                        <span>Keplr Wallet</span>
+                    </button>
+                    
+                    <button id="connectCosmostationBtn" class="wallet-connect-btn">
+                        <img src="Cosmostation.png" alt="Cosmostation" class="wallet-icon">
+                        <span>Cosmostation</span>
+                    </button>
+                    
+                    <button id="connectMetaMaskBtn" class="wallet-connect-btn">
+                        <img src="metamask-fox.svg" alt="MetaMask" class="wallet-icon">
+                        <span>MetaMask</span>
+                    </button>
+                </div>
+                
+                <p class="wallet-note">After connection, delegator dashboard will open</p>
+            </div>
+        </div>
+
+        <!-- Why Choose QubeNode -->
+        <div class="section">
+            <h3 class="section-title">Why Choose QubeNode?</h3>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <span class="feature-icon">🛡️</span>
+                    <div>
+                        <h4 class="feature-title">Reliability</h4>
+                        <p class="feature-text">High uptime — stable node operation 24/7 with professional monitoring</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">💎</span>
+                    <div>
+                        <h4 class="feature-title">Minimal Validator Commission</h4>
+                        <p class="feature-text">Fixed 5% commission — more rewards stay with you</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">⚡</span>
+                    <div>
+                        <h4 class="feature-title">Performance</h4>
+                        <p class="feature-text">Powerful hardware and optimized node configuration for maximum efficiency</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🤝</span>
+                    <div>
+                        <h4 class="feature-title">Support</h4>
+                        <p class="feature-text">Fast support and open communication with delegators</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Keplr Instruction Modal -->
+    <div id="keplrModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close">×</button>
+            
+            <h2 class="modal-title">📱 How to Delegate via Keplr Mobile</h2>
+            <p class="modal-subtitle">Step-by-step guide for delegating $TICS via Keplr mobile app:</p>
+            
+            <div class="instruction-step">
+                <div class="step-num">1</div>
+                <div class="step-content">
+                    <strong>Download Keplr Wallet from App Store or Play Store</strong>
+                </div>
+            </div>
+            
+            <div class="instruction-step">
+                <div class="step-num">2</div>
+                <div class="step-content">
+                    <strong>Create new wallet</strong>
+                </div>
+            </div>
+            
+            <div class="instruction-step">
+                <div class="step-num">3</div>
+                <div class="step-content">
+                    <strong>Securely save your seed phrase and password. <span class="highlight">Never share them with anyone</span></strong>
+                </div>
+            </div>
+            
+            <div class="instruction-step">
+                <div class="step-num">4</div>
+                <div class="step-content">
+                    <strong>Add Qubetics Mainnet: find Qubetics and enable it</strong>
+                </div>
+            </div>
+            
+            <div class="instruction-step">
+                <div class="step-num">5</div>
+                <div class="step-content">
+                    <strong>On main screen tap <span class="cyan">Deposit →</span> find Qubetics → copy your Qubetics Mainnet wallet address (select <span class="cyan">EVM address</span>, it starts with <span class="cyan">0x...</span>)</strong>
+                </div>
+            </div>
+            
+            <div class="instruction-step">
+                <div class="step-num">6</div>
+                <div class="step-content">
+                    <strong>Send $TICS to copied address</strong>
+                </div>
+            </div>
+            
+            <div class="instruction-step">
+                <div class="step-num">7</div>
+                <div class="step-content">
+                    <strong>When transaction completes and you see $TICS in your Keplr wallet, tap <span class="cyan">Qubetics Mainnet</span> on main screen</strong>
+                </div>
+            </div>
+            
+            <div class="instruction-step">
+                <div class="step-num">8</div>
+                <div class="step-content">
+                    <strong>Tap <span class="cyan">Stake</span></strong>
+                </div>
+            </div>
+            
+            <div class="instruction-step">
+                <div class="step-num">9</div>
+                <div class="step-content">
+                    <strong>Tap <span class="cyan">Stake</span> again</strong>
+                </div>
+            </div>
+            
+            <div class="instruction-step">
+                <div class="step-num">10</div>
+                <div class="step-content">
+                    <strong>Select validator <span class="cyan">QubeNode</span></strong>
+                </div>
+            </div>
+            
+            <div class="instruction-step">
+                <div class="step-num">11</div>
+                <div class="step-content">
+                    <strong>Tap <span class="cyan">Stake</span></strong>
+                </div>
+            </div>
+            
+            <div class="instruction-step">
+                <div class="step-num">12</div>
+                <div class="step-content">
+                    <strong>Enter staking amount (leave some $TICS for transaction fees, leave <span class="cyan">Memo</span> field empty) → tap <span class="cyan">Next</span></strong>
+                </div>
+            </div>
+            
+            <div class="instruction-step">
+                <div class="step-num">13</div>
+                <div class="step-content">
+                    <strong>Confirm transaction</strong>
+                </div>
+            </div>
+            
+            <div class="success-box">
+                <div class="icon">✅</div>
+                <div class="text">Done! Your coins are delegated</div>
+            </div>
+            
+            <div class="final-note">
+                <strong>✨ Now you will receive rewards automatically after each created block!</strong>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Cosmostation Instruction Modal -->
+    <div id="cosmostationModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close">×</button>
+            
+            <h2 class="modal-title">📱 How to Delegate via Cosmostation Mobile</h2>
+            <p class="modal-subtitle">Step-by-step guide for delegating $TICS via Cosmostation mobile app:</p>
+            
+            <div class="instruction-step">
+                <div class="step-num">1</div>
+                <div class="step-content">
+                    <strong>Download Cosmostation Wallet from App Store or Play Store</strong>
+                </div>
+            </div>
+            
+            <div class="instruction-step">
+                <div class="step-num">2</div>
+                <div class="step-content">
+                    <strong>Create new wallet</strong>
+                </div>
+            </div>
+            
+            <div class="instruction-step">
+                <div class="step-num">3</div>
+                <div class="step-content">
+                    <strong>Securely save your seed phrase and password. <span class="highlight">Never share them with anyone</span></strong>
+                </div>
+            </div>
+            
+            <div class="instruction-step">
+                <div class="step-num">4</div>
+                <div class="step-content">
+                    <strong>Add Qubetics Mainnet: tap the settings icon (top right corner), search for <span class="cyan">Qubetics</span>, select it from the list and tap <span class="cyan">Confirm</span>. The network will appear on the main screen</strong>
+                </div>
+            </div>
+            
+            <div class="instruction-step">
+                <div class="step-num">5</div>
+                <div class="step-content">
+                    <strong>On the main screen, tap <span class="cyan">Qubetics</span></strong>
+                </div>
+            </div>
+            
+            <div class="instruction-step">
+                <div class="step-num">6</div>
+                <div class="step-content">
+                    <strong>Tap <span class="cyan">Receive</span> to view and copy your wallet address</strong>
+                </div>
+            </div>
+            
+            <div class="instruction-step">
+                <div class="step-num">7</div>
+                <div class="step-content">
+                    <strong>Send $TICS to copied address</strong>
+                </div>
+            </div>
+            
+            <div class="instruction-step">
+                <div class="step-num">8</div>
+                <div class="step-content">
+                    <strong>After transaction confirmation in Cosmostation wallet, open Qubetics Mainnet again on the main screen</strong>
+                </div>
+            </div>
+            
+            <div class="instruction-step">
+                <div class="step-num">9</div>
+                <div class="step-content">
+                    <strong>Tap <span class="cyan">Earn</span></strong>
+                </div>
+            </div>
+            
+            <div class="instruction-step">
+                <div class="step-num">10</div>
+                <div class="step-content">
+                    <strong>Tap <span class="cyan">TICS – Manage stake</span> → <span class="cyan">Start Stake</span></strong>
+                </div>
+            </div>
+            
+            <div class="instruction-step">
+                <div class="step-num">11</div>
+                <div class="step-content">
+                    <strong>Select <span class="cyan">QubeNode</span> as your validator</strong>
+                </div>
+            </div>
+            
+            <div class="instruction-step">
+                <div class="step-num">12</div>
+                <div class="step-content">
+                    <strong>Enter the amount to delegate (leave some $TICS for transaction fees)</strong>
+                </div>
+            </div>
+            
+            <div class="instruction-step">
+                <div class="step-num">13</div>
+                <div class="step-content">
+                    <strong>Tap <span class="cyan">Stake</span> and confirm the transaction</strong>
+                </div>
+            </div>
+            
+            <div class="success-box">
+                <div class="icon">✅</div>
+                <div class="text">Done! Your coins are delegated</div>
+            </div>
+            
+            <div class="final-note">
+                <strong>✨ Now you will receive rewards automatically after each created block!</strong>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p><strong>QubeNode</strong> - Professional Qubetics Network validator</p>
+        <p>© 2025 QubeNode. All rights reserved. | <a href="https://t.me/+sRnz7RyoL4Q0MWEy" target="_blank">Telegram</a></p>
+    </footer>
+    </div>
+    
+    
+    <!-- MetaMask Integration -->
+    <script src="metamask-connector.js"></script>
+    
+    <!-- How To Delegate Initialization -->
+    <script src="init-how-to-delegate.js"></script>
+</body>
+</html>
