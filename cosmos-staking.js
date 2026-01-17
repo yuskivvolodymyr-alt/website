@@ -107,26 +107,29 @@ class CosmosStakingModule {
 
     async loadStakingOverview() {
         try {
-            // MetaMask uses different approach - only balance via EVM
+            // MetaMask uses REST API with converted Cosmos address
             if (this.isMetaMask && this.metamaskConnector) {
-                const address = this.metamaskConnector.getAddress();
+                console.log('📊 Loading MetaMask staking overview...');
                 
                 // Get balance from MetaMask
                 const balance = await this.metamaskConnector.getBalance();
                 
-                // For MetaMask, we cannot get delegations via REST API with EVM address
-                // Return basic structure with balance only
+                // Get delegations, rewards, and unbonding from REST API
+                const delegations = await this.metamaskConnector.getDelegations();
+                const rewards = await this.metamaskConnector.getRewards();
+                const unbonding = await this.metamaskConnector.getUnbondingDelegations();
+                
                 this.stakingOverview = {
                     balance: balance.amount,
-                    totalDelegated: '0',
-                    totalRewards: '0',
-                    totalUnbonding: '0',
-                    delegations: [],
-                    rewards: { rewards: [], total: [] },
-                    unbonding: []
+                    totalDelegated: this.chainClient.calculateTotalDelegated(delegations),
+                    totalRewards: this.chainClient.calculateTotalRewards(rewards),
+                    totalUnbonding: this.chainClient.calculateTotalUnbonding(unbonding),
+                    delegations: delegations,
+                    rewards: rewards,
+                    unbonding: unbonding
                 };
                 
-                console.log('📊 MetaMask overview loaded (balance only)');
+                console.log('✅ MetaMask overview loaded successfully');
                 
                 return this.stakingOverview;
             }

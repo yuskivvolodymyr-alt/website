@@ -9,7 +9,8 @@ class MetaMaskConnector {
     constructor() {
         this.provider = null;
         this.signer = null;
-        this.address = null;
+        this.address = null; // EVM address
+        this.cosmosAddress = null; // Cosmos bech32 address
         this.connected = false;
         
         // Qubetics Network Configuration for MetaMask
@@ -21,9 +22,12 @@ class MetaMaskConnector {
                 symbol: 'TICS',
                 decimals: 18
             },
-            rpcUrls: ['https://tendermint.qubetics.com:443'],
-            blockExplorerUrls: ['https://explorer.qubetics.com']
+            rpcUrls: ['https://rpc.qubetics.com'],
+            blockExplorerUrls: ['https://v2.ticsscan.com']
         };
+        
+        // REST API endpoint
+        this.restUrl = 'https://swagger.qubetics.com';
         
         // Staking Precompile Addresses
         this.STAKING_PRECOMPILE = '0x0000000000000000000000000000000000000800';
@@ -33,6 +37,104 @@ class MetaMaskConnector {
         this.VALIDATOR_ADDRESS = 'qubeticsvaloper1tzk9f84cv2gmk3du3m9dpxcuph70sfj6uf6kld';
         
         console.log('🦊 MetaMask Connector initialized');
+    }
+    
+    /**
+     * Convert EVM address (0x...) to Cosmos address (qubetics...)
+     * Uses bech32 encoding
+     */
+    evmToCosmos(evmAddress, prefix = 'qubetics') {
+        const hex = evmAddress.toLowerCase().replace('0x', '');
+        const bytes = [];
+        for (let i = 0; i < hex.length; i += 2) {
+            bytes.push(parseInt(hex.substr(i, 2), 16));
+        }
+        
+        // Convert bits from 8 to 5
+        const converted = this.convertBits(bytes, 8, 5);
+        
+        // Encode to bech32
+        return this.bech32Encode(prefix, converted);
+    }
+    
+    /**
+     * Convert bits helper
+     */
+    convertBits(data, fromBits, toBits) {
+        let acc = 0;
+        let bits = 0;
+        const result = [];
+        const maxv = (1 << toBits) - 1;
+        
+        for (const value of data) {
+            acc = (acc << fromBits) | value;
+            bits += fromBits;
+            
+            while (bits >= toBits) {
+                bits -= toBits;
+                result.push((acc >> bits) & maxv);
+            }
+        }
+        
+        if (bits > 0) {
+            result.push((acc << (toBits - bits)) & maxv);
+        }
+        
+        return result;
+    }
+    
+    /**
+     * Bech32 encode
+     */
+    bech32Encode(prefix, data) {
+        const CHARSET = 'qpzry9x8gf2tvdw0s3jn54khce6mua7l';
+        const GENERATOR = [0x3b6a57b2, 0x26508e6d, 0x1ea119fa, 0x3d4233dd, 0x2a1462b3];
+        
+        const polymod = (values) => {
+            let chk = 1;
+            for (const value of values) {
+                const top = chk >> 25;
+                chk = ((chk & 0x1ffffff) << 5) ^ value;
+                for (let i = 0; i < 5; i++) {
+                    if ((top >> i) & 1) {
+                        chk ^= GENERATOR[i];
+                    }
+                }
+            }
+            return chk;
+        };
+        
+        const hrpExpand = (hrp) => {
+            const result = [];
+            for (let i = 0; i < hrp.length; i++) {
+                result.push(hrp.charCodeAt(i) >> 5);
+            }
+            result.push(0);
+            for (let i = 0; i < hrp.length; i++) {
+                result.push(hrp.charCodeAt(i) & 31);
+            }
+            return result;
+        };
+        
+        const createChecksum = (hrp, data) => {
+            const values = hrpExpand(hrp).concat(data).concat([0, 0, 0, 0, 0, 0]);
+            const mod = polymod(values) ^ 1;
+            const result = [];
+            for (let i = 0; i < 6; i++) {
+                result.push((mod >> (5 * (5 - i))) & 31);
+            }
+            return result;
+        };
+        
+        const checksum = createChecksum(prefix, data);
+        const combined = data.concat(checksum);
+        
+        let result = prefix + '1';
+        for (const value of combined) {
+            result += CHARSET.charAt(value);
+        }
+        
+        return result;
     }
     
     /**
@@ -66,6 +168,10 @@ class MetaMaskConnector {
             
             this.address = accounts[0];
             this.provider = window.ethereum;
+            
+            // Convert EVM address to Cosmos address for REST API
+            this.cosmosAddress = this.evmToCosmos(this.address, 'qubetics');
+            console.log('🔄 Converted address:', this.address, '→', this.cosmosAddress);
             
             // Try to switch to Qubetics network
             await this.switchToQubeticsNetwork();
@@ -220,6 +326,84 @@ class MetaMaskConnector {
         } catch (error) {
             console.error('Error fetching balance:', error);
             throw error;
+        }
+    }
+    
+    /**
+     * Get delegations using REST API with Cosmos address
+     */
+    async getDelegations() {
+        try {
+            if (!this.cosmosAddress) {
+                throw new Error('Cosmos address not available');
+            }
+            
+            const response = await fetch(
+                `${this.restUrl}/cosmos/staking/v1beta1/delegations/${this.cosmosAddress}`
+            );
+            
+            if (!response.ok) {
+                throw new Error(`Failed to fetch delegations: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            return data.delegation_responses || [];
+            
+        } catch (error) {
+            console.error('Error fetching delegations:', error);
+            return [];
+        }
+    }
+    
+    /**
+     * Get rewards using REST API with Cosmos address
+     */
+    async getRewards() {
+        try {
+            if (!this.cosmosAddress) {
+                throw new Error('Cosmos address not available');
+            }
+            
+            const response = await fetch(
+                `${this.restUrl}/cosmos/distribution/v1beta1/delegators/${this.cosmosAddress}/rewards`
+            );
+            
+            if (!response.ok) {
+                throw new Error(`Failed to fetch rewards: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            return data || { rewards: [], total: [] };
+            
+        } catch (error) {
+            console.error('Error fetching rewards:', error);
+            return { rewards: [], total: [] };
+        }
+    }
+    
+    /**
+     * Get unbonding delegations using REST API with Cosmos address
+     */
+    async getUnbondingDelegations() {
+        try {
+            if (!this.cosmosAddress) {
+                throw new Error('Cosmos address not available');
+            }
+            
+            const response = await fetch(
+                `${this.restUrl}/cosmos/staking/v1beta1/delegators/${this.cosmosAddress}/unbonding_delegations`
+            );
+            
+            if (!response.ok) {
+                throw new Error(`Failed to fetch unbonding delegations: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            return data.unbonding_responses || [];
+            
+        } catch (error) {
+            console.error('Error fetching unbonding delegations:', error);
+            return [];
         }
     }
     
