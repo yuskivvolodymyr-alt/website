@@ -433,9 +433,19 @@ class MetaMaskConnector {
                 throw new Error('Wallet not connected');
             }
             
+            // Verify we're on the correct network
+            const currentChainId = await window.ethereum.request({ method: 'eth_chainId' });
+            console.log('Current chain ID:', currentChainId, 'Expected:', this.networkConfig.chainId);
+            
+            if (currentChainId !== this.networkConfig.chainId) {
+                throw new Error(`Please switch to Qubetics Network in MetaMask. Current: ${currentChainId}, Expected: ${this.networkConfig.chainId}`);
+            }
+            
             console.log('🔷 Delegating via MetaMask...');
             console.log('   Validator:', validatorAddress);
             console.log('   Amount (minimal):', amountMinimal);
+            console.log('   From:', this.address);
+            console.log('   To (precompile):', this.STAKING_PRECOMPILE);
             
             // Encode function call using ethers ABI
             const iface = new ethers.Interface([
@@ -448,18 +458,25 @@ class MetaMaskConnector {
                 BigInt(amountMinimal)
             ]);
             
+            console.log('   Encoded data:', data);
+            
             // Send transaction directly via eth_sendTransaction
+            const txParams = {
+                from: this.address,
+                to: this.STAKING_PRECOMPILE,
+                data: data,
+                gas: '0x3D090', // 250000 in hex
+                gasPrice: undefined // Let MetaMask handle gas price
+            };
+            
+            console.log('   TX params:', txParams);
+            
             const txHash = await window.ethereum.request({
                 method: 'eth_sendTransaction',
-                params: [{
-                    from: this.address,
-                    to: this.STAKING_PRECOMPILE,
-                    data: data,
-                    gas: '0x3D090' // 250000 in hex
-                }]
+                params: [txParams]
             });
             
-            console.log('📤 Transaction submitted:', txHash);
+            console.log('✅ Transaction submitted:', txHash);
             
             return {
                 success: true,
@@ -469,6 +486,11 @@ class MetaMaskConnector {
             
         } catch (error) {
             console.error('❌ Delegation failed:', error);
+            console.error('   Error details:', {
+                message: error.message,
+                code: error.code,
+                data: error.data
+            });
             throw error;
         }
     }
