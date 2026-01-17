@@ -447,23 +447,6 @@ class MetaMaskConnector {
             console.log('   From:', this.address);
             console.log('   To (precompile):', this.STAKING_PRECOMPILE);
             
-            // Convert amount to TICS for display
-            const amountTICS = (parseFloat(amountMinimal) / 1e18).toFixed(6);
-            
-            // Show confirmation to user before sending
-            const userConfirm = confirm(
-                `🔷 Delegate via MetaMask\n\n` +
-                `Amount: ${amountTICS} TICS\n` +
-                `To Validator: ${validatorAddress}\n\n` +
-                `MetaMask will show "0 TICS" because this is a smart contract call.\n` +
-                `The actual delegation amount is ${amountTICS} TICS.\n\n` +
-                `Continue?`
-            );
-            
-            if (!userConfirm) {
-                throw new Error('User cancelled transaction');
-            }
-            
             // Encode function call using ethers ABI
             const iface = new ethers.Interface([
                 "function delegate(address delegator, string calldata validator, uint256 amount) external returns (bool)"
@@ -523,20 +506,6 @@ class MetaMaskConnector {
             
             console.log('🔷 Undelegating via MetaMask...');
             
-            const amountTICS = (parseFloat(amountMinimal) / 1e18).toFixed(6);
-            
-            const userConfirm = confirm(
-                `🔶 Undelegate via MetaMask\n\n` +
-                `Amount: ${amountTICS} TICS\n` +
-                `From Validator: ${validatorAddress}\n\n` +
-                `Tokens will be available in 14 days.\n\n` +
-                `Continue?`
-            );
-            
-            if (!userConfirm) {
-                throw new Error('User cancelled transaction');
-            }
-            
             const iface = new ethers.Interface([
                 "function undelegate(address delegator, string calldata validator, uint256 amount) external returns (bool)"
             ]);
@@ -581,16 +550,6 @@ class MetaMaskConnector {
             }
             
             console.log('🔷 Claiming rewards via MetaMask...');
-            
-            const userConfirm = confirm(
-                `💰 Claim Rewards via MetaMask\n\n` +
-                `From Validator: ${validatorAddress}\n\n` +
-                `Continue?`
-            );
-            
-            if (!userConfirm) {
-                throw new Error('User cancelled transaction');
-            }
             
             const iface = new ethers.Interface([
                 "function withdrawDelegatorReward(address delegator, string calldata validator) external returns (bool)"
