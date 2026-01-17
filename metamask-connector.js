@@ -429,46 +429,42 @@ class MetaMaskConnector {
      */
     async delegate(validatorAddress, amountMinimal) {
         try {
-            if (!this.signer) {
-                throw new Error('Signer not initialized');
+            if (!this.address) {
+                throw new Error('Wallet not connected');
             }
             
             console.log('🔷 Delegating via MetaMask...');
             console.log('   Validator:', validatorAddress);
             console.log('   Amount (minimal):', amountMinimal);
             
-            // Staking precompile ABI for delegate function
-            const stakingABI = [
+            // Encode function call using ethers ABI
+            const iface = new ethers.Interface([
                 "function delegate(address delegator, string calldata validator, uint256 amount) external returns (bool)"
-            ];
+            ]);
             
-            const stakingContract = new ethers.Contract(
-                this.STAKING_PRECOMPILE,
-                stakingABI,
-                this.signer
-            );
-            
-            // Call delegate function
-            const tx = await stakingContract.delegate(
+            const data = iface.encodeFunctionData("delegate", [
                 this.address,
                 validatorAddress,
-                BigInt(amountMinimal),
-                {
-                    gasLimit: 250000
-                }
-            );
+                BigInt(amountMinimal)
+            ]);
             
-            console.log('📤 Transaction submitted:', tx.hash);
+            // Send transaction directly via eth_sendTransaction
+            const txHash = await window.ethereum.request({
+                method: 'eth_sendTransaction',
+                params: [{
+                    from: this.address,
+                    to: this.STAKING_PRECOMPILE,
+                    data: data,
+                    gas: '0x3D090' // 250000 in hex
+                }]
+            });
             
-            // Wait for confirmation
-            const receipt = await tx.wait();
-            
-            console.log('✅ Transaction confirmed:', receipt);
+            console.log('📤 Transaction submitted:', txHash);
             
             return {
                 success: true,
-                hash: tx.hash,
-                receipt: receipt
+                txHash: txHash,
+                hash: txHash
             };
             
         } catch (error) {
@@ -482,39 +478,38 @@ class MetaMaskConnector {
      */
     async undelegate(validatorAddress, amountMinimal) {
         try {
-            if (!this.signer) {
-                throw new Error('Signer not initialized');
+            if (!this.address) {
+                throw new Error('Wallet not connected');
             }
             
             console.log('🔷 Undelegating via MetaMask...');
             
-            const stakingABI = [
+            const iface = new ethers.Interface([
                 "function undelegate(address delegator, string calldata validator, uint256 amount) external returns (bool)"
-            ];
+            ]);
             
-            const stakingContract = new ethers.Contract(
-                this.STAKING_PRECOMPILE,
-                stakingABI,
-                this.signer
-            );
-            
-            const tx = await stakingContract.undelegate(
+            const data = iface.encodeFunctionData("undelegate", [
                 this.address,
                 validatorAddress,
-                BigInt(amountMinimal),
-                {
-                    gasLimit: 300000
-                }
-            );
+                BigInt(amountMinimal)
+            ]);
             
-            console.log('📤 Undelegate transaction submitted:', tx.hash);
+            const txHash = await window.ethereum.request({
+                method: 'eth_sendTransaction',
+                params: [{
+                    from: this.address,
+                    to: this.STAKING_PRECOMPILE,
+                    data: data,
+                    gas: '0x493E0' // 300000 in hex
+                }]
+            });
             
-            const receipt = await tx.wait();
+            console.log('📤 Undelegate transaction submitted:', txHash);
             
             return {
                 success: true,
-                hash: tx.hash,
-                receipt: receipt
+                txHash: txHash,
+                hash: txHash
             };
             
         } catch (error) {
@@ -528,38 +523,37 @@ class MetaMaskConnector {
      */
     async claimRewards(validatorAddress) {
         try {
-            if (!this.signer) {
-                throw new Error('Signer not initialized');
+            if (!this.address) {
+                throw new Error('Wallet not connected');
             }
             
             console.log('🔷 Claiming rewards via MetaMask...');
             
-            const distributionABI = [
+            const iface = new ethers.Interface([
                 "function withdrawDelegatorReward(address delegator, string calldata validator) external returns (bool)"
-            ];
+            ]);
             
-            const distributionContract = new ethers.Contract(
-                this.DISTRIBUTION_PRECOMPILE,
-                distributionABI,
-                this.signer
-            );
-            
-            const tx = await distributionContract.withdrawDelegatorReward(
+            const data = iface.encodeFunctionData("withdrawDelegatorReward", [
                 this.address,
-                validatorAddress,
-                {
-                    gasLimit: 200000
-                }
-            );
+                validatorAddress
+            ]);
             
-            console.log('📤 Claim rewards transaction submitted:', tx.hash);
+            const txHash = await window.ethereum.request({
+                method: 'eth_sendTransaction',
+                params: [{
+                    from: this.address,
+                    to: this.DISTRIBUTION_PRECOMPILE,
+                    data: data,
+                    gas: '0x30D40' // 200000 in hex
+                }]
+            });
             
-            const receipt = await tx.wait();
+            console.log('📤 Claim rewards transaction submitted:', txHash);
             
             return {
                 success: true,
-                hash: tx.hash,
-                receipt: receipt
+                txHash: txHash,
+                hash: txHash
             };
             
         } catch (error) {
