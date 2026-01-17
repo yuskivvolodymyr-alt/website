@@ -15,7 +15,7 @@ class MetaMaskConnector {
         
         // Qubetics Network Configuration for MetaMask
         this.networkConfig = {
-            chainId: '0x234E', // 9038 in hex (qubetics_9030-1 → chain 9038)
+            chainId: '0x2346', // 9030 in hex
             chainName: 'Qubetics Network',
             nativeCurrency: {
                 name: 'TICS',
