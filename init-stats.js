@@ -1093,30 +1093,29 @@
         const events = await fetchValidatorEvents();
         
         if (events.length === 0) {
-            feedEl.innerHTML = '<div class="activity-item"><div class="activity-content">No recent activity</div></div>';
+            feedEl.innerHTML = '<div class="activity-table-row"><div class="col-delegator">No recent activity</div></div>';
             return;
         }
         
         feedEl.innerHTML = '';
         
         events.forEach((event, index) => {
-            const item = document.createElement('div');
-            item.className = 'activity-item';
-            item.style.animationDelay = (index * 0.05) + 's';
+            const row = document.createElement('div');
+            row.className = 'activity-table-row';
+            row.style.animationDelay = (index * 0.05) + 's';
             
             const sign = event.type === 'unbond' ? '-' : '+';
             const amountText = `${sign}${formatNumber(event.amount)} TICS`;
             
-            item.innerHTML = `
-                <div class="activity-icon">#${event.blockHeight.toLocaleString()}</div>
-                <div class="activity-content">
-                    <div class="activity-type">${event.label}</div>
-                    <div class="activity-details">${amountText} from ${formatAddress(event.address)}</div>
-                </div>
-                <div class="activity-time">${timeAgo(new Date(event.timestamp).getTime())}</div>
+            row.innerHTML = `
+                <div class="col-height">#${event.blockHeight.toLocaleString()}</div>
+                <div class="col-action">${event.label}</div>
+                <div class="col-delegator">${formatAddress(event.address)}</div>
+                <div class="col-amount">${amountText}</div>
+                <div class="col-when">${timeAgo(new Date(event.timestamp).getTime())}</div>
             `;
             
-            feedEl.appendChild(item);
+            feedEl.appendChild(row);
         });
         
         console.log('✅ Activity Feed updated:', events.length, 'events');
