@@ -1235,9 +1235,9 @@ footer a:hover {
 
 .activity-table-header {
     display: grid;
-    grid-template-columns: 120px 120px 1fr 150px 100px;
-    gap: 15px;
-    padding: 20px 25px;
+    grid-template-columns: 110px 140px 200px 180px 100px;
+    gap: 20px;
+    padding: 20px 30px;
     background: rgba(0, 212, 255, 0.1);
     border-bottom: 1px solid rgba(0, 212, 255, 0.2);
     font-size: 13px;
@@ -1254,9 +1254,9 @@ footer a:hover {
 
 .activity-table-row {
     display: grid;
-    grid-template-columns: 120px 120px 1fr 150px 100px;
-    gap: 15px;
-    padding: 18px 25px;
+    grid-template-columns: 110px 140px 200px 180px 100px;
+    gap: 20px;
+    padding: 18px 30px;
     border-bottom: 1px solid rgba(0, 212, 255, 0.1);
     transition: background 0.2s;
     animation: slideIn 0.3s ease-out;
@@ -1310,7 +1310,7 @@ footer a:hover {
 .col-when {
     font-size: 12px;
     color: #64748b;
-    justify-content: flex-end;
+    justify-content: flex-start;
 }
 
 /* Custom scrollbar for table body */
@@ -1449,36 +1449,44 @@ footer a:hover {
     
     /* Activity Feed Table - мобільна версія */
     .activity-table-header {
-        grid-template-columns: 90px 90px 1fr 110px 70px;
-        gap: 8px;
-        padding: 15px;
-        font-size: 11px;
+        display: none; /* Приховуємо заголовки на мобільному */
     }
     
     .activity-table-row {
-        grid-template-columns: 90px 90px 1fr 110px 70px;
+        grid-template-columns: 1fr;
         gap: 8px;
-        padding: 12px 15px;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
     }
     
     .col-height {
-        font-size: 11px;
+        font-size: 12px;
+        margin-bottom: 5px;
     }
     
     .col-action {
-        font-size: 12px;
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 5px;
     }
     
     .col-delegator {
         font-size: 11px;
+        margin-bottom: 5px;
+        word-break: break-all;
     }
     
     .col-amount {
-        font-size: 12px;
+        font-size: 13px;
+        font-weight: 700;
+        margin-bottom: 5px;
     }
     
     .col-when {
         font-size: 11px;
+        color: #64748b;
     }
     
     /* Тільки 5 останніх подій на мобільному */
