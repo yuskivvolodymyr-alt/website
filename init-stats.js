@@ -1110,7 +1110,7 @@
             row.innerHTML = `
                 <div class="col-height">#${event.blockHeight.toLocaleString()}</div>
                 <div class="col-action">${event.label}</div>
-                <div class="col-delegator">${formatAddress(event.address)}</div>
+                <div class="col-delegator" data-action="${event.label}">${formatAddress(event.address)}</div>
                 <div class="col-amount">${amountText}</div>
                 <div class="col-when">${timeAgo(new Date(event.timestamp).getTime())}</div>
             `;

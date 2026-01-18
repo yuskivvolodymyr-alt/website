@@ -1235,8 +1235,8 @@ footer a:hover {
 
 .activity-table-header {
     display: grid;
-    grid-template-columns: 110px 140px 200px 180px 100px;
-    gap: 20px;
+    grid-template-columns: 130px 150px 1fr 180px 120px;
+    gap: 30px;
     padding: 20px 30px;
     background: rgba(0, 212, 255, 0.1);
     border-bottom: 1px solid rgba(0, 212, 255, 0.2);
@@ -1254,8 +1254,8 @@ footer a:hover {
 
 .activity-table-row {
     display: grid;
-    grid-template-columns: 110px 140px 200px 180px 100px;
-    gap: 20px;
+    grid-template-columns: 130px 150px 1fr 180px 120px;
+    gap: 30px;
     padding: 18px 30px;
     border-bottom: 1px solid rgba(0, 212, 255, 0.1);
     transition: background 0.2s;
@@ -1449,51 +1449,76 @@ footer a:hover {
     
     /* Activity Feed Table - мобільна версія */
     .activity-table-header {
-        display: none; /* Приховуємо заголовки на мобільному */
+        display: none; /* Приховуємо заголовки */
+    }
+    
+    .activity-feed-table {
+        padding: 0;
+    }
+    
+    .activity-table-body {
+        max-height: 500px;
+        padding: 15px;
     }
     
     .activity-table-row {
-        grid-template-columns: 1fr;
-        gap: 8px;
-        padding: 15px;
         display: flex;
-        flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
+        gap: 15px;
+        padding: 15px;
+        background: rgba(0, 212, 255, 0.03);
+        border: 1px solid rgba(0, 212, 255, 0.1);
+        border-radius: 12px;
+        margin-bottom: 12px;
+    }
+    
+    .activity-table-row:last-child {
+        margin-bottom: 0;
     }
     
     .col-height {
-        font-size: 12px;
-        margin-bottom: 5px;
+        font-size: 13px;
+        font-weight: 600;
+        color: #00D4FF;
+        min-width: 90px;
+        font-family: 'Courier New', monospace;
     }
     
     .col-action {
-        font-size: 14px;
-        font-weight: 700;
-        margin-bottom: 5px;
+        display: none; /* Ховаємо Action на мобільному */
     }
     
     .col-delegator {
-        font-size: 11px;
-        margin-bottom: 5px;
-        word-break: break-all;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+    
+    .col-delegator::before {
+        content: attr(data-action);
+        color: #00FFF0;
+        font-size: 14px;
+        font-weight: 600;
     }
     
     .col-amount {
         font-size: 13px;
-        font-weight: 700;
-        margin-bottom: 5px;
+        font-weight: 600;
+        color: #ffffff;
+        text-align: right;
+        min-width: 110px;
     }
     
     .col-when {
-        font-size: 11px;
+        font-size: 12px;
         color: #64748b;
+        white-space: nowrap;
+        min-width: 70px;
+        text-align: right;
     }
     
     /* Тільки 5 останніх подій на мобільному */
-    .activity-table-body {
-        max-height: 450px;
-    }
-    
     .activity-table-row:nth-child(n+7) {
         display: none;
     }
