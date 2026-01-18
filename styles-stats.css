@@ -1447,18 +1447,20 @@ footer a:hover {
         height: 300px;
     }
     
-    /* Activity Feed Table - мобільна версія */
+    /* Activity Feed Table - мобільна версія (як на скріні) */
     .activity-table-header {
         display: none; /* Приховуємо заголовки */
     }
     
     .activity-feed-table {
+        background: transparent;
+        border: none;
         padding: 0;
     }
     
     .activity-table-body {
         max-height: 500px;
-        padding: 15px;
+        padding: 0;
     }
     
     .activity-table-row {
@@ -1470,6 +1472,7 @@ footer a:hover {
         border: 1px solid rgba(0, 212, 255, 0.1);
         border-radius: 12px;
         margin-bottom: 12px;
+        grid-template-columns: auto; /* Скидаємо grid */
     }
     
     .activity-table-row:last-child {
@@ -1485,7 +1488,7 @@ footer a:hover {
     }
     
     .col-action {
-        display: none; /* Ховаємо Action на мобільному */
+        display: none; /* Ховаємо на мобільному */
     }
     
     .col-delegator {
@@ -1493,21 +1496,31 @@ footer a:hover {
         display: flex;
         flex-direction: column;
         gap: 4px;
+        font-size: 11px;
+        color: #94a3b8;
+        font-family: 'Courier New', monospace;
     }
     
+    /* Action відображається як заголовок перед delegator */
     .col-delegator::before {
         content: attr(data-action);
         color: #00FFF0;
         font-size: 14px;
         font-weight: 600;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        margin-bottom: 2px;
     }
     
+    /* Amount відображається в тому ж рядку що і action */
     .col-amount {
+        display: none;
+    }
+    
+    .col-delegator::after {
+        content: attr(data-amount);
+        color: #94a3b8;
         font-size: 13px;
-        font-weight: 600;
-        color: #ffffff;
-        text-align: right;
-        min-width: 110px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     }
     
     .col-when {
