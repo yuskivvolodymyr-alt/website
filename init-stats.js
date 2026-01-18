@@ -348,12 +348,6 @@
             
             // Map to our format
             const allEvents = data.events.map(event => {
-                const icons = {
-                    'delegate': '💰',
-                    'unbond': '📤',
-                    'redelegate': '🔄'
-                };
-                
                 const labels = {
                     'delegate': 'New Delegation',
                     'unbond': 'Unbond',
@@ -362,7 +356,7 @@
                 
                 return {
                     type: event.type,
-                    icon: icons[event.type] || '📍',
+                    blockHeight: event.height, // Block height instead of emoji
                     label: labels[event.type] || event.type,
                     address: event.delegator,
                     amount: event.amount / 1e18, // Convert from wei to TICS
@@ -1114,7 +1108,7 @@
             const amountText = `${sign}${formatNumber(event.amount)} TICS`;
             
             item.innerHTML = `
-                <div class="activity-icon">${event.icon}</div>
+                <div class="activity-icon">#${event.blockHeight.toLocaleString()}</div>
                 <div class="activity-content">
                     <div class="activity-type">${event.label}</div>
                     <div class="activity-details">${amountText} from ${formatAddress(event.address)}</div>
