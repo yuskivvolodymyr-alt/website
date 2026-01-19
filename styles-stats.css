@@ -1666,20 +1666,19 @@ footer a:hover {
         font-size: 16px;
     }
 
-    /* Mobile Activity Feed Headers */
+    /* Mobile Activity Feed - Clean Headers */
     .activity-feed-mobile-headers {
         display: grid;
-        grid-template-columns: 90px 1fr 80px;
-        gap: 10px;
-        padding: 12px 15px;
-        background: rgba(0, 212, 255, 0.1);
-        border-radius: 8px;
-        margin-bottom: 15px;
-        font-weight: 600;
-        font-size: 13px;
+        grid-template-columns: 95px 1fr 70px;
+        gap: 12px;
+        padding: 10px 8px;
+        margin-bottom: 12px;
+        font-weight: 700;
+        font-size: 11px;
         color: #00D4FF;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
+        letter-spacing: 0.8px;
+        border-bottom: 1px solid rgba(0, 212, 255, 0.3);
     }
 
     .activity-feed-mobile-headers .header-item {
@@ -1690,58 +1689,74 @@ footer a:hover {
         text-align: right;
     }
 
-    /* Mobile Activity Item Grid */
+    /* Mobile Activity Item - No Boxes, Clean Grid */
     .activity-item {
         display: grid !important;
-        grid-template-columns: 90px 1fr 80px !important;
-        gap: 10px !important;
+        grid-template-columns: 95px 1fr 70px !important;
+        gap: 12px !important;
         align-items: start !important;
-        padding: 12px 15px !important;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(0, 212, 255, 0.15);
-        border-radius: 10px;
-        margin-bottom: 10px;
+        padding: 10px 8px !important;
+        background: transparent !important;
+        border: none !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border-radius: 0 !important;
+        margin-bottom: 0 !important;
+    }
+
+    .activity-item:hover {
+        background: rgba(0, 212, 255, 0.05) !important;
     }
 
     .activity-item .activity-icon {
         display: none !important;
     }
 
+    /* Height Column */
     .activity-item .activity-height {
-        font-size: 14px;
+        font-size: 13px;
         font-weight: 700;
         color: #00D4FF;
         text-align: left;
+        line-height: 1.3;
+        word-break: break-all;
     }
 
+    /* Actions Column */
     .activity-item .activity-content {
         display: flex;
         flex-direction: column;
-        gap: 4px;
+        gap: 3px;
         text-align: left;
     }
 
     .activity-item .activity-type {
-        font-size: 13px;
+        font-size: 12px;
         font-weight: 600;
         color: #00FFF0;
+        line-height: 1.2;
     }
 
     .activity-item .activity-amount {
-        font-size: 12px;
+        font-size: 11px;
         font-weight: 600;
         color: #fff;
+        line-height: 1.2;
     }
 
     .activity-item .activity-address {
-        font-size: 11px;
+        font-size: 10px;
         color: #94a3b8;
+        line-height: 1.2;
+        word-break: break-all;
     }
 
+    /* When Column */
     .activity-item .activity-time {
-        font-size: 11px;
+        font-size: 10px;
         color: #94a3b8;
         text-align: right;
         margin: 0 !important;
+        line-height: 1.3;
+        white-space: nowrap;
     }
 }

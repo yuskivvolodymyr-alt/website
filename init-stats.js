@@ -1138,9 +1138,11 @@
             const amountText = `${sign}${formatNumber(event.amount)} TICS from`;
             
             if (isMobile) {
-                // Mobile layout: Height | Actions (type, amount, address) | When
+                // Mobile layout: Full Height | Actions (type, amount, address) | When
+                // Show full block number without formatting
+                const fullHeight = event.height || '---';
                 item.innerHTML = `
-                    <div class="activity-height">#${formatNumber(event.height || '---')}</div>
+                    <div class="activity-height">#${fullHeight}</div>
                     <div class="activity-content">
                         <div class="activity-type">${event.label}</div>
                         <div class="activity-amount">${amountText}</div>
