@@ -1459,7 +1459,7 @@ footer a:hover {
     
     .activity-table-header {
         display: grid;
-        grid-template-columns: 100px 1fr 80px;
+        grid-template-columns: 100px 1fr 75px;
         gap: 15px;
         padding: 12px 15px;
         background: transparent;
@@ -1483,10 +1483,11 @@ footer a:hover {
         background: transparent;
     }
     
-    /* КАРТКИ */
+    /* КАРТКИ - правильний порядок колонок */
     .activity-table-row {
         display: grid;
-        grid-template-columns: 100px 1fr 80px;
+        grid-template-columns: 100px 1fr 75px;
+        grid-template-areas: "block actions when";
         gap: 15px;
         padding: 12px;
         background: rgba(0, 212, 255, 0.03);
@@ -1500,8 +1501,9 @@ footer a:hover {
         margin-bottom: 0;
     }
     
-    /* BLOCK */
+    /* BLOCK - перша колонка */
     .col-height {
+        grid-area: block;
         font-size: 12px;
         font-weight: 600;
         color: #00D4FF;
@@ -1512,14 +1514,15 @@ footer a:hover {
         display: none;
     }
     
-    /* ACTIONS - ПРАВИЛЬНИЙ ПОРЯДОК */
+    /* ACTIONS - друга колонка */
     .col-delegator {
+        grid-area: actions;
         display: flex;
         flex-direction: column;
         gap: 2px;
     }
     
-    /* 1. New Delegation (перший) */
+    /* 1. New Delegation */
     .col-delegator::before {
         content: attr(data-action);
         color: #00FFF0;
@@ -1529,7 +1532,7 @@ footer a:hover {
         order: 1;
     }
     
-    /* 2. +31,949 TICS from (другий) */
+    /* 2. +31,949 TICS from */
     .col-delegator::after {
         content: attr(data-amount);
         color: #ffffff;
@@ -1538,7 +1541,7 @@ footer a:hover {
         order: 2;
     }
     
-    /* 3. Адреса (третій) */
+    /* 3. Адреса */
     .col-delegator {
         font-size: 11px;
         color: #94a3b8;
@@ -1550,8 +1553,9 @@ footer a:hover {
         display: none;
     }
     
-    /* WHEN - вирівняно з заголовком */
+    /* WHEN - третя колонка */
     .col-when {
+        grid-area: when;
         font-size: 11px;
         color: #64748b;
         text-align: right;
