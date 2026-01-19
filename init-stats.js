@@ -1113,15 +1113,27 @@
             return;
         }
         
-        // Add mobile headers for small screens
+        // Check if mobile or desktop
         const isMobile = window.innerWidth <= 768;
         let html = '';
         
         if (isMobile) {
+            // Mobile headers
             html += `
                 <div class="activity-feed-mobile-headers">
                     <div class="header-item">Height</div>
                     <div class="header-item">Actions</div>
+                    <div class="header-item">When</div>
+                </div>
+            `;
+        } else {
+            // Desktop headers
+            html += `
+                <div class="activity-feed-desktop-headers">
+                    <div class="header-item">Height</div>
+                    <div class="header-item">Actions</div>
+                    <div class="header-item">Delegator</div>
+                    <div class="header-item">Amount</div>
                     <div class="header-item">When</div>
                 </div>
             `;
@@ -1135,29 +1147,27 @@
             item.style.animationDelay = (index * 0.05) + 's';
             
             const sign = event.type === 'unbond' ? '-' : '+';
-            const amountText = `${sign}${formatNumber(event.amount)} TICS from`;
+            const amountText = `${sign}${formatNumber(event.amount)} TICS`;
+            const fullHeight = event.height || '---';
             
             if (isMobile) {
-                // Mobile layout: Full Height | Actions (type, amount, address) | When
-                // Show full block number without formatting
-                const fullHeight = event.height || '---';
+                // Mobile layout: Height | Actions | When
                 item.innerHTML = `
                     <div class="activity-height">#${fullHeight}</div>
                     <div class="activity-content">
                         <div class="activity-type">${event.label}</div>
-                        <div class="activity-amount">${amountText}</div>
+                        <div class="activity-amount">${amountText} from</div>
                         <div class="activity-address">${formatAddress(event.address)}</div>
                     </div>
                     <div class="activity-time">${timeAgo(new Date(event.timestamp).getTime())}</div>
                 `;
             } else {
-                // Desktop layout: Icon | Content (type, details) | Time
+                // Desktop layout: Height | Actions | Delegator | Amount | When
                 item.innerHTML = `
-                    <div class="activity-icon">${event.icon}</div>
-                    <div class="activity-content">
-                        <div class="activity-type">${event.label}</div>
-                        <div class="activity-details">${amountText} ${formatAddress(event.address)}</div>
-                    </div>
+                    <div class="activity-height">#${fullHeight}</div>
+                    <div class="activity-type">${event.label}</div>
+                    <div class="activity-delegator">${formatAddress(event.address)}</div>
+                    <div class="activity-amount">${amountText}</div>
                     <div class="activity-time">${timeAgo(new Date(event.timestamp).getTime())}</div>
                 `;
             }

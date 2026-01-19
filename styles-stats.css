@@ -1233,16 +1233,47 @@ footer a:hover {
     overflow-y: auto;
 }
 
+/* Desktop Activity Feed Headers */
+.activity-feed-desktop-headers {
+    display: grid;
+    grid-template-columns: 140px 180px 280px 180px 120px;
+    gap: 20px;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    font-weight: 700;
+    font-size: 13px;
+    color: #00D4FF;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+}
+
+.activity-feed-desktop-headers .header-item {
+    text-align: left;
+}
+
+.activity-feed-desktop-headers .header-item:last-child {
+    text-align: right;
+}
+
+/* Desktop Activity Item - Grid Layout */
 .activity-item {
-    display: flex;
+    display: grid;
+    grid-template-columns: 140px 180px 280px 180px 120px;
+    gap: 20px;
     align-items: center;
-    gap: 15px;
-    padding: 15px;
-    background: rgba(0, 212, 255, 0.03);
-    border: 1px solid rgba(0, 212, 255, 0.1);
-    border-radius: 12px;
-    margin-bottom: 12px;
+    padding: 18px 20px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0;
+    margin-bottom: 0;
     animation: slideIn 0.3s ease-out;
+    transition: all 0.3s;
+}
+
+.activity-item:hover {
+    background: rgba(0, 212, 255, 0.05);
 }
 
 .activity-item:last-child {
@@ -1250,25 +1281,50 @@ footer a:hover {
 }
 
 .activity-item.loading {
+    display: flex;
     justify-content: center;
     padding: 30px;
+    border: none;
+    grid-template-columns: unset;
 }
 
+/* Desktop columns - no emoji icon */
 .activity-icon {
-    font-size: 24px;
-    min-width: 40px;
-    text-align: center;
+    display: none;
 }
 
-.activity-content {
-    flex: 1;
+.activity-height {
+    font-size: 16px;
+    font-weight: 700;
+    color: #00D4FF;
+    text-align: left;
 }
 
 .activity-type {
     color: #00FFF0;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 600;
-    margin-bottom: 4px;
+    text-align: left;
+}
+
+.activity-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.activity-delegator {
+    color: #94a3b8;
+    font-size: 14px;
+    text-align: left;
+    word-break: break-all;
+}
+
+.activity-amount {
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: left;
 }
 
 .activity-details {
@@ -1277,9 +1333,11 @@ footer a:hover {
 }
 
 .activity-time {
-    color: #64748b;
-    font-size: 12px;
-    white-space: nowrap;
+    color: #94a3b8;
+    font-size: 13px;
+    text-align: right;
+}
+    text-align: right;
 }
 
 /* ===== RESPONSIVE UPDATES ===== */
