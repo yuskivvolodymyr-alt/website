@@ -1452,43 +1452,44 @@ footer a:hover {
         height: 300px;
     }
     
-    /* Activity Feed Table - мобільна версія (картки з заголовками) */
+    /* Activity Feed Table - мобільна версія (ПРОСТО без вікон у вікнах) */
     .desktop-only {
         display: none !important;
     }
     
     .activity-table-header {
         display: grid;
-        grid-template-columns: 100px 1fr 70px;
-        gap: 15px;
-        padding: 15px 20px;
-        background: rgba(0, 212, 255, 0.1);
-        border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+        grid-template-columns: 95px 1fr 65px;
+        gap: 12px;
+        padding: 12px 15px;
+        background: transparent;
+        border-bottom: 1px solid rgba(0, 212, 255, 0.3);
         font-size: 11px;
         font-weight: 700;
         color: #00D4FF;
         text-transform: uppercase;
         letter-spacing: 0.5px;
-        border-radius: 20px 20px 0 0;
+        margin-bottom: 15px;
     }
     
     .activity-feed-table {
-        border-radius: 20px;
-        overflow: hidden;
+        background: transparent;
+        border: none;
+        border-radius: 0;
     }
     
     .activity-table-body {
         max-height: 500px;
-        padding: 15px;
-        background: rgba(255, 255, 255, 0.03);
+        padding: 0;
+        background: transparent;
     }
     
-    /* КАРТКИ - grid layout щоб вирівняти з заголовками */
+    /* КАРТКИ - grid щоб вирівняти з заголовками */
     .activity-table-row {
         display: grid;
-        grid-template-columns: 100px 1fr 70px;
-        gap: 15px;
-        padding: 15px;
+        grid-template-columns: 95px 1fr 65px;
+        gap: 12px;
+        padding: 12px;
         background: rgba(0, 212, 255, 0.03);
         border: 1px solid rgba(0, 212, 255, 0.1);
         border-radius: 12px;
@@ -1500,9 +1501,9 @@ footer a:hover {
         margin-bottom: 0;
     }
     
-    /* BLOCK колонка */
+    /* BLOCK */
     .col-height {
-        font-size: 13px;
+        font-size: 12px;
         font-weight: 600;
         color: #00D4FF;
         font-family: 'Courier New', monospace;
@@ -1512,34 +1513,31 @@ footer a:hover {
         display: none;
     }
     
-    /* ACTIONS колонка */
+    /* ACTIONS */
     .col-delegator {
         display: flex;
         flex-direction: column;
         gap: 3px;
     }
     
-    /* 1. New Delegation */
     .col-delegator::before {
         content: attr(data-action);
         color: #00FFF0;
-        font-size: 14px;
+        font-size: 13px;
         font-weight: 600;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     }
     
-    /* 2. Адреса делегатора */
     .col-delegator {
         font-size: 11px;
         color: #94a3b8;
         font-family: 'Courier New', monospace;
     }
     
-    /* 3. +342,139 TICS from */
     .col-delegator::after {
         content: attr(data-amount);
         color: #ffffff;
-        font-size: 13px;
+        font-size: 12px;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     }
     
@@ -1547,14 +1545,14 @@ footer a:hover {
         display: none;
     }
     
-    /* WHEN колонка */
+    /* WHEN */
     .col-when {
-        font-size: 12px;
+        font-size: 11px;
         color: #64748b;
         text-align: right;
     }
     
-    /* Тільки 5 останніх подій на мобільному */
+    /* Тільки 5 останніх подій */
     .activity-table-row:nth-child(n+7) {
         display: none;
     }
