@@ -1313,6 +1313,11 @@ footer a:hover {
     justify-content: flex-start;
 }
 
+/* Desktop-only columns */
+.desktop-only {
+    display: block;
+}
+
 /* Custom scrollbar for table body */
 .activity-table-body::-webkit-scrollbar {
     width: 8px;
@@ -1447,15 +1452,28 @@ footer a:hover {
         height: 300px;
     }
     
-    /* Activity Feed Table - мобільна версія (як на скріні) */
+    /* Activity Feed Table - мобільна версія (3 колонки) */
+    .desktop-only {
+        display: none !important;
+    }
+    
     .activity-table-header {
-        display: none; /* Приховуємо заголовки */
+        display: grid;
+        grid-template-columns: 100px 1fr 80px;
+        gap: 10px;
+        padding: 15px;
+        background: rgba(0, 212, 255, 0.1);
+        border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+        font-size: 12px;
+        font-weight: 700;
+        color: #00D4FF;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
     }
     
     .activity-feed-table {
-        background: transparent;
-        border: none;
-        padding: 0;
+        border-radius: 12px;
+        overflow: hidden;
     }
     
     .activity-table-body {
@@ -1464,71 +1482,74 @@ footer a:hover {
     }
     
     .activity-table-row {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        padding: 15px;
-        background: rgba(0, 212, 255, 0.03);
-        border: 1px solid rgba(0, 212, 255, 0.1);
-        border-radius: 12px;
-        margin-bottom: 12px;
-        grid-template-columns: auto; /* Скидаємо grid */
+        display: grid;
+        grid-template-columns: 100px 1fr 80px;
+        gap: 10px;
+        padding: 12px 15px;
+        border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+        background: transparent;
+        border-radius: 0;
+        margin-bottom: 0;
+        align-items: start;
     }
     
-    .activity-table-row:last-child {
-        margin-bottom: 0;
+    .activity-table-row:hover {
+        background: rgba(0, 212, 255, 0.03);
     }
     
     .col-height {
-        font-size: 13px;
+        font-size: 12px;
         font-weight: 600;
         color: #00D4FF;
-        min-width: 90px;
         font-family: 'Courier New', monospace;
+        padding-top: 2px;
     }
     
     .col-action {
-        display: none; /* Ховаємо на мобільному */
+        display: none;
     }
     
     .col-delegator {
-        flex: 1;
         display: flex;
         flex-direction: column;
-        gap: 4px;
+        gap: 3px;
         font-size: 11px;
         color: #94a3b8;
         font-family: 'Courier New', monospace;
     }
     
-    /* Action відображається як заголовок перед delegator */
+    /* Actions колонка - правильний порядок */
     .col-delegator::before {
         content: attr(data-action);
         color: #00FFF0;
-        font-size: 14px;
+        font-size: 13px;
         font-weight: 600;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-        margin-bottom: 2px;
-    }
-    
-    /* Amount відображається в тому ж рядку що і action */
-    .col-amount {
-        display: none;
+        order: 1;
     }
     
     .col-delegator::after {
         content: attr(data-amount);
-        color: #94a3b8;
-        font-size: 13px;
+        color: #ffffff;
+        font-size: 12px;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        order: 2;
+    }
+    
+    /* Адреса (сам текст delegator) */
+    .col-delegator {
+        order: 3;
+    }
+    
+    .col-amount {
+        display: none;
     }
     
     .col-when {
-        font-size: 12px;
+        font-size: 11px;
         color: #64748b;
-        white-space: nowrap;
-        min-width: 70px;
         text-align: right;
+        padding-top: 2px;
     }
     
     /* Тільки 5 останніх подій на мобільному */
