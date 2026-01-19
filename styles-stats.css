@@ -1236,8 +1236,8 @@ footer a:hover {
 /* Desktop Activity Feed Headers */
 .activity-feed-desktop-headers {
     display: grid;
-    grid-template-columns: 140px 180px 280px 180px 120px;
-    gap: 20px;
+    grid-template-columns: 150px 200px 320px 200px 130px;
+    gap: 25px;
     padding: 15px 20px;
     margin-bottom: 10px;
     font-weight: 700;
@@ -1259,8 +1259,8 @@ footer a:hover {
 /* Desktop Activity Item - Grid Layout */
 .activity-item {
     display: grid;
-    grid-template-columns: 140px 180px 280px 180px 120px;
-    gap: 20px;
+    grid-template-columns: 150px 200px 320px 200px 130px;
+    gap: 25px;
     align-items: center;
     padding: 18px 20px;
     background: transparent;
